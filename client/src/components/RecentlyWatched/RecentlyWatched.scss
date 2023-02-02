@@ -1,0 +1,47 @@
+.recently-watched {
+  margin-left: 10px;
+  &__title {
+    font-size: 18px;
+    font-weight: 700;
+    margin-bottom: 20px;
+  }
+  &__product {
+    display: flex;
+    min-width: 300px;
+    max-width: 300px;
+    margin-bottom: 15px;
+  }
+  &__product-img {
+    width: 100px;
+    height: 75px;
+    object-fit: cover;
+    margin-right: 10px;
+    cursor: pointer;
+  }
+  &__product-info {
+    width: 100%;
+  }
+  &__product-top {
+    display: flex;
+    justify-content: space-between;
+    font-weight: 700;
+    color: #00AAFF;
+    margin-bottom: 8px;
+  }
+  &__product-name {
+   font-size: 18px; 
+   overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    cursor: pointer;
+  }
+  &__product-like {
+    color: #00AAFF;
+    background: transparent;
+  }
+  &__product-adress {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+}

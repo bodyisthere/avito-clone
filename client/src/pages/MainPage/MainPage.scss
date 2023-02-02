@@ -1,0 +1,12 @@
+.main {
+  &__container {
+    max-width: 1940px;
+    margin: 0 auto;
+    padding: 10px 10px;
+    font-size: 16px;
+  }
+  &__bottom {
+    display: flex;
+    overflow: hidden;
+  }
+}

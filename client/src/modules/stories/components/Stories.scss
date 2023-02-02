@@ -1,0 +1,155 @@
+.stories {
+  &__container {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    max-width: 1240px;
+    overflow: hidden;
+  }
+  &__control {
+    position: absolute;
+    top: 50px;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    z-index: 2;
+  }
+  &__navigate {
+    color: black;
+    width: 50px;
+    height: 50px;
+    font-size: 20px;
+    border-radius: 50%;
+    transition: all .1s;
+    background: white;
+    border: 1px solid black;
+    &:hover {
+      transform: scale(1.1, 1.1);
+      background: rgba(170, 170, 170, 0.827);
+    }
+  }
+}
+
+.story {
+  cursor: pointer;
+  font-size: 14px;
+  padding: 10px;
+  min-width: 100px;
+  width: 100px;
+  height: 100px;
+  border-radius: 15px;
+  background-color: rgb(242, 239, 233);
+  margin-right: 10px;
+  position: relative;
+  &__condition {
+    overflow: hidden;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: #ff6163;
+    position: absolute;
+    top: 0px;
+    right: 0px;
+  }
+  &__title {
+    width: 100%;
+    overflow: hidden;
+    overflow-wrap: break-word;
+  }
+}
+
+.story-open {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  width: 100vw;
+  height: 100vh;
+  background: rgba($color: #000000, $alpha: 0.3);
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  &__container {
+    max-width: 1940px;
+    margin: 0 auto;
+    display: flex;
+    background: white;
+    position: relative;
+    width: 20vw;
+    height: 550px;
+    background: transparent;
+    img {
+      border-radius: 15px;
+      object-fit: cover;
+      width: 20vw;
+      height: 550px;
+    }
+  }
+  &__slides {
+    padding: 0px 10px;
+    width: 100%;
+    height: 30px;
+    position: absolute;
+    top: 10px;
+    left: 0px;
+    display: flex;
+    justify-content: space-between;
+  }
+  &__slide {
+    display: block;
+    cursor: pointer;
+    height: 5px;
+    background: gray;
+    border-radius: 15px;
+  }
+  &__slide--active {
+    animation: progress-bar 10s linear;
+  }
+  &__control {
+    width: 110%;
+    position: absolute;
+    top: 45%;
+    left: calc(-105% + 100%);
+    display: flex;
+    justify-content: space-between;
+  }
+  &__arrow {
+    cursor: pointer;
+    font-size: 60px;
+    background: transparent;
+    color: white;
+  }
+}
+
+@keyframes progress-bar {
+  0% {
+    background: gray;
+  }
+  100% {
+    background: black;
+  }
+}
+
+@media (max-width: 1440px) {
+  .stories {
+    &__container {
+      max-width: 1024px;
+    }
+  }
+}
+
+@media (max-width: 1024px) {
+  .stories {
+    &__container {
+      max-width: 740px;
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .stories {
+    &__container {
+      max-width: 400px;
+    }
+  }
+}

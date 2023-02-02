@@ -1,0 +1,33 @@
+.popular {
+  &__container {
+    max-width: 1940px;
+    margin: 0 auto;
+    padding: 10px 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 16px;
+    color: #00AAFF;
+  }
+  &__list {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-column-gap: 30px;
+    justify-content: center;
+  }
+  &__item {
+    margin-bottom: 5px;
+    &:hover {
+      color: #ff6163;
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .popular {
+    &__list {
+      grid-template-columns: 1fr 1fr;
+      grid-column-gap: 30px;
+    }
+  }
+}
