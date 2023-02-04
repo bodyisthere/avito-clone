@@ -1,10 +1,4 @@
 export { Button } from "./Button";
 export { InputPassword } from "./InputPassword";
 export { InputText } from "./InputText";
-export { FileUpload } from "./ADS-UI/FileUpload"
-export { FileUploaded } from './ADS-UI/FileUploaded'
-export { Textarea } from "./ADS-UI/Textarea"
-export { Price } from "./ADS-UI/Price"
 export { Select } from "./Select"
-export { ColorChoose } from "./ADS-UI/ColorChoose";
-export { VideoLink } from './ADS-UI/VideoLink'

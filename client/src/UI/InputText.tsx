@@ -16,10 +16,10 @@ export const InputText: FC<IInputText> = ({
   value,
 }) => {
   return (
-    <div className="input-text">
+    <div className={`input-text ${className}`}>
       <input
         type="text"
-        className={`input-text__input ${className}`}
+        className={`input-text__input`}
         placeholder={placeholder}
         onChange={onChange}
         value={value}

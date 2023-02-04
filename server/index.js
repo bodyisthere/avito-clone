@@ -4,10 +4,12 @@ import cors from "cors";
 import cookieParser from "cookie-parser";
 import mongoose from "mongoose";
 
+import { errorMiddleware } from "./middlewares/errorMiddleware.js";
+
 import { userRoutes } from './router/index.js'
 import { categoriesRoutes } from './router/categoriesRoutes.js'
 import { locationRoutes } from './router/locationRoutes.js'
-import { errorMiddleware } from "./middlewares/errorMiddleware.js";
+import { autoBrandRoutes } from "./router/autoBrandRoutes.js";
 
 dotenv.config();
 const app = express();
@@ -19,6 +21,7 @@ app.use(cors());
 app.use(userRoutes);
 app.use(categoriesRoutes);
 app.use(locationRoutes);
+app.use(autoBrandRoutes);
 app.use(errorMiddleware);
 
 const PORT = process.env.PORT || 5000;

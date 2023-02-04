@@ -27,7 +27,6 @@
     font-size: 16px;
     border-radius: 6px;
     border: 2px solid transparent;
-    margin-bottom: 10px;
   }
   &__input--error {
     border-color: rgb(255, 0, 0);
@@ -63,121 +62,6 @@
     -webkit-animation: error-field 0.8s ease-out both;
     animation: error-field 0.8s ease-out both;
   }
-}
-
-.text-area {
-  border: 1px solid gray;
-  resize: none;
-  padding: 5px;
-  font-size: 16px;
-  border-radius: 5px;
-}
-
-.price {
-  display: flex;
-  align-items: center;
-  &__input {
-    min-height: 46px;
-    border: 1px solid black;
-    padding: 5px;
-    position: relative;
-    font-size: 20px;
-    display: flex;
-    border-radius: 5px;
-  }
-  &__currency {
-    color: black;
-    font-size: 20px;
-  }
-}
-
-.file-upload {
-  border-radius: 5px;
-  width: 100px;
-  height: 100px;
-  border: 5px solid #00AAFF;
-  cursor: pointer;
-  transition: all .1s;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  i {
-    color: #00AAFF;
-    font-size: 30px;
-  }
-  &:hover {
-    border: 10px solid #00AAFF;
-  }
-  &--hidden {
-    opacity: 0;
-    height: 0;
-    width: 0;
-    line-height: 0;
-    overflow: hidden;
-    padding: 0;
-    margin: 0;
-  }
-}
-
-.file-uploaded {
-  display: flex;
-  &__file {
-    width: 100px;
-    height: 100px;
-    margin: 5px;
-    position: relative;
-  }
-  &__img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    background: black;
-  }
-  &__delete {
-    font-size: 20px;
-    position: absolute;
-    top: 0px;
-    right: 8px;
-    color: white;
-    background: transparent;
-    cursor: pointer;
-  }
-}
-
-.color-choose {
-  display: flex;
-  justify-content: flex-start;
-  &__color {
-    border: 1px solid black;
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    margin: 0px 5px;
-  }
-  &__color--active {
-    &:before {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      content: "✔";
-      width: 40px;
-      height: 40px;
-      border-radius: 50%;
-      color: black;
-      background: rgba($color: gray, $alpha: 0.5);
-    }
-  }
-}
-
-.video-link {
-  &__input {
-    min-height: 30px;
-    font-size: 16px;
-    min-width: 250px;
-    padding: 5px;
-    border: 1px solid black;
-  }
-  
 }
 
 .select {

@@ -1,8 +1,8 @@
 import React, { FC, useState } from 'react'
 
 import { InputText } from '../../../../UI';
-import { Textarea } from '../../../../UI/ADS-UI/Textarea';
-import { Price } from '../../../../UI/ADS-UI/Price';
+import { Textarea } from '../ADS-UI/Textarea';
+import { Price } from '../ADS-UI/Price';
 
 export const Universal: FC = () => {
   const [title, setTitle] = useState<string>('');

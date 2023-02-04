@@ -4,7 +4,8 @@ import LocationService from "../service/LocationService.js";
 class LocationController {
   async get(req, res, next) {
     try {
-      const result = await LocationService.get(req.query.city);
+      const city = req.query.city || req.body.city
+      const result = await LocationService.get(city);
       res.json(result);
     } catch (err) {
       next(err);

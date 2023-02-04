@@ -101,6 +101,8 @@
     margin: 20px 0px;
   }
   &__item-left {
+    display: flex;
+    align-items: center;
     width: 20%;
   }
   &__item-right {
@@ -118,5 +120,25 @@
   }
   &__label {
     color: #5C5C5C;
+  }
+  &__input {
+    background: white;
+    border: 1px solid black;
+    width: 20%;
+    border-radius: 0px;
+  }
+  &__tip {
+    position: relative;
+    cursor: pointer;
+    margin-left: 5px;
+    display: flex;
+    align-items: center;
+    color: white;
+    font-weight: 700;
+    justify-content: center;
+    width: 20px;
+    height: 20px;
+    background: rgba(128, 128, 128, 0.396);
+    border-radius: 50%;
   }
 }
