@@ -3,6 +3,7 @@ import React, { FC, useRef, useState, useEffect } from 'react'
 import { useClosePop } from '../../../../../hooks'
 
 import { FileUpload, FileUploaded, ColorChoose, VideoLink, TipAuto, AutoNumber, RadioButtonsChoose, CheckboxList } from '../../ADS-UI'
+import { CarConditionWImg } from '../../ADS-LOGIC'
 import { Select, InputText } from '../../../../../UI'
 import { getAutoBrands } from '../../../api/getAutoBrands'
 import { AxiosResponse } from 'axios'
@@ -34,6 +35,11 @@ export const AutoRun: FC = () => {
   const [ownerPTS, setOwnerPTS] = useState<string | null>(null);
 
   const [dataMaintenance, setDataMaintenance] = useState<string[] | []>([]);
+
+  const [hitsForward, setHitsForward] = useState<any>();
+  const [hitsBack, setHitsBack] = useState<any>();
+  const [hitsRight, setHitsRight] = useState<any>();
+  const [hitsLeft, setHitsLeft] = useState<any>();
 
   console.log(dataMaintenance);
 
@@ -191,6 +197,16 @@ export const AutoRun: FC = () => {
         </div>
         <div className="new-category-ads__item-right">
           <CheckboxList data={{title: null, data: ['Есть сервисная книжка', 'Обслуживался у диллера', 'На гарантии']}} setCheckbox={setDataMaintenance} checkbox={dataMaintenance}/>
+        </div>
+      </div>
+      <div className="new-category-ads__title">Состояние кузова</div>
+      <div className="new-category-ads__text">Укажите, что было повреждено или окрашено</div>
+      <div className="new-category-ads__item">
+        <div className="new-category-ads__item-left">
+          <label className="new-category-ads__label">Тип повреждения</label>
+        </div>
+        <div className="new-category-ads__item-right">
+          <CarConditionWImg />
         </div>
       </div>
     </div>
