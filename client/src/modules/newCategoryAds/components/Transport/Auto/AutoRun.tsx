@@ -36,12 +36,7 @@ export const AutoRun: FC = () => {
 
   const [dataMaintenance, setDataMaintenance] = useState<string[] | []>([]);
 
-  const [hitsForward, setHitsForward] = useState<any>();
-  const [hitsBack, setHitsBack] = useState<any>();
-  const [hitsRight, setHitsRight] = useState<any>();
-  const [hitsLeft, setHitsLeft] = useState<any>();
-
-  console.log(dataMaintenance);
+  const [form, setForm] = useState<any>()
 
   useEffect(() => {
     async function fetchData() {
@@ -196,7 +191,7 @@ export const AutoRun: FC = () => {
           <label className="new-category-ads__label">Данные о ТО</label>
         </div>
         <div className="new-category-ads__item-right">
-          <CheckboxList data={{title: null, data: ['Есть сервисная книжка', 'Обслуживался у диллера', 'На гарантии']}} setCheckbox={setDataMaintenance} checkbox={dataMaintenance}/>
+          <CheckboxList data={{title: null, data: ['Есть сервисная книжка', 'Обслуживался у диллера', 'На гарантии']}} />
         </div>
       </div>
       <div className="new-category-ads__title">Состояние кузова</div>

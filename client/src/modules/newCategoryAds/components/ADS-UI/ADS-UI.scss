@@ -297,9 +297,13 @@
     background: #00AAFF;
     color: white;
     cursor: pointer;
+    transition: all .2s;
   }
   &__span--active {
+    transition: all .2s;
     transform: scale(1.2,1.2);
+    background: rgb(55, 10, 10);
+
   }
   &__span-f1 {
     top: -5px;
