@@ -2,12 +2,13 @@ import React, { FC } from 'react'
 
 interface ISelect {
   options : string[]
-  setOption: React.Dispatch<React.SetStateAction<string | null>>
+  optionKey: string
+  setOption: (key: string, value: any) => void
 }
 
-export const Select: FC<ISelect> = ( { options, setOption } ) => {
+export const Select: FC<ISelect> = ( { options, setOption, optionKey } ) => {
   return (
-    <select className="select" onChange={(e: any) => setOption(e.target.value)}>
+    <select className="select" onChange={(e: any) => setOption(optionKey, e.target.value)}>
       {
         options.map((el, index): React.ReactNode => {
           return <option value={el} key={index}>{el}</option>

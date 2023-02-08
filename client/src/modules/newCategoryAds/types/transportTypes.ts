@@ -1,11 +1,4 @@
-interface ad {
-  name: string
-  photo: string[]
-  video: string
-  description: string
-  meetingPoint: string
-  price: string
-}
+import { ad } from "../../../types/types"
 
 interface groundTransport extends ad {
   VIN: string
@@ -37,7 +30,8 @@ export interface car extends groundTransport {
 }
 
 export interface carOld extends car {
-  governmentNumber: string
+  type: "Продаю личный автомобиль" | "Автомобиль приобретён на продажу" | null
+  governmentNumber: {main: string, region: number}
   mileage: number
   condition: "Не битый" | "Битый"
   vehiclePassportOwners: "1" | "2" | "3" | "4+"
@@ -128,7 +122,6 @@ export interface boatsYachts extends waterTransportExtended{
   draft: number
   housingMaterial: string
 }
-
 
 
 //документация некая

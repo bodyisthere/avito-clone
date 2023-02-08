@@ -8,13 +8,7 @@ interface IInputText {
   placeholder?: string;
 }
 
-export const InputText: FC<IInputText> = ({
-  clearInput,
-  onChange,
-  className,
-  placeholder,
-  value,
-}) => {
+export const InputText: FC<IInputText> = ( {clearInput, onChange, className, placeholder, value} ) => {
   return (
     <div className={`input-text ${className}`}>
       <input
@@ -22,7 +16,7 @@ export const InputText: FC<IInputText> = ({
         className={`input-text__input`}
         placeholder={placeholder}
         onChange={onChange}
-        value={value}
+        value={value ? value : ''}
       />
       <button className="input-text__clear" onClick={clearInput}>
         <i className="fa-solid fa-xmark"></i>

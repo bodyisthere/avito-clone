@@ -1,8 +1,9 @@
 import React, { FC, useState } from 'react'
 
 interface IColorChoose {
-  activeColor: string,
-  setActiveColor: React.Dispatch<React.SetStateAction<string>>
+  activeColor: "Белый" | "Серебрянный" | "Серый" | "Чёрный" | "Коричневый" | "Золотой" | "Бежевый" | "Красный" | "Бордовый" | "Оранжевый" | "Жёлтый" | "Зелёный" | "Голубой" | "Синий" | "Фиолетовый" | "Пурпурный" | "Розовый" | null,
+  setOption: (key: string, value: any) => void
+  optionKey: string
 }
 
 type Color = {
@@ -10,7 +11,7 @@ type Color = {
   color: string
 }
 
-export const ColorChoose: FC<IColorChoose> = ( { activeColor, setActiveColor } ) => {
+export const ColorChoose: FC<IColorChoose> = ( { activeColor, optionKey, setOption } ) => {
   const [colors, setColors] = useState<Color[]>([
     {text: "Белый", color: "#ffffff"}, 
     {text: "Серебрянный", color: "#DCDCDC"}, 
@@ -35,7 +36,14 @@ export const ColorChoose: FC<IColorChoose> = ( { activeColor, setActiveColor } )
       {
         colors.map((el, index) => {
           return (
-            <button key={index} className={`color-choose__color ${el.text === activeColor ? 'color-choose__color--active' : ''}`} title={el.text} style={{'background': el.color}} onClick={() => setActiveColor(el.text)}></button>
+            <button 
+              key={index} 
+              className={`color-choose__color ${el.text === activeColor ? 'color-choose__color--active' : ''}`} 
+              title={el.text} 
+              style={{'background': el.color}} 
+              onClick={() => setOption(optionKey, el.text)}
+            >
+            </button>
           )
         })
       }

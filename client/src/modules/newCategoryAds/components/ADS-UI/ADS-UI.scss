@@ -17,7 +17,7 @@
     font-size: 20px;
   }
   &__right {
-    width: 29%;
+    width: 32%;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -157,7 +157,34 @@
     padding: 5px;
     border: 1px solid black;
   }
-  
+  &__info {
+    display: flex;
+    align-items: center;
+  }
+  &__left {
+    width: 90px;
+    height: 70px;
+    margin-right: 10px;
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+  }
+  &__right {
+    
+  }
+  &__link {
+    font-size: 16px;
+    color: rgba(128, 128, 128, 0.695);
+    text-decoration: underline;
+    cursor: pointer;
+  }
+  &__delete {
+    background: transparent;
+    color: #00AAFF;
+    font-size: 18px;
+  }
 }
 
 .radio-button-choose {

@@ -5,27 +5,23 @@ import back from '../../../../../assets/img/car-condition-back.png'
 import left from '../../../../../assets/img/car-condition-left.png'
 import right from '../../../../../assets/img/car-condition-right.png'
 
-
-interface IDamagedPositions {
-  position: 'сзади' | 'спереди' | 'слева' | 'справа',
-  places: {title: string, points: string[] | [null]}[]
-}
+import { damaged } from '../../../data/damaged'
 
 interface ICarConditionFBLR {
-  data: IDamagedPositions[]
   //1-спереди, 2-сзади, 3-слева, 4-справа
   type: 1 | 2 | 3 | 4,
   setActiveSlideCategory: React.Dispatch<React.SetStateAction<number | null | undefined>>
   activeSlideCategory: number | null | undefined
 }
 
-export const CarConditionFBLR: FC<ICarConditionFBLR> = ({ data, type, activeSlideCategory, setActiveSlideCategory }) => {
+export const CarConditionFBLR: FC<ICarConditionFBLR> = ({ type, activeSlideCategory, setActiveSlideCategory }) => {
   const generateSpan = (typeIndex: 1 | 2 | 3 | 4, letter: 'f' | 'b' | 'l' | 'r') => {
     return (
-      data[typeIndex - 1].places.map((el, index): React.ReactNode => {
+      damaged[typeIndex - 1].places.map((el, index): React.ReactNode => {
+        console.log(el.index)
         return (
           <span key={index}
-            onClick={() => setActiveSlideCategory(index)}
+            onClick={() => setActiveSlideCategory(el.index)}
             className={`car-condition-item__span car-condition-item__span-${letter}${index + 1} ${activeSlideCategory === index ? 'car-condition-item__span--active' : ''}`}>
             +
           </span> 

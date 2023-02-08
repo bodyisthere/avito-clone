@@ -9,15 +9,13 @@ import { Select } from '../../../../../UI'
 import { CarConditionFBLR } from './CarConditionFBLR'
 import { CheckboxList } from '../../ADS-UI'
 
+import { damaged } from '../../../data/damaged'
+
 
 interface ICarConditionWImg {
-  
+  setOption: (key: string, value: any) => void
+  optionKey: string
 }
-
-// interface IDamagedPositions {
-//   position: 'сзади' | 'спереди' | 'слева' | 'справа',
-//   places: {title: string, points: string[] | [null]}[]
-// }
 
 type ISlides = {
   img: any,
@@ -35,40 +33,38 @@ export const CarConditionWImg: FC<ICarConditionWImg> = () => {
     {img: right, title: 'справа', index: 4}
   ])
 
-  const [hit, setHits] = useState<IDamagedPositions[]>()
-  const [activeHits, setActiveHits] = useState<IDamagedPositions[]>([
-    {position: 'спереди', places: [
-      {title: 'Правое зеркало', points: [null]},
-      {title: 'Левое зеркало', points: [null]},
-      {title: 'Передняя правая фара', points: [null]},
-      {title: 'Передняя левая фара', points: [null]},
-      {title: 'Передний бампер', points: [null]},
-      {title: 'Капот', points: [null]},
-      {title: 'Лобовое стекло', points: [null]},
-      {title: 'Крыша', points: [null]},
-    ]},
-    {position: 'слева', places: [
-      {title: 'Переднее левое крыло', points: [null]},
-      {title: 'Передняя левая дверь', points: [null]},
-      {title: 'Задняя левая дверь', points: [null]},
-      {title: 'Заднее левое крыло', points: [null]},
-    ]},
-    {position: 'сзади', places: [
-      {title: 'Заднее стекло', points: [null]},
-      {title: 'Дверь багажника', points: [null]},
-      {title: 'Задний бампер', points: [null]},
-      {title: 'Задняя правая фара', points: [null]},
-      {title: 'Задняя левая фара', points: [null]},
-    ]},
-    {position: 'справа', places: [
-      {title: 'Переднее правое крыло', points: [null]},
-      {title: 'Передняя правая дверь', points: [null]},
-      {title: 'Задняя правая дверь', points: [null]},
-      {title: 'Заднее правое крыло', points: [null]},
-    ]},
-  ]);
-
-  const [t, sett] = useState<string[]>()
+  // const [activeHits, setActiveHits] = useState<IDamagedPositions[]>([
+  //   {position: 'спереди', places: [
+  //     {title: 'Правое зеркало', points: null, id: Math.random()},
+  //     {title: 'Левое зеркало', points: null, id: Math.random()},
+  //     {title: 'Передняя правая фара', points: null, id: Math.random()},
+  //     {title: 'Передняя левая фара', points: null, id: Math.random()},
+  //     {title: 'Передний бампер', points: null, id: Math.random()},
+  //     {title: 'Капот', points: null, id: Math.random()},
+  //     {title: 'Лобовое стекло', points: null, id: Math.random()},
+  //     {title: 'Крыша', points: null, id: Math.random()},
+  //   ]},
+  //   {position: 'слева', places: [
+  //     {title: 'Переднее левое крыло', points: null, id: Math.random()},
+  //     {title: 'Передняя левая дверь', points: null, id: Math.random()},
+  //     {title: 'Задняя левая дверь', points: null, id: Math.random()},
+  //     {title: 'Заднее левое крыло', points: null, id: Math.random()},
+  //   ]},
+  //   {position: 'сзади', places: [
+  //     {title: 'Заднее стекло', points: null, id: Math.random()},
+  //     {title: 'Дверь багажника', points: null, id: Math.random()},
+  //     {title: 'Задний бампер', points: null, id: Math.random()},
+  //     {title: 'Задняя правая фара', points: null, id: Math.random()},
+  //     {title: 'Задняя левая фара', points: null, id: Math.random()},
+  //   ]},
+  //   {position: 'справа', places: [
+  //     {title: 'Переднее правое крыло', points: null, id: Math.random()},
+  //     {title: 'Передняя правая дверь', points: null, id: Math.random()},
+  //     {title: 'Задняя правая дверь', points: null, id: Math.random()},
+  //     {title: 'Заднее правое крыло', points: null, id: Math.random()},
+  //   ]},
+  // ]);
+  console.log(activeSlideCategory ? damaged[activeSlide].places[activeSlideCategory - 1].points : '')
 
   const classConfig = (index: number): string => {
     return `car-condition-w-img__control-item ${activeSlide === index ? 'car-condition-w-img__control-item--active' : ''}`
@@ -77,13 +73,17 @@ export const CarConditionWImg: FC<ICarConditionWImg> = () => {
   return (
     <div className="car-condition-w-img">
       <div className="car-condition-w-img__slides">
-        <CarConditionFBLR type={activeSlide} data={hit} activeSlideCategory={activeSlideCategory} setActiveSlideCategory={setActiveSlideCategory}/>
+        <CarConditionFBLR type={activeSlide} activeSlideCategory={activeSlideCategory} setActiveSlideCategory={setActiveSlideCategory}/>
       </div>
       <div className="car-condition-w-img__control">
          {
           slides.map((el, index) => {
             return (
-              <button className={classConfig(el.index)} onClick={() => {setActiveSlide(el.index); setActiveSlideCategory(null)}} key={index}>
+              <button 
+                className={classConfig(el.index)} 
+                onClick={() => {setActiveSlide(el.index); setActiveSlideCategory(null)}} 
+                key={index}
+              >
                 <img src={el.img} alt={el.title} />
                 {el.title}
               </button>
@@ -92,20 +92,15 @@ export const CarConditionWImg: FC<ICarConditionWImg> = () => {
         }
       </div>
       <div className="car-condition-w-img__select">
-        {
-          activeSlide === 1 
-          ?
-            hit[0].places.map((el, index) => {
-              if(index !== activeSlideCategory) return
-              console.log(hit[0].places[activeSlideCategory])
-              return (
-                <div></div>
-                // <CheckboxList data={hit[0].places[activeSlideCategory]}/>
-              )
-            })
-          : 
+        {/* {
+          activeSlideCategory
+            ?
+            // damaged[activeSlide].places[activeSlideCategory].points.map((el, index) => {
+            <CheckboxList data={damaged[activeSlide].places[activeSlideCategory].points}/>
+            // })
+            :
             ''
-        }
+        } */}
       </div>
     </div>
   )

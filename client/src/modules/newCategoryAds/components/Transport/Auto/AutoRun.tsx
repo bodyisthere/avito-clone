@@ -10,33 +10,14 @@ import { AxiosResponse } from 'axios'
 import { CarMileage } from '../../ADS-UI/CarMileage'
 import { Tip } from '../../ADS-UI/Tips/Tip'
 
-export const AutoRun: FC = () => {
-  const [selectType, setSelectType] = useState<string[]>(['Продаю личный автомобиль', 'Автомобиль приобретен на продажу']);
-  const [type, setType] = useState<string | null>(null);
+import { carOld } from '../../../types/transportTypes'
 
+export const AutoRun: FC = () => {
   const [selectedFiles, setSelectedFiles] = useState();
   const [uploadedFiles, setUploadedFiles] = useState<string[] | null>(['1', '2', '3', '1', '2', '3', '1', '2', '3', '1']);
-  const [activeColor, setActiveColor] = useState<string>('');
-  const [VIN, setVIN] = useState<string>('')
-  const [videoInput, setVideoInput] = useState<string>('');
-  const [videoLink, setVideoLink] = useState<string | null>('');
-  const [isTipOpen, setIsTipOpen] = useState<boolean>(false);
-  const [autoNumber, setAutoNumber] = useState<{main: string, region: string}>({main: '', region: ''})
-
   const [carBrandsData, setCarBrandsData] = useState<string[]>();
-  const [carBrand, setCarBrand] = useState<string | null>(null);
 
-  const [condition, setCondition] = useState<string | null>(null);
-
-  const [carMileage, setCarMileage] = useState<number | null>(null);
-
-  const [PTS, setPTS] = useState<string | null>(null);
-
-  const [ownerPTS, setOwnerPTS] = useState<string | null>(null);
-
-  const [dataMaintenance, setDataMaintenance] = useState<string[] | []>([]);
-
-  const [form, setForm] = useState<any>()
+  const [form, setForm] = useState<carOld>({photo: ['1', '2', '3', '4', '5']} as carOld)
 
   useEffect(() => {
     async function fetchData() {
@@ -47,6 +28,18 @@ export const AutoRun: FC = () => {
     fetchData()
 
   }, [])
+  
+  useEffect(() => {
+    console.log(form)
+  }, [form])
+
+  const setFunction = (key: string, value: any) => {
+    setForm((prev) => {
+      return {
+        ...prev, [key] : value
+      } as carOld
+    })
+  } 
 
   const [isFirstTip, setIsFirstTip] = useState<boolean>(false);
   const [isSecondTip, setIsSecondTip] = useState<boolean>(false);
@@ -59,7 +52,7 @@ export const AutoRun: FC = () => {
           <label className="new-category-ads__label">Вид объявления</label>
         </div>
         <div className="new-category-ads__item-right">
-          <Select options={selectType} setOption={setType}/>
+          <Select options={['Продаю личный автомобиль', 'Автомобиль приобретен на продажу']} setOption={setFunction} optionKey='type'/>
         </div>
       </div>
       <div className="new-category-ads__title">Внешний вид</div>
@@ -69,9 +62,9 @@ export const AutoRun: FC = () => {
         </div>
         <div className="new-category-ads__item-right">
           {
-            uploadedFiles 
+            form.photo 
             ?
-            <FileUploaded uploadedFiles={uploadedFiles} setUploadedFiles={setUploadedFiles}/>
+            <FileUploaded uploadedFiles={form.photo} setOption={setFunction} optionKey='photo'/>
             :
             <FileUpload isMultiple={true} setUploadedFiles={setUploadedFiles} setSelectedFiles={setSelectedFiles} selectedFiles={selectedFiles} uploadedFiles={uploadedFiles}/>
           }
@@ -82,15 +75,15 @@ export const AutoRun: FC = () => {
           <label className="new-category-ads__label">Цвет</label>
         </div>
         <div className="new-category-ads__item-right">
-          <ColorChoose activeColor={activeColor} setActiveColor={setActiveColor}/>
+          <ColorChoose activeColor={form.color} setOption={setFunction} optionKey='color'/>
         </div>
       </div>
       <div className="new-category-ads__item">
         <div className="new-category-ads__item-left">
-          <label className="new-category-ads__label">Видео</label>
+          <label className="new-category-ads__label">Видео(youtube)</label>
         </div>
         <div className="new-category-ads__item-right">
-          <VideoLink videoLink={videoLink} videoInput={videoInput} setVideoInput={setVideoInput}/>
+          <VideoLink videoLink={form.video} setOption={setFunction} optionKey='video'/>
         </div>
       </div>
       <div className="new-category-ads__title">Регистрационные данные</div>
@@ -108,7 +101,12 @@ export const AutoRun: FC = () => {
           </div>
         </div>
         <div className="new-category-ads__item-right">
-          <InputText onChange={e => setVIN(e.target.value)} value={VIN} className={'new-category-ads__input'}/>
+          <InputText 
+            className={'new-category-ads__input'} 
+            clearInput={() => setFunction('VIN', null)}
+            onChange={e => setFunction('VIN', e.target.value)} 
+            value={form.VIN} 
+          />
           <span style={{'color':'gray'}}>Покупатели не увидят ваш VIN и госномер</span>
         </div>
       </div>
@@ -117,7 +115,7 @@ export const AutoRun: FC = () => {
           <label className="new-category-ads__label">Государственный номер</label>
         </div>
         <div className="new-category-ads__item-right">
-            <AutoNumber autoNumber={autoNumber} setAutoNumber={setAutoNumber}/>
+            <AutoNumber autoNumber={form.governmentNumber} setOption={setFunction} optionKey='governmentNumber'/>
         </div>
       </div>
       <div className="new-category-ads__title">Технические характеристики</div>
@@ -129,7 +127,7 @@ export const AutoRun: FC = () => {
           {
             carBrandsData
             ?
-            <Select options={carBrandsData} setOption={setCarBrand}/>
+            <Select options={carBrandsData} setOption={setFunction} optionKey='brand'/>
             :
             ''
           }
@@ -141,7 +139,7 @@ export const AutoRun: FC = () => {
           <label className="new-category-ads__label">Пробег</label>
         </div>
         <div className="new-category-ads__item-right">
-          <CarMileage carMileage={carMileage} setCarMileage={setCarMileage}/>
+          <CarMileage carMileage={form.mileage} setOption={setFunction} optionKey={'mileage'}/>
         </div>
       </div>
       <div className="new-category-ads__item">
@@ -158,7 +156,7 @@ export const AutoRun: FC = () => {
           </div>
         </div>
         <div className="new-category-ads__item-right">
-          <RadioButtonsChoose data={['Не битый', 'Битый']} setActive={setCondition} active={condition}/>
+          <RadioButtonsChoose data={['Не битый', 'Битый']} value={form.condition} setOption={setFunction} optionKey={'condition'}/>
         </div>
       </div>
       <div className="new-category-ads__item">
@@ -175,7 +173,7 @@ export const AutoRun: FC = () => {
           </div>
         </div>
         <div className="new-category-ads__item-right">
-          <Select setOption={setPTS} options={['-','Оригинал','Дубликат','Электронный']}></Select>
+          <Select options={['-','Оригинал','Дубликат','Электронный']} setOption={setFunction} optionKey='vehiclePassport'></Select>
         </div>
       </div>
       <div className="new-category-ads__item">
@@ -183,7 +181,7 @@ export const AutoRun: FC = () => {
           <label className="new-category-ads__label">Владельцев по ПТС</label>
         </div>
         <div className="new-category-ads__item-right">
-          <RadioButtonsChoose data={['1', '2', '3', '4+']} active={ownerPTS} setActive={setOwnerPTS}/>
+          <RadioButtonsChoose data={['1', '2', '3', '4+']} optionKey='vehiclePassportOwners' setOption={setFunction} value={form.vehiclePassportOwners}/>
         </div>
       </div>
       <div className="new-category-ads__item">
@@ -191,7 +189,11 @@ export const AutoRun: FC = () => {
           <label className="new-category-ads__label">Данные о ТО</label>
         </div>
         <div className="new-category-ads__item-right">
-          <CheckboxList data={{title: null, data: ['Есть сервисная книжка', 'Обслуживался у диллера', 'На гарантии']}} />
+          <CheckboxList 
+            data={{title: null, data: ['Есть сервисная книжка', 'Обслуживался у диллера', 'На гарантии']}} 
+            setOption={setFunction}
+            optionKey={'inspectionData'}
+          />
         </div>
       </div>
       <div className="new-category-ads__title">Состояние кузова</div>
@@ -201,7 +203,7 @@ export const AutoRun: FC = () => {
           <label className="new-category-ads__label">Тип повреждения</label>
         </div>
         <div className="new-category-ads__item-right">
-          <CarConditionWImg />
+          <CarConditionWImg setOption={setFunction} optionKey={'additionalOptions'} />
         </div>
       </div>
     </div>
