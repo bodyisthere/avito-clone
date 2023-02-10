@@ -3,6 +3,8 @@ import dotenv from 'dotenv';
 import cors from "cors";
 import cookieParser from "cookie-parser";
 import mongoose from "mongoose";
+import multer from "multer";
+import { v4 as uuidv4 } from 'uuid';
 
 import { errorMiddleware } from "./middlewares/errorMiddleware.js";
 
@@ -23,8 +25,28 @@ app.use(categoriesRoutes);
 app.use(locationRoutes);
 app.use(autoBrandRoutes);
 app.use(errorMiddleware);
+app.use("/uploads", express.static("uploads"));
+
 
 const PORT = process.env.PORT || 5000;
+
+const storage = multer.diskStorage({
+    destination: function(req, file, callback) {
+        callback(null, './uploads');
+    },
+    filename: function(req, file, callback) {
+        const fileType = file.mimetype.split('/')[1];
+        callback(null, `${uuidv4()}.${fileType}`);
+    }
+})
+
+const uploads = multer({ storage });
+
+app.post("/uploads", uploads.array("files"), (req, res) => {
+    res.json({
+        data: req.files
+    })
+})
 
 const start = () => {
     try {

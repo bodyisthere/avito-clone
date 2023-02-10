@@ -1,0 +1,12 @@
+
+export { AutoNumber } from './AutoNumber'
+export { ColorChoose } from './ColorChoose'
+export { FileUpload } from './FileUpload'
+export { FileUploaded } from './FileUploaded'
+export { CarMileage } from './CarMileage'
+export { VideoLink } from './VideoLink'
+export { RadioButtonsChoose } from './RadioButtonsChoose'
+export { CheckboxList } from './CheckboxList'
+export { Tip } from './Tips/Tip'
+export { Price } from './Price'
+export { Textarea } from './Textarea'

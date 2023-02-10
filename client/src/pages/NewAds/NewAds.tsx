@@ -3,7 +3,7 @@ import { Link } from "react-router-dom"
 
 import './NewAds.scss'
 import logo from '../../assets/img/logo.png'
-import { CategoryChoose, CategoryChoosen } from "../../modules/newCategoryAds"
+import { CategoryChoose, CategoryChoosen } from "../../modules/ads"
 
 export const NewAds: FC = () => {
   const [step, setStep] = useState<'category-choose' | 'category-choosen'>('category-choose');
