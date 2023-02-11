@@ -108,6 +108,18 @@
   &__item-right {
     width: 80%;
   }
+  &__additional {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+  &__additional-item {
+
+  }
+  &__additional-title {
+    font-size: 16px;
+    color: black;
+  }
   &__title {
     font-size: 25px;
     font-weight: 700;

@@ -8,6 +8,7 @@ import { carOld } from '../../../../types/transportTypes'
 import { FileUpload, FileUploaded, ColorChoose, VideoLink, AutoNumber, RadioButtonsChoose, CheckboxList, Tip, CarMileage } from '../../../ads-ui'
 import { CarConditionWImg } from '../../../ads-components'
 import { Select, InputText } from '../../../../../../UI'
+import { inspectionData } from '../../../../data/transportData'
 
 export const AutoRun: FC = () => {
   const [selectedFiles, setSelectedFiles] = useState();
@@ -66,7 +67,7 @@ export const AutoRun: FC = () => {
           <label className="new-category-ads__label">Вид объявления</label>
         </div>
         <div className="new-category-ads__item-right">
-          <Select options={['Продаю личный автомобиль', 'Автомобиль приобретен на продажу']} setOption={setFunction} optionKey='type'/>
+          <Select options={['Продаю личный автомобиль', 'Автомобиль приобретен на продажу']} onChange={(e: any) => setFunction('type', e)} />
         </div>
       </div>
       <div className="new-category-ads__title">Внешний вид</div>
@@ -141,7 +142,7 @@ export const AutoRun: FC = () => {
           {
             carBrandsData
             ?
-            <Select options={carBrandsData} setOption={setFunction} optionKey='brand'/>
+            <Select options={carBrandsData} onChange={(e: any) => setFunction('brand', e)}/>
             :
             ''
           }
@@ -187,7 +188,7 @@ export const AutoRun: FC = () => {
           </div>
         </div>
         <div className="new-category-ads__item-right">
-          <Select options={['-','Оригинал','Дубликат','Электронный']} setOption={setFunction} optionKey='vehiclePassport'></Select>
+          <Select options={['-','Оригинал','Дубликат','Электронный']} onChange={(e: any) => setFunction('vehiclePassport', e)} ></Select>
         </div>
       </div>
       <div className="new-category-ads__item">
@@ -204,7 +205,7 @@ export const AutoRun: FC = () => {
         </div>
         <div className="new-category-ads__item-right">
           <CheckboxList 
-            data={{title: null, data: ['Есть сервисная книжка', 'Обслуживался у диллера', 'На гарантии']}} 
+            data={{title: null, data: inspectionData}} 
             changeFunction={inspectionDataCheckbox}
           />
         </div>
@@ -217,6 +218,60 @@ export const AutoRun: FC = () => {
         </div>
         <div className="new-category-ads__item-right">
           <CarConditionWImg setOption={setFunction} optionKey={'conditionBody'} />
+        </div>
+      </div>
+      <div className="new-category-ads__title">Дополнительные опции</div>
+      <div className="new-category-ads__item">
+        <div className="new-category-ads__additional">
+          <div className="new-category-ads__additional-item">
+          {/* onChange={(e: any) => setFunction('vehiclePassport', e)} */}
+            <div className="new-category-ads__additional-title">Усилитель руля</div>
+            <Select onChange={(e: any) => setForm(prev => {prev.additionalOptions.powerSteering = e; return prev})} options={['Гидравлический', 'Электрический', 'Электрогидравлический',]}/>
+          </div>
+          <div className="new-category-ads__additional-item">
+            <div className="new-category-ads__additional-title">Управление климатом</div>
+          </div>
+          <div className="new-category-ads__additional-item">
+            <div className="new-category-ads__additional-title">Салон</div>
+          </div>
+          <div className="new-category-ads__additional-item">
+            <div className="new-category-ads__additional-title">Обогрев</div>
+          </div>
+          <div className="new-category-ads__additional-item">
+            <div className="new-category-ads__additional-title">Электростеклоподъемники</div>
+          </div>
+          <div className="new-category-ads__additional-item">
+            <div className="new-category-ads__additional-title">Электропривод</div>
+          </div>
+          <div className="new-category-ads__additional-item">
+            <div className="new-category-ads__additional-title">Память настроек</div>
+          </div>
+          <div className="new-category-ads__additional-item">
+            <div className="new-category-ads__additional-title">Помощь при вождении</div>
+          </div>
+          <div className="new-category-ads__additional-item">
+            <div className="new-category-ads__additional-title">Противоугонная система</div>
+          </div>
+          <div className="new-category-ads__additional-item">
+            <div className="new-category-ads__additional-title">Подушки безопасности</div>
+          </div>
+          <div className="new-category-ads__additional-item">
+            <div className="new-category-ads__additional-title">Активная безопасность</div>
+          </div>
+          <div className="new-category-ads__additional-item">
+            <div className="new-category-ads__additional-title">Мультимедиа и навигация</div>
+          </div>
+          <div className="new-category-ads__additional-item">
+            <div className="new-category-ads__additional-title">Аудиосистема</div>
+          </div>
+          <div className="new-category-ads__additional-item">
+            <div className="new-category-ads__additional-title">Фары</div>
+          </div>
+          <div className="new-category-ads__additional-item">
+            <div className="new-category-ads__additional-title">Шины и диски</div>
+          </div>
+          
+          {/* <Select options={['', '']} onChange={(e) => setForm(prev => {prev.additionalOptions.powerSteering = e; return prev})}/> */}
         </div>
       </div>
     </div>
