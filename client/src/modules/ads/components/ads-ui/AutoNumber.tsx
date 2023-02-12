@@ -5,7 +5,7 @@ import './ADS-UI.scss'
 import flag from '../../../../assets/img/russia-flag.png'
 
 interface IAutoNumber {
-  autoNumber: {main: string, region: number}
+  autoNumber: {main: string, region: number} | null
   setOption: (key: string, value: any) => void
   optionKey: string
 }

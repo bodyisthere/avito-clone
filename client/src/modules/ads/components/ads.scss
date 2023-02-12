@@ -114,11 +114,15 @@
     grid-template-columns: 1fr 1fr 1fr;
   }
   &__additional-item {
-
+    select {
+      margin-bottom: 5px;
+    }
   }
   &__additional-title {
+    font-weight: 700;
     font-size: 16px;
     color: black;
+    margin: 10px 0px;
   }
   &__title {
     font-size: 25px;

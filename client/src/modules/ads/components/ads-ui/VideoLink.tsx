@@ -1,7 +1,7 @@
 import React, { FC, useState } from 'react'
 
 interface IVideoLink {
-  videoLink: string
+  videoLink: string | null
   setOption: (key: string, value: any) => void
   optionKey: string
 }
@@ -10,7 +10,7 @@ export const VideoLink: FC<IVideoLink> = ( { videoLink, optionKey, setOption} ) 
 
   return (
     <div className="video-link">
-      <input type="text" className="video-link__input" value={videoLink} placeholder="Ссылка на видео" onChange={(e) => setOption(optionKey, e.target.value)}/>
+      <input type="text" className="video-link__input" value={videoLink ? videoLink : ''} placeholder="Ссылка на видео" onChange={(e) => setOption(optionKey, e.target.value)}/>
       {
         videoLink 
         ?

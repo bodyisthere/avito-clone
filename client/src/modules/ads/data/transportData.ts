@@ -171,3 +171,38 @@ export const damaged: IDamagedPositions[] = [
     ]
   },
 ]
+
+export const selectPowerSteering = ['Гидравлический', 'Электрический', 'Электрогидравлический',];
+
+export const selectClimatControl = ['Кондиционер', 'Климат-контроль однозонный', 'Климат-контроль многозонный',];
+export const checkboxClimatControl = {title: null, data: [{title: "Управление на руле"}, {title: "Атермальное состояние"}]};
+
+export const selectSalon = ['Кожа', 'Ткань', 'Велюр', 'Комбинированный',];
+export const checkboxSalon = {title: null, data: [{title: "Кожаный руль"}, {title: "Люк"}]};
+
+export const checkboxPowerWindows = ['Только передние', 'Передние и задние',];
+
+export const checkboxElectricDrive = {title: null, data: [{title: "Передних сидений"}, {title: "Задних сидений"}, {title: "Зеркал"}, {title: "Рулевой колонки"}, {title: "Складывания зеркал"}]}
+
+export const checkboxSettingsMemory = {title: null, data: [{title: "Передних сидений"}, {title: "Задних сидений"}, {title: "Зеркал"}, {title: "Рулевой колонки"},]}
+
+export const checkboxDrivingAssistance = {title: null, data: [{title: "Автоматический парковщик"}, {title: "Датчик дождя"}, {title: "Датчик света"}, {title: "Парктроник задний"}, {title: "Парктроник передний"}, {title: "Система контроля слепых зон"}, {title: "Камера заднего вида"}, {title: "Круиз-контроль"}, {title: "Бортовой компьютер"}]}
+
+export const checkboxAntiThiefSystem = {title: null, data: [{title: "Иммобилайзер"}, {title: "Сигнализация"}, {title: "Центральный замок"}, {title: "Спутник"}]};
+
+export const checkboxAirBags = {title: null, data: [{title: "Фронтальные"}, {title: "Коленные"}, {title: "Шторки"}, {title: "Боковые передние"}, {title: "Боковые задние"}]}
+
+export const checkboxActiveSafety = {title: null, data: [{title: "Антиблокировка тормозов"}, {title: "Антипробуксовка"}, {title: "Курсовая устойчивость"}, {title: "Распред. тормозных усилий"}, {title: "Экстренное торможение"}, {title: "Блок. диффернциала"}, {title: "Обнаружение пешеходов"}]}
+
+export const checkboxMultimedia = {title: null, data: [{title: "CD/DVD/Blu-ray"}, {title: "MP3"}, {title: "Радио"}, {title: "TV"}, {title: "Радио"}, {title: "Управление на руле"}, {title: "USB"}, {title: "AUX"}, {title: "Bluetooth"}, {title: "GPS-навигатор"}, ]};
+
+export const checkboxHeating = {title: null, data: [{title: 'Передних сидений'}, {title: 'Задних сидений'}, {title: 'Зеркал'}, {title: 'Заднего стекла'}, {title: 'Руля'},]}
+
+export const selectAudioSystem = ['2 колонки', '4 колонки', '6 колонок', '8+ колонок'];
+export const checkboxAudioSystem = {title: null, data: [{title: "Сабвуфер"}]};
+
+export const selectHeadlights = ['Галогенные', 'Ксеноновые', 'Светодиодные',];
+export const checkboxHeadlights = {title: null, data: [{title: "Противотуманные"}, {title: "Омыватели фар"}, {title: "Адаптивное освещение"}]};
+
+export const selectTiresWheels = ["7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30",];
+export const checkboxTiresWheels = {title: null, data: [{title: "Зимние шины в комплекте"}]};

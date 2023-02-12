@@ -3,7 +3,7 @@ import React, { FC } from "react";
 interface IInputText {
   clearInput?: () => void;
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
-  value: string;
+  value: string | undefined;
   className?: string;
   placeholder?: string;
 }

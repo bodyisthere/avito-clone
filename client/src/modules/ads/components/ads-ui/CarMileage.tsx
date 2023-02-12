@@ -1,7 +1,7 @@
 import React, { FC } from 'react'
 
 interface ICarMileage {
-  carMileage: number | null
+  carMileage: number | undefined
   setOption: (key: string, value: any) => void
   optionKey: string
 }

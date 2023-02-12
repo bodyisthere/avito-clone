@@ -1,7 +1,7 @@
 import React, { FC, useState, useEffect } from 'react'
 
 interface ICheckboxList {
-  data: {title: string | null, data: {title: string, id: string}[]}
+  data: {title: string | null, data: {title: string, id?: string}[]}
   changeFunction: any
   dataReady?: string[]
 }
@@ -18,7 +18,7 @@ export const CheckboxList: FC<ICheckboxList> = ( { data, changeFunction, dataRea
             return (
               <li className="checkbox-list__item" key={el.id} >
                 <label className="checkbox-list__label">
-                  <input type="checkbox" onChange={() => changeFunction(el.id)} className="checkbox-list__input" checked={dataReady.includes(el.id) ? true : false}/>
+                  <input type="checkbox" onChange={() => changeFunction(el.id)} className="checkbox-list__input" checked={el.id ? dataReady.includes(el.id) ? true : false : false}/>
                   {el.title}
                 </label>
               </li>
