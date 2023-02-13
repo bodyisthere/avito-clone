@@ -1,6 +1,6 @@
 import React, { FC, useState } from 'react'
 
-import { ICarConditionFBLR } from '../../../types/types'
+import { ICarConditionFBLR } from '../../../../types/types'
 
 interface IPoint {
   title: string;

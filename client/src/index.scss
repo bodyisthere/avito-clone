@@ -40,3 +40,7 @@ input[type="number"]:focus {
     appearance: none;
     -moz-appearance: textfield;
 }
+
+[class*="copyrights-pane"] {
+  display: none;
+}

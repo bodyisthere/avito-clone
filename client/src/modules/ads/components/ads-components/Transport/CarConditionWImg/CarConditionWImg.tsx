@@ -1,9 +1,9 @@
 import React, { FC, useState, useEffect } from 'react'
 
-import { damaged } from '../../../data/transportData'
+import { damaged } from '../../../../data/transportData'
 
-import { Select } from '../../../../../UI'
-import { CheckboxList } from '../../ads-ui'
+import { Select } from '../../../../../../UI'
+import { CheckboxList } from '../../../ads-ui'
 import { CarConditionFBLR } from './CarConditionFBLR'
 
 interface ICarConditionWImg {

@@ -14,9 +14,9 @@ export const CheckboxList: FC<ICheckboxList> = ( { data, changeFunction, dataRea
         {
           dataReady
           ?
-          data.data.map(el => {
+          data.data.map((el, index) => {
             return (
-              <li className="checkbox-list__item" key={el.id} >
+              <li className="checkbox-list__item" key={index} >
                 <label className="checkbox-list__label">
                   <input type="checkbox" onChange={() => changeFunction(el.id)} className="checkbox-list__input" checked={el.id ? dataReady.includes(el.id) ? true : false : false}/>
                   {el.title}
@@ -25,10 +25,10 @@ export const CheckboxList: FC<ICheckboxList> = ( { data, changeFunction, dataRea
             )
           })
           :
-          data.data.map(el => {
+          data.data.map((el, index)=> {
             return (
-              <li className="checkbox-list__item" key={el.id} >
-                <label className="checkbox-list__label" onChange={() => changeFunction(el.id)}>
+              <li className="checkbox-list__item" key={index} >
+                <label className="checkbox-list__label" onChange={() => changeFunction(el.title)}>
                   <input type="checkbox" className="checkbox-list__input" />
                   {el.title}
                 </label>

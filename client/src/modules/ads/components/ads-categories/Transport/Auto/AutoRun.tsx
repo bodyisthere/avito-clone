@@ -3,18 +3,17 @@ import { AxiosResponse } from 'axios'
 
 import { getAutoBrands } from '../../../../api/getAutoBrands'
 import { carOld } from '../../../../types/transportTypes'
+import { inspectionData } from '../../../../data/transportData'
 
-import { FileUpload, FileUploaded, ColorChoose, VideoLink, AutoNumber, RadioButtonsChoose, CheckboxList, Tip, CarMileage } from '../../../ads-ui'
-import { CarConditionWImg } from '../../../ads-components'
+import { FileUpload, FileUploaded, ColorChoose, VideoLink, AutoNumber, RadioButtonsChoose, CheckboxList, Tip, CarMileage, Textarea } from '../../../ads-ui'
+import { CarConditionWImg, CarAdditional, MapInput } from '../../../ads-components'
 import { Select, InputText } from '../../../../../../UI'
-import { checkboxActiveSafety, checkboxAirBags, checkboxAntiThiefSystem, checkboxAudioSystem, checkboxClimatControl, checkboxDrivingAssistance, checkboxElectricDrive, checkboxHeadlights, checkboxHeating, checkboxMultimedia, checkboxPowerWindows, checkboxSalon, checkboxSettingsMemory, checkboxTiresWheels, inspectionData, selectAudioSystem, selectClimatControl, selectHeadlights, selectPowerSteering, selectSalon, selectTiresWheels } from '../../../../data/transportData'
 
 export const AutoRun: FC = () => {
   const [selectedFiles, setSelectedFiles] = useState();
   const [uploadedFiles, setUploadedFiles] = useState<string[] | null>(['1', '2', '3', '1', '2', '3', '1', '2', '3', '1']);
   const [carBrandsData, setCarBrandsData] = useState<string[]>();
 
-  // const [form, setForm] = useState<carOld>({photo: ['1', '2', '3', '4', '5']} as carOld)
   const [form, setForm] = useState<carOld>(
     {
       brand: undefined,
@@ -107,7 +106,6 @@ export const AutoRun: FC = () => {
       setCarBrandsData(dataPretty);
     }
     fetchData()
-
   }, [])
 
   const setFunction = (key: string, value: any) => {
@@ -133,22 +131,6 @@ export const AutoRun: FC = () => {
       }
     })
   }
-
-  const justTest = (el: any, key: "climatControl" | "salon" | "audioSystem" | "headlights" | "tiresWheels")  => {
-    setForm(prev => {
-      const prevData = prev.additionalOptions[key].checkbox;
-      if(prevData === null) {
-        prev.additionalOptions[key].checkbox = [el];
-      }
-      if(prevData?.includes(el)) {
-        prev.additionalOptions[key].checkbox = prevData.filter(e => e !== el)
-      } else {
-        prev.additionalOptions[key].checkbox = [prevData ? [...prevData, el] : el] 
-      }
-      return prev;
-    })
-  }
-
   
   const [isFirstTip, setIsFirstTip] = useState<boolean>(false);
   const [isSecondTip, setIsSecondTip] = useState<boolean>(false);
@@ -316,207 +298,14 @@ export const AutoRun: FC = () => {
       </div>
       <div className="new-category-ads__title">Дополнительные опции</div>
       <div className="new-category-ads__item">
-        <div className="new-category-ads__additional">
-          <div className="new-category-ads__additional-item">
-            <div className="new-category-ads__additional-title">Усилитель руля</div>
-            <Select 
-              onChange={(e: any) => setForm(prev => {prev.additionalOptions.powerSteering = e; return prev})} 
-              options={selectPowerSteering}
-            />
-          </div>
-          <div className="new-category-ads__additional-item">
-            <div className="new-category-ads__additional-title">Управление климатом</div>
-            <Select 
-              onChange={(e: any) => setForm(prev => {prev.additionalOptions.climatControl.select = e; return prev})} 
-              options={selectClimatControl}
-            />
-            <CheckboxList 
-              data={checkboxClimatControl}
-              changeFunction={(el: any) => {
-                setForm(prev => {
-                  prev.additionalOptions.climatControl.checkbox = el; 
-                  return prev
-                })
-              }} 
-            />
-          </div>
-          <div className="new-category-ads__additional-item">
-            <div className="new-category-ads__additional-title">Салон</div>
-            <Select 
-              onChange={(e: any) => setForm(prev => {prev.additionalOptions.salon = e; return prev})} 
-              options={selectSalon}
-            />
-            <CheckboxList 
-              data={checkboxSalon} 
-              changeFunction={(el: any) => {
-                setForm(prev => {
-                  prev.additionalOptions.salon.checkbox  = el; 
-                  return prev
-                })
-              }}
-            />
-          </div>
-          <div className="new-category-ads__additional-item">
-            <div className="new-category-ads__additional-title">Обогрев</div>
-            <CheckboxList 
-              data={checkboxHeating}
-              changeFunction={(el: any) => {
-                setForm(prev => {
-                  prev.additionalOptions.heating = el; 
-                  return prev
-                })
-              }}
-            />
-          </div>
-          <div className="new-category-ads__additional-item">
-            <div className="new-category-ads__additional-title">Электростеклоподъемники</div>
-            <Select 
-              onChange={(e: any) => setForm(prev => {prev.additionalOptions.powerWindows = e; return prev})} 
-              options={checkboxPowerWindows}
-            />
-          </div>
-          <div className="new-category-ads__additional-item">
-            <div className="new-category-ads__additional-title">Электропривод</div>
-            <CheckboxList 
-              data={checkboxElectricDrive} 
-              changeFunction={(el: any) => {
-                setForm(prev => {
-                  prev.additionalOptions.electricDrive = el; 
-                  return prev
-                })
-              }}
-            />
-          </div>
-          <div className="new-category-ads__additional-item">
-            <div className="new-category-ads__additional-title">Память настроек</div>
-            <CheckboxList 
-              data={checkboxSettingsMemory} 
-              changeFunction={(el: any) => {
-                setForm(prev => {
-                  prev.additionalOptions.settingsMemory = el; 
-                  return prev
-                })
-              }}
-            />
-          </div>
-          <div className="new-category-ads__additional-item">
-            <div className="new-category-ads__additional-title">Помощь при вождении</div>
-            <CheckboxList 
-              data={checkboxDrivingAssistance} 
-              changeFunction={(el: any) => {
-                setForm(prev => {
-                  prev.additionalOptions.drivingAssistance = el; 
-                  return prev
-                })
-              }}
-            />
-          </div>
-          <div className="new-category-ads__additional-item">
-            <div className="new-category-ads__additional-title">Противоугонная система</div>
-            <CheckboxList 
-              data={checkboxAntiThiefSystem} 
-              changeFunction={(el: any) => {
-                setForm(prev => {
-                  prev.additionalOptions.antiThiefSystem = el; 
-                  return prev
-                })
-              }}
-            />
-          </div>
-          <div className="new-category-ads__additional-item">
-            <div className="new-category-ads__additional-title">Подушки безопасности</div>
-            <CheckboxList 
-              data={checkboxAirBags} 
-              changeFunction={(el: any) => {
-                setForm(prev => {
-                  prev.additionalOptions.airbags = el; 
-                  return prev
-                })
-              }}
-            />
-          </div>
-          <div className="new-category-ads__additional-item">
-            <div className="new-category-ads__additional-title">Активная безопасность</div>
-            <CheckboxList 
-              data={checkboxActiveSafety} 
-              changeFunction={(el: any) => {
-                setForm(prev => {
-                  prev.additionalOptions.activeSafety = el; 
-                  return prev
-                })
-              }}
-            />
-          </div>
-          <div className="new-category-ads__additional-item">
-            <div className="new-category-ads__additional-title">Мультимедиа и навигация</div>
-            <CheckboxList 
-              data={checkboxMultimedia} 
-              changeFunction={(el: any) => {
-                setForm(prev => {
-                  prev.additionalOptions.multimedia = el; 
-                  return prev
-                })
-              }}
-            />
-          </div>
-          <div className="new-category-ads__additional-item">
-            <div className="new-category-ads__additional-title">Аудиосистема</div>
-            <Select 
-              onChange={(e: any) => setForm(prev => {prev.additionalOptions.audioSystem.select = e; return prev})} 
-              options={selectAudioSystem}
-            />
-            <CheckboxList 
-              data={checkboxAudioSystem} 
-              changeFunction={(el: any) => {
-                setForm(prev => {
-                  const prevData = prev.additionalOptions.audioSystem.checkbox;
-                  if(prevData === null) {
-                    prev.additionalOptions.audioSystem.checkbox = [el];
-                  }
-                  if(prevData?.includes(el)) {
-                    prev.additionalOptions.audioSystem.checkbox = prevData.filter(e => e !== el)
-                  } else {
-                    prev.additionalOptions.audioSystem.checkbox = [prevData ? [...prevData, el] : el] 
-                  }
-                  return prev;
-                })
-              }}
-            />
-          </div>
-          <div className="new-category-ads__additional-item">
-            <div className="new-category-ads__additional-title">Фары</div>
-            <Select 
-              onChange={(e: any) => setForm(prev => {prev.additionalOptions.headlights.select = e; return prev})} 
-              options={selectHeadlights}
-            />
-            <CheckboxList 
-              data={checkboxHeadlights} 
-              changeFunction={(el: any) => {
-                setForm(prev => {
-                  prev.additionalOptions.headlights.checkbox = el; 
-                  return prev
-                })
-              }}
-            />
-          </div>
-          <div className="new-category-ads__additional-item">
-            <div className="new-category-ads__additional-title">Шины и диски</div>
-            <Select 
-              onChange={(e: any) => setForm(prev => {prev.additionalOptions.tiresWheels.select = e; return prev})} 
-              options={selectTiresWheels}
-            />
-            <CheckboxList 
-              data={checkboxTiresWheels} 
-              changeFunction={(el: any) => {
-                setForm(prev => {
-                  prev.additionalOptions.tiresWheels.checkbox = el; 
-                  return prev
-                })
-              }}
-            />
-          </div>
-        </div>
+        <CarAdditional setForm={setForm}/>
       </div>
+      <div className="new-category-ads__title">Описание</div>
+      <div className="new-category-ads__item">
+        <Textarea onChange={e => setFunction('description', e.target.value)}  value={form.description ? form.description : ''}/>
+      </div>
+      <div className="new-category-ads__title">Место осмотра</div>
+        <MapInput />
       <button onClick={() => console.log(form)}>check data</button>
     </div>
   )

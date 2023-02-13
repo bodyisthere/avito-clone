@@ -180,7 +180,7 @@ export const checkboxClimatControl = {title: null, data: [{title: "Управл�
 export const selectSalon = ['Кожа', 'Ткань', 'Велюр', 'Комбинированный',];
 export const checkboxSalon = {title: null, data: [{title: "Кожаный руль"}, {title: "Люк"}]};
 
-export const checkboxPowerWindows = ['Только передние', 'Передние и задние',];
+export const selectPowerWindows = ['Только передние', 'Передние и задние',];
 
 export const checkboxElectricDrive = {title: null, data: [{title: "Передних сидений"}, {title: "Задних сидений"}, {title: "Зеркал"}, {title: "Рулевой колонки"}, {title: "Складывания зеркал"}]}
 
