@@ -71,7 +71,7 @@ export const AuthFirstStep: FC<IAuth> = ({ setCondition, setStep }) => {
             Запомнить пароль
           </label>
         </div>
-        <Button onClick={() => validationRegistartion({email, name, password, passwordRepeat, setError})}>
+        <Button onClick={() => {validationRegistartion({email, name, password, passwordRepeat, setError})}}>
         {/* <Button onClick={() => (setStep ? setStep("send-activate-link") : "")}> */}
           Зарегистрироваться
         </Button>

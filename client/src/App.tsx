@@ -5,21 +5,27 @@ import { AuthPop } from "./modules/auth";
 import { Header } from "./modules/header";
 import { useAppDispatch, useAppSelector } from "./hooks/redux-hooks/redux";
 import { Navigation } from "./routes/Routes";
-import { getAllCategories } from "./store/actionCreator";
+import Category from './store/actions/categoryAction'
+import User from "./store/actions/userAction";
 
 const App: FC = () => {
-  const {isOpen} = useAppSelector(state => state.authReducer)
   const dispatch = useAppDispatch();
+  // const { userDto } = useAppSelector(state => state.userReducer)
+
+  //debounce demo
+  //const debounced = useDebounce(стейт)
+  //useEffect(() => console.log(debounced), [debounced])
 
   useEffect(() => {
-    dispatch(getAllCategories)
+    dispatch(Category.getAllCategories)
+    dispatch(User.login)
   }, [])
 
   return (
     <>
       <Header />
       <Navigation />
-      {isOpen ? <AuthPop /> : ''}
+      {/* {userDto.id ? <AuthPop /> : ''} */}
     </>
   );
 };

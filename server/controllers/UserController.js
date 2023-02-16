@@ -1,5 +1,6 @@
 import { validationResult } from "express-validator";
 import UserService from '../service/UserService.js'
+import { ApiError } from "../exceptions/ApiError.js";
 
 class UserController {
   async registration(req, res, next) {
@@ -8,8 +9,8 @@ class UserController {
       if(!errors.isEmpty()) {
          return next(ApiError.BadRequest('Ошибка при валидации', errors.array())) 
       }
-      const { email, password } = req.body;
-      const userData = await UserService.registartion(email, password);
+      const { email, password, name } = req.body;
+      const userData = await UserService.registration(email, password, name);
       res.cookie('refreshToken', userData.refreshToken, {maxAge: 30 * 24 * 60 * 60 * 1000, httpOnly: true})
       return res.json(userData)
     } catch (err) {     
@@ -19,7 +20,8 @@ class UserController {
 
   async login(req, res, next) {
     try {
-      const { email, password } = req.body;
+      //дату можно передавать, как в query запроса, так и в теле запроса
+      const { email, password } = req.query.hasOwnProperty('email') ? req.query : req.body
       const userData = await UserService.login(email, password);
       res.cookie('refreshToken', userData.refreshToken, {maxAge: 30 * 24 * 60 * 60 * 1000, httpOnly: true})
       return res.json(userData)

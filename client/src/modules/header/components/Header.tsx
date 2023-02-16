@@ -7,11 +7,11 @@ import avatar from "../../../assets/img/avatar.jpg"
 import { HeaderBurger } from "./HeaderBurger";
 import { HeaderDropMenu } from "./HeaderDropMenu";
 import { useAppDispatch, useAppSelector } from "../../../hooks/redux-hooks/redux";
-import { authSlice } from "../../auth";
+// import { authSlice } from "../../auth";
 
 export const Header: FC = () => {
-    const { isOpen } = useAppSelector(state => state.authReducer);
-    const { toggleAuth } = authSlice.actions;
+    // const { isOpen } = useAppSelector(state => state.authReducer);
+    // const { toggleAuth } = authSlice.actions;
     const dispatch = useAppDispatch();
 
     const [showDropMenu, setShowDropMenu] = useState<boolean>(false);
@@ -66,7 +66,7 @@ export const Header: FC = () => {
                         <>
                            <ul className="header__btn-list">
                                 <li className="header__btn-item" title="Избранное"><Link to="/"><i className="fa-solid fa-heart"></i></Link></li>
-                                <li className="header__btn-item"><button className="header__btn-item-enter" onClick={() => dispatch(toggleAuth())}>Вход и регистрация</button></li>
+                                <li className="header__btn-item"><button className="header__btn-item-enter" >Вход и регистрация</button></li>
                             </ul> 
                         </>
                     }

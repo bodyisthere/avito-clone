@@ -1,3 +1,5 @@
+import nodemailer from 'nodemailer'
+
 class MailService {
   async sendActivationMail(to, link) {
     const transporter = nodemailer.createTransport({

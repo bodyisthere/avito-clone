@@ -1,21 +1,22 @@
-import { combineReducers, configureStore } from "@reduxjs/toolkit";
+import { combineReducers, configureStore, getDefaultMiddleware } from "@reduxjs/toolkit";
 
-import { categorySlice } from "./categorySlice";
+import { categorySlice } from "./slices/categorySlice";
+import { userSlice } from "./slices/userSlice";
 
-import { authSlice } from '../modules/auth'
 import { storiesSlice } from '../modules/stories'
 import { locationSlice } from "../modules/searchBar";
 import { adsSlice } from "../modules/ads";
+import { authApi } from "../api/authApi";
 
-const authReducer = authSlice.reducer;
-const storiesReducer = storiesSlice.reducer;
 const categoryReducer = categorySlice.reducer;
+const userReducer = userSlice.reducer;
+const storiesReducer = storiesSlice.reducer;
 const locationReducer = locationSlice.reducer;
 const adsReducer = adsSlice.reducer;
 
 const rootReducer = combineReducers({
-  authReducer,
   storiesReducer,
+  userReducer,
   categoryReducer,
   locationReducer,
   adsReducer
@@ -26,6 +27,14 @@ export const setupStore = () => {
     reducer: rootReducer
   })
 }
+
+export const store = configureStore({
+  reducer: {
+    [authApi.reducerPath]: authApi.reducer,
+    rootReducer,
+  },
+  middleware: getDefaultMiddleware => getDefaultMiddleware().concat(authApi.middleware)
+})
 
 export type RootState = ReturnType<typeof rootReducer>
 export type AppStore = ReturnType<typeof setupStore>

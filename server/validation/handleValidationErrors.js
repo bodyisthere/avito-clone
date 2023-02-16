@@ -1,10 +1,11 @@
 import { validationResult } from "express-validator";
+import { ApiError } from "../exceptions/apiError.js";
 
-export default (req, res, next) => {
+export function handleValidationErrors(req, res, next) {
   const errors = validationResult(req);
   if (!errors.isEmpty()) {
     console.log("Ошибка валидации");
-    return res.status(400).json(errors.array());
+    throw next(ApiError.BadRequest('Ошибка при валидации', errors.array()))
   }
 
   next();

@@ -1,14 +1,14 @@
 import axios, {AxiosResponse} from "axios";
 
-import { instance } from "./axiosConfig";
+import $api from "./axiosConfig";
 
 class Categories {
   async getAll() {
-    return await instance.get('/get-all-categories');
+    return await $api.get('/get-all-categories');
   }
 
   async getOne() {
-    return await instance.get('/get-one-category/:id')
+    return await $api.get('/get-one-category/:id')
   }
 }
 

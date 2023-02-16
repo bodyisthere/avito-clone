@@ -15,6 +15,7 @@ import mongoose from "mongoose";
 // messages: string[]
 
 const UserSchema = new mongoose.Schema({
+    name: {type: String, required: true},
     email: {type: String, required: true, unique: true},
     passwordHash: {type: String, required: true},
     
@@ -22,14 +23,20 @@ const UserSchema = new mongoose.Schema({
         city: {type: String, required: false, default: ''},
         dateOfBirth: {type: String, required: false, default: ''},
         avatar: {type: String, required: false, default: ''},
-        userName: {type: String, required: false},
     },
+    roles: [{type: String, ref: "Role"}],
+    phoneNumber: {type: Number, required: false, default: 0},
+
     isActivated: {type: Boolean, required: false, default: false},
-    activationLink: {type: String},
-    followList: {type: Array, required: false, default: []},
+    activationLink: {type: String, required: true},
+
     followersList: {type: Array, required: false, default: []},
-    announcement: {type: Array, required: false, default: []},
+    followList: {type: Array, required: false, default: []},
+
+    ads: {type: Array, required: false, default: []},
+
     notifications: {type: Array, required: false, default: []},
+
     conversations: {type: Array, required: false, default: []},
 },
 {

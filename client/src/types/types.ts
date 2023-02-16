@@ -6,3 +6,12 @@ export interface ad {
   meetingPoint: string | undefined
   price: string | undefined
 }
+
+export interface user {
+  name: string
+  avatar: string
+  email: string
+  location: any
+  ads: string[]
+  
+}

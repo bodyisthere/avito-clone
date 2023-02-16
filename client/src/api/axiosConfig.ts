@@ -1,10 +1,15 @@
-import axios, {AxiosResponse} from "axios";
+import axios, { AxiosHeaders } from "axios";
 
-export const instance = axios.create({
-  withCredentials: false,
-  baseURL: 'http://localhost:5000',
-  headers: {
-    'Content-Type' : 'application/json;charset=utf-8',
-    'Access-Control-Allow-Origin' : '*'
-  }
+export const API_URL = 'http://localhost:5000'
+
+const $api = axios.create({
+  withCredentials: true,
+  baseURL: API_URL
 })
+
+$api.interceptors.request.use((config) => {
+  config.headers.Authorization = `Bearer ${localStorage.getItem('token')}`
+  return config;
+})
+
+export default $api;

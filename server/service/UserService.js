@@ -2,32 +2,37 @@ import bcrypt from 'bcrypt'
 import { v4 as uuidv4 } from 'uuid';
 
 import UserModel from '../models/UserModel.js'
+import RoleModel from '../models/RoleModel.js'
 import TokenService from './TokenService.js';
 import MailService from './MailService.js';
 import { UserDto } from '../dtos/UserDTO.js'
 import { ApiError } from '../exceptions/apiError.js';
 
 class UserService {
-  async registration(email, password, name, surname) {
+  async registration(email, password, name) {
+    //Проверка на уникальность email
     const isUnique = await UserModel.findOne({email});
     if(isUnique) {
         throw ApiError.BadRequest(`Пользователь c email: ${email} уже существует`)
     }
 
+    //Шифровка пароля
     const passwordHash = await bcrypt.hash(password, 3);
     const activationLink = uuidv4();
+    
+    const userRole = await RoleModel.findOne({value: "USER"});
     const user = await UserModel.create({
         email,
         passwordHash,
-        firstName,
-        lastName,
-        activationLink
+        name,
+        activationLink,
+        roles: [userRole.value]
     });
 
     const userDto = new UserDto(user);
 
-    //шифруем email, id, isActivated
-    const tokens = await TokenService.generateTokens({ ...userDto});
+    //шифруем email, id, isActivated, role
+    const tokens = TokenService.generateTokens({ ...userDto});
     await TokenService.saveToken(userDto.id, tokens.refreshToken);
 
     await MailService.sendActivationMail(email, `${process.env.API_URL}/activate/${activationLink}`);
@@ -43,7 +48,7 @@ class UserService {
     if(!isPassEquals) throw ApiError.BadRequest('Неверный логин или пароль');
 
     const userDto = new UserDto(user);
-    const tokens = await TokenService.generateTokens({...userDto});
+    const tokens = TokenService.generateTokens({...userDto});
     await TokenService.saveToken(userDto.id, tokens.refreshToken);
     return { ...tokens, userDto };
   }
