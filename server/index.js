@@ -7,7 +7,6 @@ import mongoose from "mongoose";
 import { errorMiddleware } from "./middlewares/errorMiddleware.js";
 
 import { userRoutes, categoriesRoutes, locationRoutes, autoBrandRoutes, storyRoutes, uploadRoutes} from './router/index.js'
-import { authMiddleware } from "./middlewares/authMiddleware.js";
 
 dotenv.config();
 const PORT = process.env.PORT || 5000;

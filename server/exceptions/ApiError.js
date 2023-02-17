@@ -12,6 +12,10 @@ export class ApiError extends Error {
         return new ApiError(401, 'Пользователь не авторизован')
     }
 
+    static UnsupportedMediaType() {
+        return new ApiError(415, 'Загрузите файлы форматов jpg или png')
+    }
+
     static NoAccess() {
         return new ApiError(403, 'Для доступа к данной операции нужно иметь роль ADMIN')
     }

@@ -155,7 +155,8 @@ export const AutoRun: FC = () => {
           {
             form.photo 
             ?
-            <FileUploaded uploadedFiles={form.photo} setOption={setFunction} optionKey='photo'/>
+            ''
+            // <FileUploaded uploadedFiles={form.photo} setOption={setFunction} optionKey='photo'/>
             :
             <FileUpload isMultiple={true} setUploadedFiles={setUploadedFiles} setSelectedFiles={setSelectedFiles} selectedFiles={selectedFiles} uploadedFiles={uploadedFiles}/>
           }

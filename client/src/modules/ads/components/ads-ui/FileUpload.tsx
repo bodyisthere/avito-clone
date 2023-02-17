@@ -13,7 +13,7 @@ export const FileUpload: FC<IFileUpload> = ({ selectedFiles, setSelectedFiles, u
   return (
     <label className="file-upload" title='Загрузить фото'>
       <i className="fa-solid fa-camera"></i>
-      <input type="file" className="file-upload--hidden" onChange={onChange} multiple={isMultiple}/>
+      <input accept="image/*,.png,.jpg,.jpeg" type="file" className="file-upload--hidden" onChange={onChange} multiple={isMultiple}/>
     </label>
   )
 }
