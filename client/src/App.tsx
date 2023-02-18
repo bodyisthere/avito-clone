@@ -7,6 +7,7 @@ import { useAppDispatch, useAppSelector } from "./hooks/redux-hooks/redux";
 import { Navigation } from "./routes/Routes";
 import Category from './store/actions/categoryAction'
 import User from "./store/actions/userAction";
+import { ConditionInfo } from "./components/ConditionInfo/ConditionInfo";
 
 const App: FC = () => {
   const dispatch = useAppDispatch();
@@ -24,6 +25,8 @@ const App: FC = () => {
   return (
     <>
       <Header />
+      <AuthPop />
+      {/* <ConditionInfo message="e" closeFunction={'e'} isError={false}/> */}
       <Navigation />
       {/* {userDto.id ? <AuthPop /> : ''} */}
     </>

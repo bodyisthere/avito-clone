@@ -10,11 +10,12 @@ class StoryService {
     
   }
 
-  async post(title, slides) {
-    if(!title || !slides) throw ApiError.BadRequest('Одно из полей некорректно заполнено');
+  async post(title, cover, slides) {
+    if(!title || !slides || !cover) throw ApiError.BadRequest('Одно из полей некорректно заполнено');
     const story = await StoryModel.create({
         title,
         slides,
+        cover
     });
     return { result: 'success' };
   }

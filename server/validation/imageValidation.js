@@ -12,6 +12,7 @@ const imageValidation = (req, file, callback) => {
     }
   } else {
     if(types.includes(file.mimetype)) {
+      console.log('file')
       callback(null, true);
     } else {
       callback(ApiError.UnsupportedMediaType(), false)

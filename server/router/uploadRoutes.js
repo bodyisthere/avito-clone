@@ -21,6 +21,6 @@ const storage = multer.diskStorage({
 
 const uploads = multer({ storage, fileFilter });
 
-uploadRoutes.post("/uploads", uploads.array("files"), errorMiddleware, UploadController.upload)
+uploadRoutes.post("/uploads", uploads.array("files"), UploadController.upload)
 
 uploadRoutes.use("/uploads", express.static("uploads"));

@@ -20,8 +20,8 @@ class StoryController {
 
   async post(req, res, next) {
     try {
-      const { title, slides } = req.body;
-      const response = await StoryService.post(title, slides);
+      const { title, cover, slides } = req.body;
+      const response = await StoryService.post(title, cover, slides);
       res.json(response);
     } catch (err) {
       next(err);

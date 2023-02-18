@@ -6,7 +6,7 @@ import { userSlice } from "./slices/userSlice";
 import { storiesSlice } from '../modules/stories'
 import { locationSlice } from "../modules/searchBar";
 import { adsSlice } from "../modules/ads";
-import { authApi } from "../api/authApi";
+import { authApi } from "./api/authApi";
 
 const categoryReducer = categorySlice.reducer;
 const userReducer = userSlice.reducer;

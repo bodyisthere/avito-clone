@@ -1,8 +1,9 @@
 import axios, { AxiosResponse } from 'axios';
 import React, { FC, useState } from 'react'
 
-import { InputText } from '../../../../../UI';
+import { InputText, Button } from '../../../../../UI';
 import { FileUpload, FileUploaded } from '../../../../ads';
+import { uploadImages,uploadStory } from '../../api/uploadImages';
 
 interface IPopAddStory {
 
@@ -17,15 +18,18 @@ export const PopAddStory: FC<IPopAddStory> = () => {
   //для обложки
   const [fileCover, setFileCover] = useState<string[]>([]); //для создания формы отправки файлов
   const [uploadedFileCover, setUploadedFileCover] = useState<string[]>([]); //ссылки на загруженные файлы
+  //ошибки
+  const [error, setError] = useState<any>(null);
+
 
   const handleChangeFile = async (e: any, changeFunction: any) => {
     const formData = new FormData();
     const files = e.target.files;
-    if(files.length > 6) return;
+    if(files.length > 6 || files.length === 0) return;
     for(let i = 0; i < files.length; i++) {
       formData.append('files', files[i])
     }
-    const response: AxiosResponse = await axios.post('http://localhost:5000/uploads', formData);
+    const response = await uploadImages(formData);
     console.log(response);
     changeFunction(response.data.data);
   }
@@ -34,6 +38,11 @@ export const PopAddStory: FC<IPopAddStory> = () => {
     changeFunction((prev: any) => {
       return prev.filter((e: any) => e !== el)
     })
+  }
+
+  const sendStory = async () => {
+    const response = await uploadStory({title, slides: uploadedFilesSlides, cover: uploadedFileCover[0]})
+    console.log(response);
   }
   
   return (
@@ -52,16 +61,7 @@ export const PopAddStory: FC<IPopAddStory> = () => {
           {uploadedFilesSlides.length > 0 ? <FileUploaded uploadedFiles={uploadedFilesSlides} deleteFunction={(el: string) => deleteFunction(el, setUploadedFilesSlides)}/> : ''}
         </div>
       </div>
+      <Button children='Загрузить' onClick={sendStory}/>
     </>
   )
 }
-  // {
-  //   onUploadProgress: progressEvent => {
-  //     const totalLength = progressEvent.total;
-  //     // const totalLength = progressEvent.lengthComputable ? progressEvent.total : progressEvent.target.getResponseHeader('content-length') || progressEvent.target.getResponseHeader('x-decompressed-content-length');
-  //     // console.log('total', totalLength)
-  //     if (totalLength) {
-  //         let progress = Math.round((progressEvent.loaded * 100) / totalLength)
-  //         console.log(progress)
-  //     }
-  // }}

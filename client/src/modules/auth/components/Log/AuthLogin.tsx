@@ -4,6 +4,8 @@ import { Link } from "react-router-dom";
 import { Button, InputPassword, InputText } from "../../../../UI";
 import { IAuth } from "../auth-types";
 
+import { useLoginMutation } from "../../../../store/api/authApi";
+
 export const AuthLogin: FC<IAuth> = ({ setCondition }) => {
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
@@ -11,7 +13,18 @@ export const AuthLogin: FC<IAuth> = ({ setCondition }) => {
   const [isPasswordShow, setIsPasswordShow] = useState<boolean>(false);
   const [error, setError] = useState<string | null>(null);
 
+  const [ loginReq, {data, isError, isLoading}] = useLoginMutation()
+
   //input-password__input--error
+
+  const loginSubmit = async () => {
+    if(email.length === 0 || password.length === 0) return
+    await loginReq({email, password}).unwrap();
+    setEmail('');
+    setPassword('');
+  }
+
+  console.log(data)
 
   return (
     <>
@@ -49,7 +62,7 @@ export const AuthLogin: FC<IAuth> = ({ setCondition }) => {
             Забыли пароль?
           </button>
         </div>
-        <Button>Войти</Button>
+        <Button onClick={() => loginSubmit()}>Войти</Button>
       </div>
       <div className="auth-pop__reg">
         или <button onClick={() => setCondition("reg")}>регистрация</button>

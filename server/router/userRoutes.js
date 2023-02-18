@@ -10,6 +10,7 @@ import { handleValidationErrors } from '../validation/handleValidationErrors.js'
 export const userRoutes = new Router();
 
 userRoutes.post('/registration', registrationValidation, handleValidationErrors, UserController.registration);
+// userRoutes.post('/login', UserController.login);
 userRoutes.post('/login', loginValidation, handleValidationErrors, UserController.login);
 
 userRoutes.post('/logout', UserController.logout);
