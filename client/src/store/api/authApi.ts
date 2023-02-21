@@ -13,14 +13,13 @@ export const authApi = createApi({
         body,
       })
     }),
-    registration: build.mutation<any, {email: string, password: string}>({
+    registration: build.mutation<{lol: string}, {email: string, password: string}>({
       query: (body: {email: string, password: string}) => ({
         url: 'registration',
         method: 'POST',
         body: body
       }),
-      
-    })
+    }),
   })
 })
 

@@ -1,12 +1,12 @@
-import React, { FC, ReactNode } from "react";
+import React, { FC, ReactNode, useEffect } from "react";
 import { Link } from "react-router-dom";
 
 import { Subchapter } from "./Subchapter";
-import { useAppSelector } from "../../../../hooks/redux-hooks/redux";
+import { useAppSelector } from "../../../../hooks";
 import { ICategoryItem } from "../../types/types";
 
 export const CategoryItem: FC<ICategoryItem> = ({activeCategory, setActiveCategory}) => {
-  const {data} = useAppSelector(state => state.categoryReducer);
+  const data = useAppSelector(state => state.categoryReducer);
 
   return (
     <ul className="categories__type-sublist">

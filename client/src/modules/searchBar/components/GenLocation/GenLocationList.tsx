@@ -1,8 +1,8 @@
 import React, { FC, useState, useRef, useEffect } from "react";
 import { useDispatch } from "react-redux";
 
-import { locationSlice } from "../../store/locationSlice";
 import { ICities } from "../../types/types";
+import { useActions } from "../../../../hooks";
 
 interface IGenLocationList {
   cities: [] | ICities[]
@@ -12,7 +12,7 @@ interface IGenLocationList {
 
 export const GenLocationList: FC<IGenLocationList> = ( {cities, searchRoot, setIsSearchActive} ) => {
   const dispatch = useDispatch();
-  const { setRegion, setDistricts, setMetroes } = locationSlice.actions;
+  const { setRegion, setDistricts, setMetroes } = useActions();
 
   const submitCity = (_id: string, city: string, region: string, districts: string[] | [], metroes: string[] | []) => {
     dispatch(setRegion({_id, city, region}))

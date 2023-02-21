@@ -4,8 +4,8 @@ import { Link } from "react-router-dom";
 import logo from "../../../assets/img/logo.png";
 import "./SearchBar.scss";
 
-import { useAppSelector } from "../../../hooks/redux-hooks/redux";
 import { bodyScrollBlock } from "../../../utils/bodyScrollBlock";
+import { useAppSelector } from "../../../hooks";
 
 import { Button } from "../../../UI";
 import { Categories } from "./Categories/Categories";
@@ -23,7 +23,7 @@ export const SearchBar: FC = () => {
     changeStateFn(!state);
     bodyScrollBlock(document);
   }
-
+  
   return (
     <div className="search-bar">
       <div className="search-bar__container">

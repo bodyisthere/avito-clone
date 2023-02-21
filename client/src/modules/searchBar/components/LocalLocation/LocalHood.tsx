@@ -1,15 +1,12 @@
 import React, { FC, ReactNode, useState } from 'react';
 import { Link } from 'react-router-dom';
 
-import { useAppDispatch, useAppSelector } from '../../../../hooks/redux-hooks/redux';
-import { locationSlice } from "../../store/locationSlice";
-
+import { useAppSelector, useActions } from '../../../../hooks';
 
 
 export const LocalHood: FC = () => {
     const { districts } = useAppSelector(state => state.locationReducer);
-    const { setDistrict } = locationSlice.actions;
-    const dispatch = useAppDispatch();
+    const { setDistrict } = useActions();
 
     const [hoods, setHoods] = useState<string[] | []>([]);
 

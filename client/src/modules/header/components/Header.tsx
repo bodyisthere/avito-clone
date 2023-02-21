@@ -6,16 +6,12 @@ import "./Header.scss"
 import avatar from "../../../assets/img/avatar.jpg"
 import { HeaderBurger } from "./HeaderBurger";
 import { HeaderDropMenu } from "./HeaderDropMenu";
-import { useAppDispatch, useAppSelector } from "../../../hooks/redux-hooks/redux";
-// import { authSlice } from "../../auth";
+import { useAppSelector } from "../../../hooks";
 
 export const Header: FC = () => {
-    // const { isOpen } = useAppSelector(state => state.authReducer);
-    // const { toggleAuth } = authSlice.actions;
-    const dispatch = useAppDispatch();
+    const { isAuth } = useAppSelector(state => state.userReducer || false)
 
     const [showDropMenu, setShowDropMenu] = useState<boolean>(false);
-    const [isAuth, setIsAuth] = useState<boolean>(false);
     const [isBurgerOpen, setIsBurgerOpen] = useState<boolean>(false);
 
     const [screenWidth, setScreenWidth] = useState<number>(window.innerWidth);

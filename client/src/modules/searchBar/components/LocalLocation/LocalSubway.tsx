@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
 import { Link } from 'react-router-dom';
-import { useAppDispatch, useAppSelector } from '../../../../hooks/redux-hooks/redux';
+import { useAppSelector } from "../../../../hooks";
 
 export const LocalSubway: FC = () => {
     const { metroes } = useAppSelector(state => state.locationReducer);

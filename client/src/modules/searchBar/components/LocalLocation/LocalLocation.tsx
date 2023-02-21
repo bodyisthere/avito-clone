@@ -2,7 +2,7 @@ import React, { FC, useState, useRef } from "react";
 import { Link } from "react-router-dom";
 
 import { useClosePop } from "../../../../hooks/common-hooks/useClosePop";
-import { useAppDispatch, useAppSelector } from "../../../../hooks/redux-hooks/redux";
+import { useAppSelector } from "../../../../hooks";
 import { ILocalLocation } from "../../types/types";
 
 import { LocalHood } from "./LocalHood";

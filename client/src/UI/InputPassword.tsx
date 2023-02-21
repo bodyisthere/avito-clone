@@ -7,6 +7,7 @@ interface IInputPassword {
   placeholder?: string;
   isShow: boolean;
   setIsShow: () => void;
+  errorMessage?: string
 }
 
 export const InputPassword: FC<IInputPassword> = ({
@@ -16,16 +17,18 @@ export const InputPassword: FC<IInputPassword> = ({
   value,
   isShow,
   setIsShow,
+  errorMessage
 }) => {
   return (
-    <div className="input-password">
+    <div className={`input-password ${className && className}`}>
       <input
         type={isShow ? "text" : "password"}
-        className={`input-password__input ${className}`}
+        className='input-password__input'
         placeholder={placeholder}
         onChange={onChange}
         value={value}
       />
+      {errorMessage ? <span className={`input-password__error-span`}>{errorMessage}</span> : ''}
       <button
         className="input-password__show"
         onClick={setIsShow}

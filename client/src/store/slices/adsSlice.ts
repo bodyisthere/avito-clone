@@ -9,7 +9,7 @@ const initialState: IInitialState = {
   category: ['']
 }
 
-export const adsSlice = createSlice({
+const adsSlice = createSlice({
   name: 'category',
   initialState,
   reducers: {
@@ -18,3 +18,6 @@ export const adsSlice = createSlice({
     }
   }
 })
+
+export const adsReducer = adsSlice.reducer;
+export const adsActions = adsSlice.actions;

@@ -1,3 +1,4 @@
 export { useClosePop } from "./common-hooks/useClosePop";
-// export { useAppDispatch, useAppSelector } from "./redux";
-// export { useTypedSelector } from './useTypedSelector';
+export { useActions } from "./redux-hooks/useActions";
+export { useAppDispatch } from "./redux-hooks/useAppDispatch";
+export { useAppSelector } from "./redux-hooks/useAppSelector";

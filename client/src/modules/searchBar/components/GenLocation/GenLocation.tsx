@@ -2,9 +2,11 @@ import React, { FC, useState, useRef, useEffect } from "react";
 
 import { IGenLocation, ICities } from "../../types/types";
 import { useClosePop } from "../../../../hooks/common-hooks/useClosePop";
-import { useAppSelector } from "../../../../hooks/redux-hooks/redux";
-import { getCities } from "../../api/getCities";
+import { useAppSelector } from "../../../../hooks";
 import { GenLocationList } from "./GenLocationList";
+import { useDebounce } from "../../../../hooks/common-hooks/useDebounce";
+
+import { citiesApi } from '../../../../store/api/citiesApi'
 
 export const GenLocation: FC<IGenLocation> = ({ setIsLocationOpen }) => {
   const { city } = useAppSelector(state => state.locationReducer);
@@ -17,15 +19,15 @@ export const GenLocation: FC<IGenLocation> = ({ setIsLocationOpen }) => {
   const [cities, setCities] = useState<ICities[] | []>([]);
   
   useClosePop(root, setIsLocationOpen);
-
+  useDebounce(value);
+  
   useEffect(() => {
     if(value.length === 0) return;
     const citiesSearch = async () => {
-      const response = await getCities(value);
-      setCities(response.data);
+      citiesApi.useGetCitiesQuery(value);
+      // setCities(response.data);
     }
     citiesSearch();
-
   }, [value]); 
 
   console.log(cities)

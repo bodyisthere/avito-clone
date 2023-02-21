@@ -6,10 +6,13 @@ import { Products } from "../../modules/products";
 import { SearchBar } from "../../modules/searchBar";
 import { PopularCategories } from "../../components/PopularCategories/PopularCategoires";
 import { RecentlyWatched } from "../../components/RecentlyWatched/RecentlyWatched";
+import { AuthPop } from "../../modules/auth";
 
 export const MainPage: FC = () => {
+  const [isAuthPopOpen, setIsAuthPopOpen] = useState<boolean>(false);
   return (
     <div className="main">
+      {isAuthPopOpen && <AuthPop setIsAuthPopOpen={setIsAuthPopOpen}/>}
       <div className="main__container">
         <div className="main__top">
           <SearchBar />

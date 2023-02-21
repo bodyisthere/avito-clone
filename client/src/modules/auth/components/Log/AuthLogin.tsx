@@ -2,43 +2,65 @@ import React, { FC, useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 
 import { Button, InputPassword, InputText } from "../../../../UI";
-import { IAuth } from "../auth-types";
+import { IAuth, IErrorValidation } from "../auth-types";
 
 import { useLoginMutation } from "../../../../store/api/authApi";
+import { useActions, useAppSelector } from "../../../../hooks";
 
 export const AuthLogin: FC<IAuth> = ({ setCondition }) => {
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const [rememberPassword, setRememberPassword] = useState<boolean>(false);
   const [isPasswordShow, setIsPasswordShow] = useState<boolean>(false);
-  const [error, setError] = useState<string | null>(null);
 
-  const [ loginReq, {data, isError, isLoading}] = useLoginMutation()
+  // const { } = useAppSelector(state => state.userReducer)
 
-  //input-password__input--error
+  const { login } = useActions();
+
+  const [error, setError] = useState<IErrorValidation | null>(null)
+
+  const [ loginReq, {isError}] = useLoginMutation()
 
   const loginSubmit = async () => {
-    if(email.length === 0 || password.length === 0) return
-    await loginReq({email, password}).unwrap();
-    setEmail('');
-    setPassword('');
+    if(email.length === 0 || password.length === 0) {return setError({message: 'Заполните все поля'})}
+    await loginReq({email, password})
+      .unwrap()
+      .then((payload) => {
+        setEmail('');
+        setPassword('');
+        console.log(payload)
+        login(payload);
+      })
+      .catch((error) => setError(error.data))
   }
 
-  console.log(data)
+  const checkFieldOnError = (field: string) => {
+    let result = false;
+    let message = '';
+    error?.errors?.forEach((el) => {
+      if(el.param === field) {
+        result = true;
+        message = el.msg;
+      }
+    })
+    return {result, message}
+  }
 
   return (
     <>
       <div className="auth-pop__title">Вход</div>
       <div className="auth-pop__form">
         <span
-          className={`auth-pop__span ${error ? "auth-pop__span--error" : ""}`}>
-          .
+          className={`auth-pop__span ${isError ? "auth-pop__span--error" : ""}`}>
+            {error ? error.message : ''}
         </span>
         <InputText
           placeholder="Телефон или почта"
           clearInput={() => setEmail("")}
           onChange={(e) => setEmail(e.target.value)}
           value={email}
+          className={error ? checkFieldOnError('email').result ? 'input-text__input--error' : '' : ''}
+          errorMessage={error ? checkFieldOnError('email').message : ''}
         />
         <InputPassword
           placeholder="Пароль"
@@ -46,6 +68,8 @@ export const AuthLogin: FC<IAuth> = ({ setCondition }) => {
           value={password}
           isShow={isPasswordShow}
           setIsShow={() => setIsPasswordShow(!isPasswordShow)}
+          className={`auth-pop__input-span ${error ? checkFieldOnError('password').result ? 'input-text__input--error' : '' : ''}`}
+          errorMessage={error ? checkFieldOnError('password').message : ''}
         />
         <div className="auth-pop__form-password-settings">
           <label>

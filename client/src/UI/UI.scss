@@ -28,11 +28,18 @@
     font-size: 16px;
     border-radius: 6px;
     border: 2px solid transparent;
+    margin-bottom: 5px;
   }
   &__input--error {
-    border-color: rgb(255, 0, 0);
+    input {
+      border-color: rgb(255, 0, 0);
+    }
     -webkit-animation: error-field 0.8s ease-out both;
     animation: error-field 0.8s ease-out both;
+  }
+  &__error-span {
+    font-size: 14px;
+    color: red;
   }
   &:focus {
     border: 2px solid #00AAFF
@@ -56,10 +63,16 @@
     font-size: 16px;
     border-radius: 6px;
     border: 2px solid transparent;
-    margin-bottom: 10px;
+    margin-bottom: 5px;
+  }
+  &__error-span {
+    font-size: 14px;
+    color: red;
   }
   &__input--error {
-    border-color: rgb(255, 0, 0);
+    input {
+      border-color: rgb(255, 0, 0);;
+    }
     -webkit-animation: error-field 0.8s ease-out both;
     animation: error-field 0.8s ease-out both;
   }
@@ -104,6 +117,34 @@
     top: -18px;
     right: -10px;
     cursor: pointer;
+  }
+}
+
+.loader {
+  display: inline-block;
+  position: relative;
+  width: 80px;
+  height: 80px;
+  div {
+    box-sizing: border-box;
+    display: block;
+    position: absolute;
+    width: 64px;
+    height: 64px;
+    margin: 8px;
+    border: 8px solid black;
+    border-radius: 50%;
+    animation: loader-animation 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+    border-color: black transparent transparent transparent;
+    :nth-child(1) {
+      animation-delay: -0.45s;
+    }
+    &:nth-child(2) {
+      animation-delay: -0.3s;
+    }
+    &:nth-child(3) {
+      animation-delay: -0.15s;
+    }
   }
 }
 
@@ -163,5 +204,14 @@
   75% {
     -webkit-transform: translateX(-6px) rotate(-1.2deg);
     transform: translateX(-6px) rotate(-1.2deg);
+  }
+}
+
+@keyframes loader-animation {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
   }
 }
