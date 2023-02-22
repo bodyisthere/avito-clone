@@ -6,15 +6,23 @@ import "./Header.scss"
 import avatar from "../../../assets/img/avatar.jpg"
 import { HeaderBurger } from "./HeaderBurger";
 import { HeaderDropMenu } from "./HeaderDropMenu";
-import { useAppSelector } from "../../../hooks";
+import { useAppSelector, useActions } from "../../../hooks";
 
 export const Header: FC = () => {
-    const { isAuth } = useAppSelector(state => state.userReducer || false)
+    const { isAuth, isAuthPopOpen } = useAppSelector(state => state.userReducer);
+    const { setAuthPop } = useActions();
 
     const [showDropMenu, setShowDropMenu] = useState<boolean>(false);
     const [isBurgerOpen, setIsBurgerOpen] = useState<boolean>(false);
 
     const [screenWidth, setScreenWidth] = useState<number>(window.innerWidth);
+
+    const newAds = (e: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => {
+        if(!isAuth) {
+            setAuthPop(true);
+            e.preventDefault()
+        }
+    }
     
     return (
         <header className="header">
@@ -62,11 +70,11 @@ export const Header: FC = () => {
                         <>
                            <ul className="header__btn-list">
                                 <li className="header__btn-item" title="Избранное"><Link to="/"><i className="fa-solid fa-heart"></i></Link></li>
-                                <li className="header__btn-item"><button className="header__btn-item-enter">Вход и регистрация</button></li>
+                                <li className="header__btn-item"><button className="header__btn-item-enter" onClick={() => setAuthPop(true)}>Вход и регистрация</button></li>
                             </ul> 
                         </>
                     }
-                    <div className="button"><Link to="/addads">Разместить объявление</Link></div>
+                    <div className="button"><Link to="/addads" onClick={(e) => newAds(e)}>Разместить объявление</Link></div>
                 </div>
             </div>
         </header>

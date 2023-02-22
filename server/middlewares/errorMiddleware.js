@@ -4,7 +4,6 @@ export function errorMiddleware(err, req, res, next) {
     console.log(err)
 
     if(err.status) {
-        console.log(err.status)
         return res.status(err.status).json({ message: err.message, errors: err.errors})
     }
 

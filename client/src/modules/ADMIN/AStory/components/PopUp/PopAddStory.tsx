@@ -3,13 +3,18 @@ import React, { FC, useState } from 'react'
 
 import { InputText, Button } from '../../../../../UI';
 import { FileUpload, FileUploaded } from '../../../../ads';
-import { uploadImages,uploadStory } from '../../api/uploadImages';
+// import { uploadImages,uploadStory } from '../../api/uploadImages';
+import { uploadApi } from '../../../../../store/api/uploadApi';
+import { storiesApi } from '../../../../../store/api/storiesApi'
 
 interface IPopAddStory {
 
 }
 
 export const PopAddStory: FC<IPopAddStory> = () => {
+  const [upload, {  }] = uploadApi.useUploadImagesMutation();
+  const [postStory, {  }] = storiesApi.usePostStoryMutation();
+
   //заголовок
   const [title, setTitle] = useState<string>('');
   //для слайдов
@@ -29,9 +34,7 @@ export const PopAddStory: FC<IPopAddStory> = () => {
     for(let i = 0; i < files.length; i++) {
       formData.append('files', files[i])
     }
-    const response = await uploadImages(formData);
-    console.log(response);
-    changeFunction(response.data.data);
+    upload(formData).unwrap().then(payload => changeFunction(payload.data))
   }
 
   const deleteFunction = (el: string, changeFunction: any) => {
@@ -41,8 +44,9 @@ export const PopAddStory: FC<IPopAddStory> = () => {
   }
 
   const sendStory = async () => {
-    const response = await uploadStory({title, slides: uploadedFilesSlides, cover: uploadedFileCover[0]})
-    console.log(response);
+    postStory({title, slides: uploadedFilesSlides, cover: uploadedFileCover[0]})
+    .unwrap()
+    .then(payload => console.log(payload))
   }
   
   return (

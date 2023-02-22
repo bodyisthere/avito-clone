@@ -10,6 +10,8 @@ import { locationReducer } from "./slices/locationSlice";
 
 import { adsReducer } from "../modules/ads";
 import { storiesSlice } from "./slices/storiesSlice";
+import { uploadApi } from "./api/uploadApi";
+import { storiesApi } from "./api/storiesApi";
 
 const storiesReducer = storiesSlice.reducer;
 
@@ -22,6 +24,8 @@ const rootReducer = combineReducers({
   [categoriesApi.reducerPath]: categoriesApi.reducer,
   [authApi.reducerPath]: authApi.reducer,
   [citiesApi.reducerPath]: citiesApi.reducer,
+  [uploadApi.reducerPath]: uploadApi.reducer,
+  [storiesApi.reducerPath]: storiesApi.reducer,
 })
 
 export const setupStore = () => {
@@ -30,8 +34,10 @@ export const setupStore = () => {
     middleware: getDefaultMiddleware => getDefaultMiddleware().concat(
       authApi.middleware, 
       categoriesApi.middleware, 
-      citiesApi.middleware
-      ),
+      citiesApi.middleware,
+      uploadApi.middleware,
+      storiesApi.middleware
+    ),
   })
 }  
 
