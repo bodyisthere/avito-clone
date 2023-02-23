@@ -3,7 +3,8 @@ import StoryModel from '../models/StoryModel.js'
 
 class StoryService {
   async getAll(req, res, next) {
-    
+    const stories = await StoryModel.find();
+    return stories;
   }
 
   async getOne(req, res, next) {

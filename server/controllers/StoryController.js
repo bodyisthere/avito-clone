@@ -4,7 +4,8 @@ import StoryService from "../service/StoryService.js";
 class StoryController {
   async getAll(req, res, next) {
     try {
-
+      const response = await StoryService.getAll();
+      res.json(response);
     } catch (err) {
       next(err);
     }

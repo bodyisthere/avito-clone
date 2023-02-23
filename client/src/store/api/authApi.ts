@@ -1,4 +1,4 @@
-import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
+import { BaseQueryFn, createApi, FetchArgs, fetchBaseQuery, FetchBaseQueryError } from "@reduxjs/toolkit/query/react";
 
 interface ILoginAccept {
   email: string,
@@ -7,6 +7,24 @@ interface ILoginAccept {
 
 interface IRegAccept extends ILoginAccept {
   name: string
+}
+
+
+const reAuthFunction = async () => {
+  //делаем какой - то кастомный запрос, который требует авторизации
+  let result = authApi.useCheckAuthQuery();
+
+  if (result.data) {
+    //получаем новую дату и обновленные токены
+    const refreshResult = authApi.useCheckAuthQuery();
+    if (refreshResult.data) {
+      //обновляем дату 
+
+    } else {
+
+    }
+  }
+  return result
 }
 
 export const authApi = createApi({

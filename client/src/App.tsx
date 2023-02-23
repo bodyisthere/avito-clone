@@ -17,14 +17,12 @@ const App: FC = () => {
   useEffect(() => {
     if(localStorage.getItem('token')) {
       authCheck().then(payload => authCheckStore(payload.data)).catch(err => {
-        if(err.status === 401) {
-          
+        if(err) {
+          // authCheck().then(payload => authCheckStore(payload.data))
         }
       });
     }
   }, [])
-
-  console.log(error);
 
   return (
     <>

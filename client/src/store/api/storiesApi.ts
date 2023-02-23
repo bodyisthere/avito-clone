@@ -13,7 +13,11 @@ interface IStoryResponseGetOne {
 }
 
 interface IStoryResponseGetAll {
-  data: string[]
+  _id: string;
+  title: string;
+  cover: string;
+  slides: string[];
+  __v: number;
 }
 
 const setHeaders = () => {
@@ -52,9 +56,9 @@ export const storiesApi = createApi({
         method: 'GET',
       })
     }),
-    getAllStories: build.query<IStoryResponseGetAll, void>({
+    getAllStories: build.query<IStoryResponseGetAll[], void>({
       query: () => ({
-        url: 'uploads',
+        url: 'story',
         method: 'GET',
       })
     }),
