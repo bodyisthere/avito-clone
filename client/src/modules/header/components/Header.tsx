@@ -52,10 +52,10 @@ export const Header: FC = () => {
                         ?
                         <>
                             <ul className="header__btn-list">
-                                <li className="header__btn-item" title="Избранное"><Link to="/"><i className="fa-solid fa-heart"></i></Link></li>
-                                <li className="header__btn-item" title="Уведомления"><Link to="/"><i className="fa-solid fa-bell"></i></Link></li>
-                                <li className="header__btn-item" title="Сообщения"><Link to="/"><i className="fa-solid fa-comment"></i></Link></li>
-                                <li className="header__btn-item" title="Корзина"><Link to="/"><i className="fa-solid fa-cart-shopping"></i></Link></li>
+                                <li className="header__btn-item" title="Избранное"><Link to="/favorites"><i className="fa-solid fa-heart"></i></Link></li>
+                                <li className="header__btn-item" title="Уведомления"><Link to="/notifications"><i className="fa-solid fa-bell"></i></Link></li>
+                                <li className="header__btn-item" title="Сообщения"><Link to="/dialogues"><i className="fa-solid fa-comment"></i></Link></li>
+                                <li className="header__btn-item" title="Корзина"><Link to="/cart"><i className="fa-solid fa-cart-shopping"></i></Link></li>
                             </ul>
                             <div className="header__profile">
                                 <div className="header__profile-inner" onClick={() => setShowDropMenu(!showDropMenu)}>

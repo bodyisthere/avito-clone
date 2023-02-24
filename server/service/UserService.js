@@ -37,7 +37,7 @@ class UserService {
 
     await MailService.sendActivationMail(email, `${process.env.API_URL}/activate/${activationLink}`);
 
-    return { ...tokens, userDto }
+    return { ...tokens, data: user }
   }
 
   async login(email, password) {
@@ -50,7 +50,7 @@ class UserService {
     const userDto = new UserDto(user);
     const tokens = TokenService.generateTokens({...userDto});
     await TokenService.saveToken(userDto.id, tokens.refreshToken);
-    return { ...tokens, userDto };
+    return { ...tokens, data: user};
   }
 
   async activate(activationLink) {
@@ -67,6 +67,12 @@ class UserService {
     return token;
   }
 
+  async getMyAccountInfo(userId) {
+    const user = await UserModel.findById(userId);
+    if(!user) throw ApiError.BadRequest('Пользователь не был найден');
+    return user;
+  }
+
   async refresh(refreshToken) {
     if(!refreshToken) throw ApiError.UnauthorizedError();
     const userData = TokenService.validateRefreshToken(refreshToken);
@@ -78,7 +84,7 @@ class UserService {
     const userDto = new UserDto(user);
     const tokens = TokenService.generateTokens({...userDto});
     await TokenService.saveToken(userDto.id, tokens.refreshToken);
-    return { ...tokens, userDto };
+    return { ...tokens, data: user };
   }
 }
 

@@ -1,7 +1,9 @@
 import React, { FC, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
+import { useActions } from "../../../hooks";
 
 import { useClosePop } from "../../../hooks/common-hooks/useClosePop";
+import { authApi } from "../../../store/api/authApi";
 
 //описывает прилетающие в него пропсы
 interface ITest {
@@ -9,8 +11,17 @@ interface ITest {
 }
 
 export const HeaderDropMenu: FC<ITest> = ({ setShowDropMenu }) => {
+  const [ logout, {  } ] = authApi.useLazyLogoutQuery();
+  const { logout: logoutStore } = useActions()
+
   const root = useRef<HTMLDivElement | null>(null);
   useClosePop(root, setShowDropMenu);
+
+  const logoutHandle = () => {
+    logout(); 
+    logoutStore();
+    document.location.reload();
+  }
 
   return (
     <div className="header-drop" ref={root}>
@@ -27,49 +38,49 @@ export const HeaderDropMenu: FC<ITest> = ({ setShowDropMenu }) => {
       </div>
       <ul className="header-drop__list">
         <li className="header-drop__item">
-          <Link to="">Мои объявления</Link>
+          <Link to="/my-ads">Мои объявления</Link>
         </li>
         <li className="header-drop__item">
-          <Link to="">Заказы</Link>
+          <Link to="/my-orders">Заказы</Link>
         </li>
         <li className="header-drop__item">
-          <Link to="">Мои отзывы</Link>
+          <Link to="/my-reviews">Мои отзывы</Link>
         </li>
         <li className="header-drop__item">
-          <Link to="">Избранное</Link>
+          <Link to="/favorites">Избранное</Link>
         </li>
       </ul>
       <ul className="header-drop__list">
         <li className="header-drop__item">
-          <Link to="">Сообщения</Link>
+          <Link to="/dialogues">Сообщения</Link>
         </li>
         <li className="header-drop__item">
-          <Link to="">Уведомления</Link>
+          <Link to="/notifications">Уведомления</Link>
         </li>
       </ul>
       <ul className="header-drop__list">
         <li className="header-drop__item">
-          <Link to="">Кошелёк</Link>
+          <Link to="/wallet">Кошелёк</Link>
         </li>
         <li className="header-drop__item">
-          <Link to="">Платные услуги</Link>
+          <Link to="/paid-services">Платные услуги</Link>
         </li>
         <li className="header-drop__item">
-          <Link to="">Спецпредложения</Link>
+          <Link to="/special-offers">Спецпредложения</Link>
         </li>
       </ul>
       <ul className="header-drop__list">
         <li className="header-drop__item">
-          <Link to="">Управление профилем</Link>
+          <Link to="/profile/basic">Управление профилем</Link>
         </li>
         <li className="header-drop__item">
-          <Link to="">Защита профиля</Link>
+          <Link to="/profile/safety">Защита профиля</Link>
         </li>
         <li className="header-drop__item">
-          <Link to="">Настройки</Link>
+          <Link to="/profile/settings">Настройки</Link>
         </li>
       </ul>
-      <button className="header-drop__leave">Выйти</button>
+      <button className="header-drop__leave" onClick={() => logoutHandle()}>Выйти</button>
     </div>
   );
 };

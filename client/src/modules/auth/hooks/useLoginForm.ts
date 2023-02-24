@@ -1,11 +1,11 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { IErrorValidation } from '../components/auth-types';
 import { useAppSelector, useActions } from '../../../hooks';
 import { useLoginMutation } from '../../../store/api/authApi';
 
 export const useLoginForm = () => {
   const { login, setAuthPop, setAuth } = useActions();
-  const [ loginReq, {isError, isLoading}] = useLoginMutation()
+  const [ loginReq, {isError, isLoading, isSuccess}] = useLoginMutation()
 
   const [error, setError] = useState<IErrorValidation | null>(null)
   const [email, setEmail] = useState<string>("");
@@ -21,13 +21,19 @@ export const useLoginForm = () => {
       .catch((error) => setError(error.data))
   }
 
+  useEffect(() => {
+    if(isSuccess) {
+      document.location.reload();
+    }
+  }, [isSuccess])
+
   return {
     email, setEmail, 
     password, setPassword, 
     rememberPassword, setRememberPassword,
     isPasswordShow, setIsPasswordShow,
     error, setError,
-    isError, isLoading,
+    isError, isLoading, isSuccess,
     loginSend
   }
 }

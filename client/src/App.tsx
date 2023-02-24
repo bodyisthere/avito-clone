@@ -7,28 +7,52 @@ import { Header } from "./modules/header";
 import { Navigation } from "./routes/Routes";
 
 import { authApi } from "./store/api/authApi";
+import { userApi } from "./store/api/userApi";
+
+import { Loader } from "./UI";
+import { ConditionInfo } from "./components/ConditionInfo/ConditionInfo";
 
 const App: FC = () => {
   const { authCheck: authCheckStore } = useActions();
   const { isAuthPopOpen } = useAppSelector(state => state.userReducer)
 
-  const [authCheck, { error }] = authApi.useLazyCheckAuthQuery();
+  const [authCheck, { data: authData, isLoading }] = authApi.useLazyCheckAuthQuery();
+
+  const [isConditionInfoOpen, setIsConditionInfoOpen] = useState<boolean>(false);
+  const [conditionInfoMessage, setConditionInfoMessage] = useState<string>('');
 
   useEffect(() => {
     if(localStorage.getItem('token')) {
-      authCheck().then(payload => authCheckStore(payload.data)).catch(err => {
+      authCheck()
+      .unwrap()
+      .then(payload => authCheckStore(payload))
+      .catch(err => {
         if(err) {
-          // authCheck().then(payload => authCheckStore(payload.data))
+          console.log(err);
+          setIsConditionInfoOpen(true);
+          setConditionInfoMessage('Прошло много времени с вашей последней авторизации, авторизуйтесь заново.')
         }
       });
     }
   }, [])
 
+  
   return (
     <>
-      <Header />
-      {isAuthPopOpen && <AuthPop /> }
-      <Navigation />
+      {
+        isLoading
+        ?
+        <div className="app__loading">
+          <Loader />
+        </div>
+        :
+        <>
+          <Header />
+          {isConditionInfoOpen && <ConditionInfo closeFunction={() => setIsConditionInfoOpen(false)} message={conditionInfoMessage} isError={true}/>}
+          {isAuthPopOpen && <AuthPop /> }
+          <Navigation />
+        </>
+      }
     </>
   );
 };

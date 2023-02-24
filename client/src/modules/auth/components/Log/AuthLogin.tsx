@@ -5,16 +5,15 @@ import { Button, InputPassword, InputText } from "../../../../UI";
 import { useLoginForm } from "../../hooks/useLoginForm";
 import { checkFieldOnError } from "../../helpers/checkFieldOnError";
 import { IAuth } from "../auth-types";
+import { useActions } from "../../../../hooks";
 
 export const AuthLogin: FC<IAuth> = ({ setCondition }) => {
-
   const { 
     email, setEmail, 
     password, setPassword, 
     rememberPassword, setRememberPassword,
     isPasswordShow, setIsPasswordShow,
-    error, setError,
-    isError, isLoading,
+    error, isError,
     loginSend
   } = useLoginForm();
 

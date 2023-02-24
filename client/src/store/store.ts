@@ -3,6 +3,7 @@ import { combineReducers, configureStore } from "@reduxjs/toolkit";
 import { authApi } from "./api/authApi";
 import { categoriesApi } from "./api/categoriesApi";
 import { citiesApi } from "./api/citiesApi";
+import { userApi } from "./api/userApi";
 
 import { userReducer } from './slices/userSlice'
 import { categoryReducer } from "./slices/categorySlice";
@@ -26,6 +27,7 @@ const rootReducer = combineReducers({
   [citiesApi.reducerPath]: citiesApi.reducer,
   [uploadApi.reducerPath]: uploadApi.reducer,
   [storiesApi.reducerPath]: storiesApi.reducer,
+  [userApi.reducerPath]: userApi.reducer,
 })
 
 export const setupStore = () => {
@@ -36,7 +38,8 @@ export const setupStore = () => {
       categoriesApi.middleware, 
       citiesApi.middleware,
       uploadApi.middleware,
-      storiesApi.middleware
+      storiesApi.middleware,
+      userApi.middleware
     ),
   })
 }  
