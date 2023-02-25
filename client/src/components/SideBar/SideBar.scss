@@ -1,0 +1,79 @@
+.side-bar {
+  max-width: 220px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  &__section {
+    border-bottom: 2px solid #abadae41;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    &:last-child {
+      border-bottom: 0px;
+    }
+  }
+  &__link {
+    color: #00AAFF;
+    font-size: 17px;
+    margin: 6px 0px;
+    &--active {
+      color: black;
+      font-weight: 700;
+    }
+  }
+  &__avatar {
+    border: 1px solid gray;
+    position: relative;
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    margin-bottom: 10px;
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 50%;
+    }
+  }
+  &__avatar-change {
+    background: rgb(200, 197, 197);
+    border-radius: 50%;
+    padding: 10px 10px;
+    font-size: 20px;
+    position: absolute;
+    bottom: 0px;
+    right: 0px;
+    cursor: pointer;
+    input {
+      position: absolute;
+      top: 0px;
+      height: 0px;
+      opacity: 0;
+      width: 0px;
+      height: 0px;
+    }
+  }
+  &__name {
+    font-size: 25px;
+    font-weight: 700;
+    margin-bottom: 10px;
+  }
+  &__rating {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+  }
+  &__rating-rate {
+    font-size: 20px;
+    font-weight: 700;
+    margin-right: 5px;
+  }
+  &__rating-line {
+    color: orange;
+    margin-right: 8px;
+  }
+  &__rating-reviews {
+    font-size: 16px;
+    color: #00AAFF;
+  }
+}

@@ -7,10 +7,7 @@ import { storiesApi } from '../../../store/api/storiesApi';
 import { Loader } from '../../../UI';
 
 //тестовая дата
-import { testData } from './test.data';
-
 export const StoriesBlock: FC = () => {
-  const [stories, setStories] = useState(testData);
   const [activeStory, setActiveStory] = useState<string | null>(null);
 
   const { data, isLoading, isError } = storiesApi.useGetAllStoriesQuery();
@@ -30,7 +27,7 @@ export const StoriesBlock: FC = () => {
           <button className="stories__navigate" onClick={prevHandler}>{`<`}</button>
           <button className="stories__navigate" onClick={nextHandler}>{`>`}</button>
         </div> */}
-        {isLoading ? <Loader /> : ''}
+        {isLoading ? <Loader widthMain={80} widthAdditional={64}/> : ''}
         <div className="stories__container" ref={root}>
           { 
           data
@@ -46,7 +43,7 @@ export const StoriesBlock: FC = () => {
           ? 
           data.map((el, index): React.ReactNode => {
             if(el._id !== activeStory) return;
-            return <StoryOpen isWatch={false} stories={data} key={index} {...el} index={index} setActiveStory={setActiveStory} allStoriesLength={stories.length} />
+            return <StoryOpen isWatch={false} stories={data} key={index} {...el} index={index} setActiveStory={setActiveStory} allStoriesLength={data.length} />
           })
           : 
           ''

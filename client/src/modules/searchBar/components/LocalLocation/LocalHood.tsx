@@ -6,19 +6,21 @@ import { useAppSelector, useActions } from '../../../../hooks';
 
 export const LocalHood: FC = () => {
     const { districts } = useAppSelector(state => state.locationReducer);
-    const { setDistrict } = useActions();
+    const { setUserDistrict } = useActions();
 
     const [hoods, setHoods] = useState<string[] | []>([]);
 
-    const addItem = (cur: string) => {
+    const toggleItem = (cur: string) => {
+        console.log(hoods);
         setHoods(prev => [...prev, cur])
     }
+    
 
     return (
         <div className="local-location__hood">
             {
                 districts?.map((el, index): ReactNode => {
-                    return <div className="local-location__hood-item" key={index}><input type="checkbox" />{el}</div>
+                    return <div className="local-location__hood-item" key={index} onClick={() => toggleItem(el)}><input type="checkbox"/>{el}</div>
                 })
             }
         </div>

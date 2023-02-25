@@ -112,7 +112,7 @@ export const CategoryChoose: FC<ICategoryChoose> = ({setStep}) => {
   return (
     <>
       {isError ? 'some error...' : ''}
-      {isLoading ? <Loader /> : ''}
+      {isLoading ? <Loader widthMain={80} widthAdditional={64}/> : ''}
       {
         categoryReducer.length !== 0
         ?

@@ -86,6 +86,12 @@ class UserService {
     await TokenService.saveToken(userDto.id, tokens.refreshToken);
     return { ...tokens, data: user };
   }
+
+  async avatarChange(userId, avatar) {
+    if(!avatar) throw ApiError.BadRequest('Пустой запрос');
+
+
+  }
 }
 
 export default new UserService();

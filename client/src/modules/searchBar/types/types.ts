@@ -2,13 +2,18 @@ export interface IGenLocation {
   setIsLocationOpen: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-export interface ICities {
+export interface ICitiesResponse {
   _id: string,
   region: string,
   city: string,
   district?: string[] | [],
   districts?: string[] | [],
   metro?: string[] | [],
+  metroes?: string[] | [],
+}
+
+export interface ICities {
+  districts?: string[] | [],
   metroes?: string[] | [],
 }
 

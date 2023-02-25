@@ -1,7 +1,6 @@
-import React, { FC, useState, useRef, useEffect } from "react";
+import React, { FC, useState, useEffect } from "react";
 
-import { IGenLocation, ICities } from "../../types/types";
-import { useClosePop } from "../../../../hooks/common-hooks/useClosePop";
+import { IGenLocation, ICitiesResponse } from "../../types/types";
 import { useAppSelector } from "../../../../hooks";
 import { GenLocationList } from "./GenLocationList";
 import { useDebounce } from "../../../../hooks/common-hooks/useDebounce";
@@ -9,53 +8,48 @@ import { useDebounce } from "../../../../hooks/common-hooks/useDebounce";
 import { citiesApi } from '../../../../store/api/citiesApi'
 
 export const GenLocation: FC<IGenLocation> = ({ setIsLocationOpen }) => {
-  const { city } = useAppSelector(state => state.locationReducer);
+  //получение городов запрос
+  const [citySearch, { data, error, isError, isLoading }] = citiesApi.useLazyGetCitiesQuery();
 
-  const root = useRef<HTMLDivElement | null>(null);
-  const searchRoot = useRef<HTMLUListElement | null>(null);
+  //выбранный город
+  const city = useAppSelector(state => state.userReducer.data.contactInfo.location.city);
 
   const [isSearchActive, setIsSearchActive] = useState<boolean>(false);
-  const [value, setValue] = useState<string>("");
-  const [cities, setCities] = useState<ICities[] | []>([]);
-  
-  useClosePop(root, setIsLocationOpen);
-  useDebounce(value);
-  
+  const [cities, setCities] = useState<ICitiesResponse[] | []>([]);
+  const [cityInput, setCityInput] = useState<string>('');
+
+  const debounce = useDebounce(cityInput);
+
   useEffect(() => {
-    if(value.length === 0) return;
-    const citiesSearch = async () => {
-      citiesApi.useGetCitiesQuery(value);
-      // setCities(response.data);
-    }
-    citiesSearch();
-  }, [value]); 
+    if(!debounce || debounce.length < 3) return
+    citySearch(debounce)
+    .then(payload => {
+      if(payload.data) {setCities(payload.data); setIsSearchActive(true)}
+    })
+  }, [debounce])
 
-  console.log(cities)
-
+  
   return (
-    <div className="gen-location">
-      <div className="gen-location__container" ref={root}>
-        <div
-          className="gen-location__close"
-          onClick={() => setIsLocationOpen(false)}>
-          <i className="fa-solid fa-xmark"></i>
-        </div>
+    <div className="gen-location" onClick={() => setIsLocationOpen(false)}>
+      <div className="gen-location__container" onClick={(e) => e.stopPropagation()}>
+        <div className="gen-location__close"><i className="fa-solid fa-xmark"></i></div>
         <p className="gen-location__title">Город или регион</p>
         <div className="gen-location__input-container">
-          <input
-            type="text"
-            value={value}
-            className="gen-location__input"
-            onClick={() => setIsSearchActive(true)}
-            onChange={(e) => setValue(e.target.value)}
-          />
-          <button
-            className="gen-location__input-clear"
-            onClick={() => setValue("")}>
-            <i className="fa-solid fa-xmark"></i>
-          </button>
+          <input value={cityInput} onChange={e => setCityInput(e.target.value)} type="text" className="gen-location__input"/>
+              <button
+                className="gen-location__input-clear"
+                onClick={() => setCityInput("")}>
+                <i className="fa-solid fa-xmark"></i>
+              </button>
         </div>
-        {isSearchActive ? <GenLocationList searchRoot={searchRoot} cities={cities} setIsSearchActive={setIsSearchActive} /> : ''}
+        {
+          isSearchActive
+          ? 
+            
+            <GenLocationList cities={cities} setIsSearchActive={setIsSearchActive} isLoading={isLoading}/> 
+          : 
+            <div className="gen-location__empty-list"></div>
+        }
         <div className="gen-location__buttons">
           {
             city 

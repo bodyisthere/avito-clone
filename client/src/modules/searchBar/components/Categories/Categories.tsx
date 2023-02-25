@@ -33,7 +33,7 @@ export const Categories: FC<ICategories> = ({ setIsCategoriesOpen }) => {
           onClick={() => setIsCategoriesOpen(false)}>
           <i className="fa-solid fa-xmark"></i>
         </div>
-        {isLoading ? <Loader /> : ''}
+        {isLoading ? <Loader widthMain={80} widthAdditional={64}/> : ''}
         {isError ? `${error}` : ''}
         <ul className="categories__type-list">
           {

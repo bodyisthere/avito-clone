@@ -26,18 +26,13 @@ interface IUserInfo {
 
 type TContactInfo = {
   location: {
+    region: string,
     city: {
       _id: string,
       title: string,
     },
-    subway?: {
-      _id: string,
-      title: string,
-    },
-    district?: {
-      _id: string,
-      title: string,
-    }
+    subway?: string,
+    district?: string,
   },
   phoneNumber: string,
 }
@@ -67,18 +62,13 @@ const resetFunction = () => {
         roles: [],
         contactInfo: {
           location: {
+            region: '',
             city: {
               _id: '',
               title: '',
             },
-            subway: {
-              _id: '',
-              title: '',
-            },
-            district: {
-              _id: '',
-              title: '',
-            }
+            subway: '',
+            district: '',
           },
           phoneNumber: '',
         },
@@ -136,7 +126,17 @@ export const userSlice = createSlice({
     logout: (state) => {
       localStorage.removeItem('token');
       state = resetFunction();
-    }
+    },
+    setUserCityRegion: (state, action: PayloadAction<{city: {_id: string, title: string}, region: string}>) => {
+      state.data.contactInfo.location.city = action.payload.city;
+      state.data.contactInfo.location.region = action.payload.region;
+    },
+    setUserDistrict: (state, action: PayloadAction<string>) => {
+      state.data.contactInfo.location.district = action.payload;
+    },
+    setUserSubway: (state, action: PayloadAction<string>) => {
+      state.data.contactInfo.location.subway = action.payload;
+    },
   }
 })
 

@@ -1,43 +1,34 @@
 import React, { FC, useState, useRef, useEffect } from "react";
-import { useDispatch } from "react-redux";
 
-import { ICities } from "../../types/types";
+import { ICitiesResponse } from "../../types/types";
 import { useActions } from "../../../../hooks";
+import { Loader } from "../../../../UI";
 
 interface IGenLocationList {
-  cities: [] | ICities[]
-  searchRoot: React.MutableRefObject<HTMLUListElement | null>
+  cities: [] | ICitiesResponse[]
+  isLoading: boolean
   setIsSearchActive: React.Dispatch<React.SetStateAction<boolean>>
 }
 
-export const GenLocationList: FC<IGenLocationList> = ( {cities, searchRoot, setIsSearchActive} ) => {
-  const dispatch = useDispatch();
-  const { setRegion, setDistricts, setMetroes } = useActions();
+export const GenLocationList: FC<IGenLocationList> = ( {cities, setIsSearchActive, isLoading} ) => {
+  const { setDistricts, setMetroes, setUserCityRegion } = useActions();
 
   const submitCity = (_id: string, city: string, region: string, districts: string[] | [], metroes: string[] | []) => {
-    dispatch(setRegion({_id, city, region}))
-    dispatch(setDistricts(districts));
-    dispatch(setMetroes(metroes))
-    setIsSearchActive(false);
+    setUserCityRegion({city: {_id, title: city}, region});
+    setDistricts(districts);
+    setMetroes(metroes);
   }
   
-  useEffect(() => {
-    const closeList = (e: MouseEvent) => {
-      const target = e.target as HTMLElement;
-      if(!searchRoot.current?.contains(target)) {
-        setIsSearchActive(false);
-      }
-    }
-    setTimeout(() => document.addEventListener('click', closeList), 100)
-    return () => document.removeEventListener('click', closeList)
-  }, [])
-
   return (
     <ul className="gen-location__list">
       {
-        cities.map((el, index) => {
-          return <li className="gen-location__item" onClick={() => submitCity(el._id, el.city, el.region, el.districts ? el.districts : [], el.metro ? el.metro : [])} key={index}>{el.city}, <span>{el.region}</span></li>
-        })
+        isLoading
+        ?
+          <Loader widthAdditional={64} widthMain={80}/>
+        :
+          cities.map((el, index) => {
+            return <li className="gen-location__item" onClick={() => submitCity(el._id, el.city, el.region, el.districts ? el.districts : [], el.metro ? el.metro : [])} key={index}>{el.city}, <span>{el.region}</span></li>
+          })
       }
     </ul>
   )

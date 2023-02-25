@@ -4,11 +4,13 @@ import { countSpanWidth } from '../helpers/countSpanWidth';
 import { useFlipping } from '../hooks/useFlipping';
 import { IStoryOpen } from '../types';
 
+import { bodyScrollAllow } from '../../../utils/bodyScrollAllow';
+
 export const StoryOpen: FC<IStoryOpen> = ({ slides, setActiveStory, allStoriesLength, index, stories }) => {
   const { activeSlide, progressBar, setActiveSlide, setProgressBar, storyBack, storyForward } = useFlipping(slides, allStoriesLength, index, setActiveStory, stories);
 
   return (
-    <div className="story-open" onClick={() => setActiveStory(null)}>
+    <div className="story-open" onClick={() => {setActiveStory(null); bodyScrollAllow(document)}}>
       <div className="story-open__container" onClick={e => e.stopPropagation()}>
         <div className="story-open__control">
           <button className="story-open__arrow" onClick={storyBack}>{`<`}</button>

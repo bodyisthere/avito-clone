@@ -3,13 +3,13 @@ import React, { FC, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
 import "./Header.scss"
-import avatar from "../../../assets/img/avatar.jpg"
 import { HeaderBurger } from "./HeaderBurger";
 import { HeaderDropMenu } from "./HeaderDropMenu";
 import { useAppSelector, useActions } from "../../../hooks";
 
 export const Header: FC = () => {
     const { isAuth, isAuthPopOpen } = useAppSelector(state => state.userReducer);
+    const { userReducer } = useAppSelector(state => state)
     const { setAuthPop } = useActions();
 
     const [showDropMenu, setShowDropMenu] = useState<boolean>(false);
@@ -20,10 +20,10 @@ export const Header: FC = () => {
     const newAds = (e: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => {
         if(!isAuth) {
             setAuthPop(true);
-            e.preventDefault()
+            e.preventDefault();
         }
     }
-    
+
     return (
         <header className="header">
             <div className="header__container">
@@ -59,8 +59,8 @@ export const Header: FC = () => {
                             </ul>
                             <div className="header__profile">
                                 <div className="header__profile-inner" onClick={() => setShowDropMenu(!showDropMenu)}>
-                                    <img src={avatar} alt="" className="header__profile-img" />
-                                    <div className="header__profile-name">Артем</div>
+                                    <img src={`http://localhost:5000/uploads/${userReducer.data.avatar}`} alt="" className="header__profile-img" />
+                                    <div className="header__profile-name">{userReducer.data.name}</div>
                                     <i className="fa-solid fa-caret-down"></i>
                                 </div>
                                 {showDropMenu ? <HeaderDropMenu setShowDropMenu={setShowDropMenu}/> : ""}

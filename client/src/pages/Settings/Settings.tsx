@@ -1,4 +1,5 @@
 import React, { FC } from 'react'
+import { SideBar } from '../../components/SideBar/SideBar'
 
 interface ISettings {
 

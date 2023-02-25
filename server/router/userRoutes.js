@@ -15,3 +15,5 @@ userRoutes.post('/login', loginValidation, handleValidationErrors, UserControlle
 userRoutes.post('/logout', UserController.logout);
 userRoutes.get('/activate/:link', UserController.activate);
 userRoutes.get('/refresh', UserController.refresh);
+
+userRoutes.post('/avatar-change', UserController.avatarChange);

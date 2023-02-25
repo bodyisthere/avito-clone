@@ -15,11 +15,12 @@ export const userApi = createApi({
     baseUrl: "http://localhost:5000/",
   }),
   endpoints: (build) => ({
-    t: build.query<any, string>({
-      query: (token) => ({
-        url: 't',
-        method: 'GET',
-        headers: {authorization : `Bearer ${token}`},
+    avatarChange: build.mutation<any, string>({
+      query: (avatar) => ({
+        url: 'avatar-change',
+        method: 'POST',
+        headers: {authorization : `Bearer ${setHeaders}`},
+        body: avatar
       })
     }),
   })

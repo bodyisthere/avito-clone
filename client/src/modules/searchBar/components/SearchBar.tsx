@@ -13,7 +13,7 @@ import { GenLocation } from "./GenLocation/GenLocation";
 import { LocalLocation } from "./LocalLocation/LocalLocation";
 
 export const SearchBar: FC = () => {
-  const { city } = useAppSelector(state => state.locationReducer);
+  const { city } = useAppSelector(state => state.userReducer.data.contactInfo.location)
 
   const [isCategoriesOpen, setIsCategoriesOpen] = useState<boolean>(false);
   const [isLocationOpen, setIsLocationOpen] = useState<boolean>(false);
@@ -44,7 +44,7 @@ export const SearchBar: FC = () => {
             <button
               className="search-bar__location"
               onClick={() => togglePop(isLocationOpen, setIsLocationOpen)}>
-              {city ? city : 'Город...'} <i className="fa-solid fa-caret-down"></i>
+              {city.title !== '' ? city.title : 'Город...'} <i className="fa-solid fa-caret-down"></i>
             </button>
             {
               isLocationOpen 

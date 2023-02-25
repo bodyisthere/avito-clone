@@ -23,7 +23,7 @@ export const AuthFirstStep: FC<IAuth> = ({ setCondition, setStep }) => {
       {
         isLoading 
         ? 
-        <Loader /> 
+        <Loader widthMain={80} widthAdditional={64}/> 
         :
         <>
           <div className="auth-pop__form">
