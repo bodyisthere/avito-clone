@@ -1,9 +1,13 @@
-import React, { FC } from 'react'
+import React, { FC, useState } from 'react'
 import { Link } from 'react-router-dom'
-import { useAppSelector } from '../../hooks'
-
 
 import './SideBar.scss'
+import { PopUp } from '../../UI/PopUp'
+import { Button, Loader } from '../../UI'
+import { ConditionInfo } from '../ConditionInfo/ConditionInfo'
+
+import { useAppSelector } from '../../hooks'
+import { useChangeAvatar } from './useChangeAvatar'
 
 interface ISideBar {
   
@@ -11,13 +15,47 @@ interface ISideBar {
 
 export const SideBar: FC<ISideBar> = () => {
   const { data } = useAppSelector(state => state.userReducer);
+  const { 
+    handleAvatarUpload, handleImgUpload, 
+    uploadedImg, isImgLoading, isPopOpen, isConditionInfoOpen,
+    setIsPopOpen, setIsConditionInfoOpen,
+  } = useChangeAvatar();
 
   return (
     <div className="side-bar">
+      {isConditionInfoOpen && <ConditionInfo isError={true} closeFunction={setIsConditionInfoOpen} message={'Ошибка загрузки файла'}/>}
+      {
+        isPopOpen
+        &&
+        <PopUp changeStateFunction={setIsPopOpen}>
+          <p style={{'fontWeight':'700','fontSize':'25px', 'marginBottom':'10px'}}>Загруженное изображение</p>
+          <img style={{'width':'100%' ,'objectFit':'cover', 'marginBottom':'10px'}} src={`http://localhost:5000/uploads/${uploadedImg}`} alt="" />
+          <Button onClick={() => handleAvatarUpload(uploadedImg)}>Изменить аватар</Button>
+        </PopUp>
+      }
       <div className="side-bar__section">
         <div className="side-bar__avatar">
-          <img src={`http://localhost:5000/uploads/${data.avatar}`} alt={data.name} className="side-bar__avatar-img" />
-          <label className="side-bar__avatar-change"><i className="fa-solid fa-camera"><input type="file"/></i></label>
+          {
+            isImgLoading
+            ?
+            <Loader widthAdditional={64} widthMain={80}/>
+            :
+            <img 
+              src={`http://localhost:5000/uploads/${data.avatar}`} 
+              alt={data.name} 
+              className="side-bar__avatar-img"
+            />
+          }
+          <label className="side-bar__avatar-change">
+            <i className="fa-solid fa-camera">
+              <input 
+                type="file"
+                onChange={(e: any) => handleImgUpload(e)}
+                accept="image/*,.png,.jpg,.jpeg"
+                multiple={false}
+              />
+            </i>
+          </label>
         </div>
         <div className="side-bar__name">{data.name}</div>
         <Link className="side-bar__rating" to='/'>

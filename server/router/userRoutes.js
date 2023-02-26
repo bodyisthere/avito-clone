@@ -16,4 +16,4 @@ userRoutes.post('/logout', UserController.logout);
 userRoutes.get('/activate/:link', UserController.activate);
 userRoutes.get('/refresh', UserController.refresh);
 
-userRoutes.post('/avatar-change', UserController.avatarChange);
+userRoutes.post('/avatar-change', authMiddleware, UserController.avatarChange);

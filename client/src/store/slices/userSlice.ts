@@ -137,6 +137,9 @@ export const userSlice = createSlice({
     setUserSubway: (state, action: PayloadAction<string>) => {
       state.data.contactInfo.location.subway = action.payload;
     },
+    setUserAvatar: (state, action: PayloadAction<string>) => {
+      state.data.avatar = action.payload;
+    },
   }
 })
 

@@ -88,9 +88,16 @@ class UserService {
   }
 
   async avatarChange(userId, avatar) {
-    if(!avatar) throw ApiError.BadRequest('Пустой запрос');
+    if(!avatar || !userId) throw ApiError.BadRequest('Пустой запрос');
 
-
+    console.log(avatar)
+    const user = await UserModel.findById(userId);
+    user.avatar = avatar;
+    await user.save();
+    console.log(user.avatar)
+    return {
+      data: user.avatar
+    }
   }
 }
 

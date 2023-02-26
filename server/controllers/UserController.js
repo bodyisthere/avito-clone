@@ -65,11 +65,10 @@ class UserController {
 
   async avatarChange(req, res, next) {
     try {
-      console.log(req)
-      const { avatar } = req.body;
-      // const { userId } = 
-      // const response = await UserService.avatarChange(avatar);
-      return res.json('1')
+      const avatar = req.body[0];
+      const userId = req.user.id;
+      const response = await UserService.avatarChange(userId, avatar);
+      return res.json(response)
     } catch (err) {
       next(err)
     }
