@@ -4,6 +4,8 @@ import { Link } from "react-router-dom";
 import { ProductReport } from "./ProductReport";
 import { ProductSlider } from "./ProductSlider/ProductSlider";
 
+import styles from './Products.module.scss'
+
 export const Product: FC = () => {
   //лайк прожат или нет
   const [isLike, setIsLike] = useState<boolean>(false);
@@ -40,21 +42,21 @@ export const Product: FC = () => {
   return isHide 
   ? 
   (
-    <div className="product product__hide">Объявление скрыто</div>
+    <div className={`${styles["product"]} ${styles["product__hide"]}`}>Объявление скрыто</div>
   ) 
   : 
   (
-    <div className="product" ref={root}>
-      <div className="product__imgs">
+    <div className={"product"} ref={root}>
+      <div className={styles["product__imgs"]}>
         {slides.length > 5 && activeSlide === 4 ? (
-          <div className="product__img-not-last">
-            <img className="product__img" src={slides[activeSlide]} alt="" />
-            <div className="product__img--blured">
+          <div className={styles["product__img-not-last"]}>
+            <img className={styles["product__img"]} src={slides[activeSlide]} alt="" />
+            <div className={styles["product__img--blured"]}>
               Ещё {slides.length - 5} фото
             </div>
           </div>
         ) : (
-          <img className="product__img" src={slides[activeSlide]} alt="" />
+          <img className={styles["product__img"]} src={slides[activeSlide]} alt="" />
         )}
         {isSlider ? (
           <ProductSlider
@@ -66,25 +68,25 @@ export const Product: FC = () => {
           ""
         )}
       </div>
-      <div className="product__center">
+      <div className={styles["product__center"]}>
         <Link to="">
-          <div className="product__title">Кроссовки nike</div>
+          <div className={styles["product__title"]}>Кроссовки nike</div>
         </Link>
         <button
-          className={`product__like ${isLike ? "product__like--active" : ""}`}>
+          className={`${styles['product__like']} ${isLike && `${styles["product__like--active"]}`}`}>
           <i className="fa-solid fa-heart"></i>
         </button>
       </div>
-      <div className="product__price">
-        <div className="product__price-info">
+      <div className={styles["product__price"]}>
+        <div className={styles["product__price-info"]}>
           <span>5000Р</span>
-          <div className="product__ship" title="Авито доставка">
+          <div className={styles["product__ship"]} title="Авито доставка">
             <i className="fa-solid fa-truck"></i>
           </div>
         </div>
-        <div className="product__price-report">
+        <div className={styles["product__price-report"]}>
           <button
-            className="product__price-dots"
+            className={styles["product__price-dots"]}
             onClick={() => setIsReport(!isReport)}>
             <i className="fa-solid fa-ellipsis"></i>
           </button>
@@ -95,7 +97,7 @@ export const Product: FC = () => {
           )}
         </div>
       </div>
-      <div className="product__location">Казань, Дубравная</div>
+      <div className={styles["product__location"]}>Казань, Дубравная</div>
     </div>
   );
 };

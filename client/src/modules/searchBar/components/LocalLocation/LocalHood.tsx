@@ -1,7 +1,8 @@
 import React, { FC, ReactNode, useState } from 'react';
 import { Link } from 'react-router-dom';
-
 import { useAppSelector, useActions } from '../../../../hooks';
+
+import styles from './LocalLocation.module.scss'
 
 
 export const LocalHood: FC = () => {
@@ -17,10 +18,10 @@ export const LocalHood: FC = () => {
     
 
     return (
-        <div className="local-location__hood">
+        <div className={styles["local-location__hood"]}>
             {
                 districts?.map((el, index): ReactNode => {
-                    return <div className="local-location__hood-item" key={index} onClick={() => toggleItem(el)}><input type="checkbox"/>{el}</div>
+                    return <div className={styles["local-location__hood-item"]} key={index} onClick={() => toggleItem(el)}><input type="checkbox"/>{el}</div>
                 })
             }
         </div>

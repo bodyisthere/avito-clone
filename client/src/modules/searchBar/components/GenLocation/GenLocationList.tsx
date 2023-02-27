@@ -4,6 +4,8 @@ import { ICitiesResponse } from "../../types/types";
 import { useActions } from "../../../../hooks";
 import { Loader } from "../../../../UI";
 
+import styles from './GenLocation.module.scss'
+
 interface IGenLocationList {
   cities: [] | ICitiesResponse[]
   isLoading: boolean
@@ -20,14 +22,14 @@ export const GenLocationList: FC<IGenLocationList> = ( {cities, setIsSearchActiv
   }
   
   return (
-    <ul className="gen-location__list">
+    <ul className={styles["gen-location__list"]}>
       {
         isLoading
         ?
           <Loader widthAdditional={64} widthMain={80}/>
         :
           cities.map((el, index) => {
-            return <li className="gen-location__item" onClick={() => submitCity(el._id, el.city, el.region, el.districts ? el.districts : [], el.metro ? el.metro : [])} key={index}>{el.city}, <span>{el.region}</span></li>
+            return <li className={styles["gen-location__item"]} onClick={() => submitCity(el._id, el.city, el.region, el.districts ? el.districts : [], el.metro ? el.metro : [])} key={index}>{el.city}, <span>{el.region}</span></li>
           })
       }
     </ul>

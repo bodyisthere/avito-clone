@@ -1,9 +1,10 @@
+@import '../../styles/mixins/container';
+
 .settings {
   &__container {
-    max-width: 1940px;
-    margin: 0 auto;
-    padding: 10px 10px;
+    @include _container(1940px, 10px, 10px);
+  }
+  &__bottom {
     display: flex;
-    flex-direction: column;
   }
 }

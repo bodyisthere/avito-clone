@@ -6,16 +6,18 @@ import { ICategoryChoosen } from '../../types/types'
 
 import { AutoNew, AutoRun } from '../ads-categories'
 
+import styles from './CategoryChoose.module.scss'
+
 export const CategoryChoosen: FC<ICategoryChoosen> = () => {
   const { category } = useAppSelector(state => state.adsReducer);
 
   const [prettyCategory, setPrettyCategory] = useState(categoryFormat(category));
 
   return (
-    <div className="category-choosen">
-      <div className="category-choosen__category-title">
-        <div className="new-category-ads__title">Категория:</div>
-        <div className="new-category-ads__subtitle">{prettyCategory}</div>
+    <div className={styles["category-choosen"]}>
+      <div className={styles["category-choosen__category-title"]}>
+        <div className={styles["category-choosen__title-second"]}>Категория:</div>
+        <div className={styles["category-choosen__subtitle-second"]}>{prettyCategory}</div>
       </div>
       {
       category[0] === 'Транспорт' 

@@ -1,0 +1,15 @@
+.avito-fast-links {
+  display: flex;
+  align-items: center;
+  &__img {
+    width: 150px;
+  }
+  &__link {
+    color: black;
+    font-size: 16px;
+    margin-right: 10px;
+    &:hover {
+      color: #ff6163;;
+    }
+  }
+}

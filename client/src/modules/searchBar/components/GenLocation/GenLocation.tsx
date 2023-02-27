@@ -7,6 +7,8 @@ import { useDebounce } from "../../../../hooks/common-hooks/useDebounce";
 
 import { citiesApi } from '../../../../store/api/citiesApi'
 
+import styles from './GenLocation.module.scss'
+
 export const GenLocation: FC<IGenLocation> = ({ setIsLocationOpen }) => {
   //получение городов запрос
   const [citySearch, { data, error, isError, isLoading }] = citiesApi.useLazyGetCitiesQuery();
@@ -30,14 +32,14 @@ export const GenLocation: FC<IGenLocation> = ({ setIsLocationOpen }) => {
 
   
   return (
-    <div className="gen-location" onClick={() => setIsLocationOpen(false)}>
-      <div className="gen-location__container" onClick={(e) => e.stopPropagation()}>
-        <div className="gen-location__close"><i className="fa-solid fa-xmark"></i></div>
-        <p className="gen-location__title">Город или регион</p>
-        <div className="gen-location__input-container">
-          <input value={cityInput} onChange={e => setCityInput(e.target.value)} type="text" className="gen-location__input"/>
+    <div className={styles["gen-location"]} onClick={() => setIsLocationOpen(false)}>
+      <div className={styles["gen-location__container"]} onClick={(e) => e.stopPropagation()}>
+        <div className={styles["gen-location__close"]}><i className="fa-solid fa-xmark"></i></div>
+        <p className={styles["gen-location__title"]}>Город или регион</p>
+        <div className={styles["gen-location__input-container"]}>
+          <input value={cityInput} onChange={e => setCityInput(e.target.value)} type="text" className={styles["gen-location__input"]}/>
               <button
-                className="gen-location__input-clear"
+                className={styles["gen-location__input-clear"]}
                 onClick={() => setCityInput("")}>
                 <i className="fa-solid fa-xmark"></i>
               </button>
@@ -48,9 +50,9 @@ export const GenLocation: FC<IGenLocation> = ({ setIsLocationOpen }) => {
             
             <GenLocationList cities={cities} setIsSearchActive={setIsSearchActive} isLoading={isLoading}/> 
           : 
-            <div className="gen-location__empty-list"></div>
+            <div className={styles["gen-location__empty-list"]}></div>
         }
-        <div className="gen-location__buttons">
+        <div className={styles["gen-location__buttons"]}>
           {
             city 
             ?
@@ -59,12 +61,12 @@ export const GenLocation: FC<IGenLocation> = ({ setIsLocationOpen }) => {
                 <span>Сначала в выбранном городе</span>
                 <input type="checkbox" name="" id="" />
               </label>
-              <button type="submit" className="gen-location__submit">
+              <button type="submit" className={styles["gen-location__submit"]}>
                 Показать 5 объявлений
               </button>
             </>
             :
-            <button type="submit" className="gen-location__submit" disabled>
+            <button type="submit" className={styles["gen-location__submit"]} disabled>
                 Показать 5 объявлений
             </button>
           }

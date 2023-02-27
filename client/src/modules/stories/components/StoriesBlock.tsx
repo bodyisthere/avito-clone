@@ -1,10 +1,11 @@
 import React, { FC, useRef, useState } from 'react';
 
-import './Stories.scss'
 import { Story } from './Story';
 import { StoryOpen } from './StoryOpen';
 import { storiesApi } from '../../../store/api/storiesApi';
 import { Loader } from '../../../UI';
+
+import styles from './Stories.module.scss'
 
 //тестовая дата
 export const StoriesBlock: FC = () => {
@@ -22,13 +23,13 @@ export const StoriesBlock: FC = () => {
 
   return (
     <div>
-      <div className="stories" style={isLoading ? {'justifyContent':'center'} : {'justifyContent':'flex-start'}}>
-        {/* <div className="stories__control">
-          <button className="stories__navigate" onClick={prevHandler}>{`<`}</button>
-          <button className="stories__navigate" onClick={nextHandler}>{`>`}</button>
+      <div className={styles["stories"]} style={isLoading ? {'justifyContent':'center'} : {'justifyContent':'flex-start'}}>
+        {/* <div className={styles["stories__control"]}>
+          <button className={styles["stories__navigate"]} onClick={prevHandler}>{`<`}</button>
+          <button className={styles["stories__navigate"]} onClick={nextHandler}>{`>`}</button>
         </div> */}
         {isLoading ? <Loader widthMain={80} widthAdditional={64}/> : ''}
-        <div className="stories__container" ref={root}>
+        <div className={styles["stories__container"]} ref={root}>
           { 
           data
           ?

@@ -1,6 +1,8 @@
 import React, { FC } from "react";
 import { ProductSlide } from "./ProductSlide";
 
+import styles from '../Products.module.scss'
+
 interface IProductSlider {
   setActiveSlide: React.Dispatch<React.SetStateAction<number>>;
   slides: string[];
@@ -13,7 +15,7 @@ export const ProductSlider: FC<IProductSlider> = ({
   slides,
 }) => {
   return (
-    <div className="product__slide-counts">
+    <div className={styles["product__slide-counts"]}>
       {slides.length > 1
         ? slides.length > 5
           ? slides.map((el, index) => {

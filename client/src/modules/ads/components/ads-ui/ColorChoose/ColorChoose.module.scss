@@ -1,0 +1,24 @@
+.color-choose {
+  display: flex;
+  justify-content: flex-start;
+  &__color {
+    border: 1px solid black;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    margin: 0px 5px;
+  }
+  &__color--active {
+    &:before {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      content: "✔";
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      color: black;
+      background: rgba($color: gray, $alpha: 0.5);
+    }
+  }
+}

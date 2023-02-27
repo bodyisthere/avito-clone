@@ -1,0 +1,7 @@
+@mixin _container($max-width, $padding-top-bottom, $padding-left-right) {
+  max-width: $max-width;
+  padding: $padding-top-bottom $padding-left-right;
+  margin: 0px auto;
+  display: flex;
+  flex-direction: column;
+}

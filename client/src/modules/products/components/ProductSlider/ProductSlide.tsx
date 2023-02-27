@@ -1,5 +1,7 @@
 import React, { FC, useEffect, useRef } from 'react';
 
+import styles from '../Products.module.scss'
+
 interface IProductSlide {
   activeSlide: number
   index: number
@@ -16,9 +18,9 @@ export const ProductSlide: FC<IProductSlide> = ({activeSlide, index, setActiveSl
   }, [])
 
   return (
-    <div className="product__slide-count" ref={root}>
+    <div className={styles["product__slide-count"]} ref={root}>
       <span 
-        className={`product__slide-span ${activeSlide === index ? 'product__slide-span--active' : ''}`}
+        className={`${styles['product__slide-span']} ${activeSlide === index && `${styles['product__slide-span--active']}`}`}
         style={{'width': width}}
         >
       </span>

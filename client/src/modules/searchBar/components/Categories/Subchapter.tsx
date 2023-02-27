@@ -3,22 +3,24 @@ import { Link } from "react-router-dom";
 
 import { ISubchapter } from "../../types/types";
 
+import styles from './Categories.module.scss'
+
 
 export const Subchapter: FC<ISubchapter> = ({subchapter}) => {
   const [isFull, setIsFull] = useState<boolean>(false)
 
   function generateSubchapter(subchapterName: string, index: number): any {
     return (
-      <li className="categories__type-subitem-list-item" key={index}>
+      <li className={styles["categories__type-subitem-list-item"]} key={index}>
         <Link to="">{subchapterName}</Link>
       </li>
     )
   }
   
   return (
-    <li className="categories__type-subitem-list-item">
-      <p className="categories__type-subitem-list-title">{subchapter.title}</p>
-      <ul className="categories__type-subitem-list-items">
+    <li className={styles["categories__type-subitem-list-item"]}>
+      <p className={styles["categories__type-subitem-list-title"]}>{subchapter.title}</p>
+      <ul className={styles["categories__type-subitem-list-items"]}>
         {
           subchapter.subchapter.length > 5
           ?
@@ -28,7 +30,7 @@ export const Subchapter: FC<ISubchapter> = ({subchapter}) => {
               {subchapter.subchapter.map((subchapterName, index) => {
                 return generateSubchapter(subchapterName, index)
               })}
-              <button className="categories__type-subitem-list-show-all" onClick={() => setIsFull(false)}>Скрыть</button>
+              <button className={styles["categories__type-subitem-list-show-all"]} onClick={() => setIsFull(false)}>Скрыть</button>
             </>
             :
             <>
@@ -36,7 +38,7 @@ export const Subchapter: FC<ISubchapter> = ({subchapter}) => {
                 if(index >= 5) return ''
                 return generateSubchapter(subchapterName, index)
               })}
-              <button className="categories__type-subitem-list-show-all" onClick={() => setIsFull(true)}>Показать ещё {subchapter.subchapter.length - 5}</button>
+              <button className={styles["categories__type-subitem-list-show-all"]} onClick={() => setIsFull(true)}>Показать ещё {subchapter.subchapter.length - 5}</button>
             </>
           :
           subchapter.subchapter.map((subchapterName, index) => generateSubchapter(subchapterName, index))

@@ -2,6 +2,7 @@ import React, { FC, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { YMaps, Map, Placemark } from '@pbe/react-yandex-maps';
 import axios from 'axios';
+import styles from './LocalLocation.module.scss'
 
 //    https://api.positionstack.com/v1/reverse/8f3b12fe202780bb5f77a2ab6059995b&region=Tatarstan
 
@@ -24,7 +25,7 @@ export const LocalRadius: FC = () => {
     }, [])
 
     return (
-        <div className="local-location__radius">
+        <div className={styles["local-location__radius"]}>
             <YMaps>
                 <Map defaultState={defaultState} width={'100%'} height={'350px'}>
                     <Placemark geometry={[55.684758, 37.738521]} />

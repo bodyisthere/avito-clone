@@ -1,6 +1,6 @@
 import React, { FC, useEffect, useState } from "react";
 
-import "./App.scss";
+import './App.scss'
 import { useAppSelector } from "./hooks";
 
 import { Loader } from "./UI";
@@ -10,6 +10,8 @@ import { Navigation } from "./routes/Routes";
 import { ConditionInfo } from "./components/ConditionInfo/ConditionInfo";
 import { useCheckAuth } from "./hooks/app-hooks/useCheckAuth";
 import { SideBar } from "./components/SideBar/SideBar";
+
+import { Button } from "./UI/Button/Button";
 
 const App: FC = () => {
   const [isConditionInfoOpen, setIsConditionInfoOpen] = useState<boolean>(false);

@@ -1,14 +1,14 @@
 import React, { FC } from "react";
 
-import "./Products.scss";
+import styles from './Products.module.scss'
 import { Product } from "./Product";
 
 export const Products: FC = () => {
   return (
-    <div className="products">
-      <div className="products__container">
-        <div className="products__title">Рекомендации для вас</div>
-        <div className="products__list">
+    <div className={styles["products"]}>
+      <div className={styles["products__container"]}>
+        <div className={styles["products__title"]}>Рекомендации для вас</div>
+        <div className={styles["products__list"]}>
           <Product />
           <Product />
           <Product />

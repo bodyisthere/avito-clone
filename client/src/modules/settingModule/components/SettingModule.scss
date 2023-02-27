@@ -1,0 +1,64 @@
+.setting-module {
+  width: 1000px;
+  &__title {
+    font-size: 30px;
+    font-weight: 700;
+    margin-bottom: 20px;
+  }
+  &__section {
+    border-bottom: 2px solid #abadaea4;
+    padding: 20px 0px;
+  }
+  &__mail {
+    display: flex;
+    justify-content: space-between;
+  }
+  &__mail-e {
+    display: flex;
+    align-items: center;
+    font-size: 17px;
+    font-weight: 600;
+    i {
+      font-size: 14px;
+      color: #00AAFF;
+    }
+  }
+  &__mail-condition {
+    font-size: 15px;
+    i {
+      margin-right: 5px;
+    }
+  }
+  &__mail-condition--green {
+    i {
+      color: green;
+    }
+  }
+  &__mail-condition--red {
+    i {
+      color: red;
+    }
+  }
+  &__subtitle {
+    font-size: 18px;
+    font-weight: 500;
+    margin-bottom: 10px;
+  }
+  &__content {
+    display: flex;
+    justify-content: space-between;
+  }
+  &__selects {
+    margin-bottom: 10px;
+    select {
+      width: 200px;
+      margin-right: 20px;
+    }
+  }
+  &__button {
+    padding: 5px;
+    background: transparent;
+    border: 1px solid black;
+    border-radius: 5px;
+  }
+}

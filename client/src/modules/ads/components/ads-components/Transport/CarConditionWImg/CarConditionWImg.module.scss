@@ -1,0 +1,28 @@
+.car-condition-w-img {
+  max-width: 500px;
+  height: fit-content;
+  &__control {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 50px;
+  }
+  &__control-item {
+    width: 110px;
+    height: 110px;
+    font-size: 16px;
+    background: transparent;
+    border: 1px solid transparent;
+    transition: all .2s;
+    &--active {
+      border-radius: 15px;
+      border: 1px solid black;
+      font-weight: 700;
+    }
+    img {
+      border-radius: 15px;
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+  }
+}

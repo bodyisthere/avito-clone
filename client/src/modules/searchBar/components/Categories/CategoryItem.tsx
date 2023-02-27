@@ -5,17 +5,19 @@ import { Subchapter } from "./Subchapter";
 import { useAppSelector } from "../../../../hooks";
 import { ICategoryItem } from "../../types/types";
 
+import styles from './Categories.module.scss'
+
 export const CategoryItem: FC<ICategoryItem> = ({activeCategory, setActiveCategory}) => {
   const data = useAppSelector(state => state.categoryReducer);
 
   return (
-    <ul className="categories__type-sublist">
+    <ul className={styles["categories__type-sublist"]}>
       {data.map((category, index): ReactNode => {
         if (activeCategory !== index) return "";
         return (
-          <li className="categories__type-subitem" key={index}>
-            <div className="categories__type-subitem-title">{category.category}</div>
-            <ul className="categories__type-subitem-list">
+          <li className={styles["categories__type-subitem"]} key={index}>
+            <div className={styles["categories__type-subitem-title"]}>{category.category}</div>
+            <ul className={styles["categories__type-subitem-list"]}>
               {category.chapter.map((subchapter, index): ReactNode => {
                 return <Subchapter subchapter={subchapter} key={index}/>
               })}

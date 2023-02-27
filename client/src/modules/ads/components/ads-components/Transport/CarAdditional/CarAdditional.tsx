@@ -1,7 +1,9 @@
 import React, { FC } from 'react'
 
-import { checkboxActiveSafety, checkboxAirBags, checkboxAntiThiefSystem, checkboxAudioSystem, checkboxClimatControl, checkboxDrivingAssistance, checkboxElectricDrive, checkboxHeadlights, checkboxHeating, checkboxMultimedia, checkboxSalon, checkboxSettingsMemory, checkboxTiresWheels, selectAudioSystem, selectClimatControl, selectHeadlights, selectPowerSteering, selectPowerWindows, selectSalon, selectTiresWheels } from '../../../../data/transportData'
+import styles from './CarAdditional.module.scss'
+
 import { carOld } from '../../../../types/transportTypes'
+import { checkboxActiveSafety, checkboxAirBags, checkboxAntiThiefSystem, checkboxAudioSystem, checkboxClimatControl, checkboxDrivingAssistance, checkboxElectricDrive, checkboxHeadlights, checkboxHeating, checkboxMultimedia, checkboxSalon, checkboxSettingsMemory, checkboxTiresWheels, selectAudioSystem, selectClimatControl, selectHeadlights, selectPowerSteering, selectPowerWindows, selectSalon, selectTiresWheels } from '../../../../data/transportData'
 
 import { Select } from '../../../../../../UI'
 import { CheckboxList } from '../../../ads-ui'
@@ -60,16 +62,16 @@ export const CarAdditional: FC<ICarAdditional> = ( { setForm }) => {
   }
 
   return (
-    <div className="new-category-ads__additional">
-          <div className="new-category-ads__additional-item">
-            <div className="new-category-ads__additional-title">Усилитель руля</div>
+    <div className={styles["car-additional"]}>
+          <div className={styles["car-additional__item"]}>
+            <div className={styles["car-additional__title"]}>Усилитель руля</div>
             <Select 
               onChange={(e: any) => setAdditionalSelect(e, 'powerSteering')} 
               options={selectPowerSteering}
             />
           </div>
-          <div className="new-category-ads__additional-item">
-            <div className="new-category-ads__additional-title">Управление климатом</div>
+          <div className={styles["car-additional__item"]}>
+            <div className={styles["car-additional__title"]}>Управление климатом</div>
             <Select 
               onChange={(e: string) => setAdditionalSelectCheckbox(e, "climatControl", "select")} 
               options={selectClimatControl}
@@ -79,8 +81,8 @@ export const CarAdditional: FC<ICarAdditional> = ( { setForm }) => {
               changeFunction={(e: string) => setAdditionalSelectCheckbox(e, "climatControl", "checkbox")} 
             />
           </div>
-          <div className="new-category-ads__additional-item">
-            <div className="new-category-ads__additional-title">Салон</div>
+          <div className={styles["car-additional__item"]}>
+            <div className={styles["car-additional__title"]}>Салон</div>
             <Select 
               onChange={(e: string) => setAdditionalSelectCheckbox(e, "salon", "select")} 
               options={selectSalon}
@@ -90,71 +92,71 @@ export const CarAdditional: FC<ICarAdditional> = ( { setForm }) => {
               changeFunction={(e: string) => setAdditionalSelectCheckbox(e, "salon", "checkbox")} 
             />
           </div>
-          <div className="new-category-ads__additional-item">
-            <div className="new-category-ads__additional-title">Обогрев</div>
+          <div className={styles["car-additional__item"]}>
+            <div className={styles["car-additional__title"]}>Обогрев</div>
             <CheckboxList 
               data={checkboxHeating}
               changeFunction = {(e: string) => setAdditionalCheckbox(e, 'heating')}
             />
           </div>
-          <div className="new-category-ads__additional-item">
-            <div className="new-category-ads__additional-title">Электростеклоподъемники</div>
+          <div className={styles["car-additional__item"]}>
+            <div className={styles["car-additional__title"]}>Электростеклоподъемники</div>
             <Select 
               onChange={(e: any) => setAdditionalSelect(e, 'powerWindows')} 
               options={selectPowerWindows}
             />
           </div>
-          <div className="new-category-ads__additional-item">
-            <div className="new-category-ads__additional-title">Электропривод</div>
+          <div className={styles["car-additional__item"]}>
+            <div className={styles["car-additional__title"]}>Электропривод</div>
             <CheckboxList 
               data={checkboxElectricDrive} 
               changeFunction = {(e: string) => setAdditionalCheckbox(e, 'electricDrive')}
             />
           </div>
-          <div className="new-category-ads__additional-item">
-            <div className="new-category-ads__additional-title">Память настроек</div>
+          <div className={styles["car-additional__item"]}>
+            <div className={styles["car-additional__title"]}>Память настроек</div>
             <CheckboxList 
               data={checkboxSettingsMemory} 
               changeFunction = {(e: string) => setAdditionalCheckbox(e, 'settingsMemory')}
             />
           </div>
-          <div className="new-category-ads__additional-item">
-            <div className="new-category-ads__additional-title">Помощь при вождении</div>
+          <div className={styles["car-additional__item"]}>
+            <div className={styles["car-additional__title"]}>Помощь при вождении</div>
             <CheckboxList 
               data={checkboxDrivingAssistance} 
               changeFunction = {(e: string) => setAdditionalCheckbox(e, 'drivingAssistance')}
             />
           </div>
-          <div className="new-category-ads__additional-item">
-            <div className="new-category-ads__additional-title">Противоугонная система</div>
+          <div className={styles["car-additional__item"]}>
+            <div className={styles["car-additional__title"]}>Противоугонная система</div>
             <CheckboxList 
               data={checkboxAntiThiefSystem} 
               changeFunction = {(e: string) => setAdditionalCheckbox(e, 'antiThiefSystem')}
             />
           </div>
-          <div className="new-category-ads__additional-item">
-            <div className="new-category-ads__additional-title">Подушки безопасности</div>
+          <div className={styles["car-additional__item"]}>
+            <div className={styles["car-additional__title"]}>Подушки безопасности</div>
             <CheckboxList 
               data={checkboxAirBags} 
               changeFunction = {(e: string) => setAdditionalCheckbox(e, 'airbags')}
             />
           </div>
-          <div className="new-category-ads__additional-item">
-            <div className="new-category-ads__additional-title">Активная безопасность</div>
+          <div className={styles["car-additional__item"]}>
+            <div className={styles["car-additional__title"]}>Активная безопасность</div>
             <CheckboxList 
               data={checkboxActiveSafety} 
               changeFunction = {(e: string) => setAdditionalCheckbox(e, 'activeSafety')}
             />
           </div>
-          <div className="new-category-ads__additional-item">
-            <div className="new-category-ads__additional-title">Мультимедиа и навигация</div>
+          <div className={styles["car-additional__item"]}>
+            <div className={styles["car-additional__title"]}>Мультимедиа и навигация</div>
             <CheckboxList 
               data={checkboxMultimedia} 
               changeFunction = {(e: string) => setAdditionalCheckbox(e, 'multimedia')}
             />
           </div>
-          <div className="new-category-ads__additional-item">
-            <div className="new-category-ads__additional-title">Аудиосистема</div>
+          <div className={styles["car-additional__item"]}>
+            <div className={styles["car-additional__title"]}>Аудиосистема</div>
             <Select 
               onChange={(e: string) => setAdditionalSelectCheckbox(e, "audioSystem", "select")} 
               options={selectAudioSystem}
@@ -164,8 +166,8 @@ export const CarAdditional: FC<ICarAdditional> = ( { setForm }) => {
               changeFunction={(e: string) => setAdditionalSelectCheckbox(e, "audioSystem", "checkbox")} 
             />
           </div>
-          <div className="new-category-ads__additional-item">
-            <div className="new-category-ads__additional-title">Фары</div>
+          <div className={styles["car-additional__item"]}>
+            <div className={styles["car-additional__title"]}>Фары</div>
             <Select 
               onChange={(e: string) => setAdditionalSelectCheckbox(e, "headlights", "select")} 
               options={selectHeadlights}
@@ -175,8 +177,8 @@ export const CarAdditional: FC<ICarAdditional> = ( { setForm }) => {
               changeFunction={(e: string) => setAdditionalSelectCheckbox(e, "headlights", "checkbox")} 
             />
           </div>
-          <div className="new-category-ads__additional-item">
-            <div className="new-category-ads__additional-title">Шины и диски</div>
+          <div className={styles["car-additional__item"]}>
+            <div className={styles["car-additional__title"]}>Шины и диски</div>
             <Select 
               options={selectTiresWheels}
               onChange={(e: string) => setAdditionalSelectCheckbox(e, "tiresWheels", "select")}  

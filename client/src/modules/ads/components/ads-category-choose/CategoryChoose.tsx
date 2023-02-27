@@ -1,11 +1,14 @@
-import React, {FC, useEffect, useState} from 'react'
+import React, {FC, useEffect, useState} from 'react';
 
-import '../ads.scss'
+import styles from './CategoryChoose.module.scss';
+
+import { ICategoryChoose } from '../../types/types';
+
 import { useAppSelector, useActions } from '../../../../hooks';
 import { categoriesApi } from '../../../../store/api/categoriesApi';
 
-import { ICategoryChoose } from '../../types/types';
 import { Loader } from '../../../../UI';
+
 
 export const CategoryChoose: FC<ICategoryChoose> = ({setStep}) => {
   const [loadCategories, {data: categories, isLoading, error, isError}] = categoriesApi.useLazyGetCategoriesQuery();
@@ -39,7 +42,7 @@ export const CategoryChoose: FC<ICategoryChoose> = ({setStep}) => {
       categoryReducer.map((el, index): React.ReactNode => {
         return (
           <div 
-          className={`category-choose__main-point ${activeCategory === index ? "category-choose__main-point--active" : "" }`} 
+          className={`${styles['category-choose__main-point']} ${activeCategory === index && styles["category-choose__main-point--active"] }`} 
           key={index} 
           onClick={() => {setActiveCategory(index); setActiveChapter(null); setCategory([el.category])}}>
             {el.category}
@@ -53,13 +56,13 @@ export const CategoryChoose: FC<ICategoryChoose> = ({setStep}) => {
     return (
       activeCategory !== null && activeCategory >= 0
       ?
-      <div className="category-choose__main">
-        <div className="category-choose__title">{categoryReducer[activeCategory].category}</div>
+      <div className={styles["category-choose__main"]}>
+        <div className={styles["category-choose__title"]}>{categoryReducer[activeCategory].category}</div>
         {
         categoryReducer[activeCategory].chapter.map((el, index): React.ReactNode => {
           return (
             <div 
-              className={`category-choose__main-point ${activeChapter === index ? "category-choose__main-point--active" : "" }`} 
+              className={`${styles['category-choose__main-point']} ${activeChapter === index && styles["category-choose__main-point--active"]}`} 
               key={index}
               onClick={() => {
                 setActiveChapter(index);
@@ -83,13 +86,13 @@ export const CategoryChoose: FC<ICategoryChoose> = ({setStep}) => {
       ?
         categoryReducer[activeCategory].chapter[activeChapter].subchapter.length > 0
         ?
-        <div className="category-choose__main">
-          <div className="category-choose__title">{categoryReducer[activeCategory].chapter[activeChapter].title}</div>
+        <div className={styles["category-choose__main"]}>
+          <div className={styles["category-choose__title"]}>{categoryReducer[activeCategory].chapter[activeChapter].title}</div>
           {
             categoryReducer[activeCategory].chapter[activeChapter].subchapter.map((el, index): React.ReactNode => {
               return (
                 <div 
-                  className={`category-choose__main-point ${activeSubChapter === index ? "category-choose__main-point--active" : "" }`} 
+                  className={`${styles['category-choose__main-point']} ${activeSubChapter === index && styles["category-choose__main-point--active"]}`} 
                   key={index}
                   onClick={() => {
                     setActiveSubChapter(index); 
@@ -103,7 +106,7 @@ export const CategoryChoose: FC<ICategoryChoose> = ({setStep}) => {
           }
         </div>
         :
-        <div className='category-choose__continue-btn' onClick={submitCategory}>Продолжить<i className="fa-solid fa-arrow-right"></i></div>
+        <div className={styles['category-choose__continue-btn']} onClick={submitCategory}>Продолжить<i className="fa-solid fa-arrow-right"></i></div>
       :
       ''
     )
@@ -116,9 +119,9 @@ export const CategoryChoose: FC<ICategoryChoose> = ({setStep}) => {
       {
         categoryReducer.length !== 0
         ?
-        <div className='category-choose'>
-          <div className="category-choose__main">
-            <div className="category-choose__title">Категория</div>
+        <div className={styles['category-choose']}>
+          <div className={styles["category-choose__main"]}>
+            <div className={styles["category-choose__title"]}>Категория</div>
             {generateCategory()}
           </div>
           {generateChapter()}
@@ -127,7 +130,7 @@ export const CategoryChoose: FC<ICategoryChoose> = ({setStep}) => {
         :
         ''
       }
-      {category.length === 3 ? <div className='category-choose__continue-btn category-choose__continue-btn--three' onClick={submitCategory}>Продолжить<i className="fa-solid fa-arrow-right"></i></div> : ''}
+      {category.length === 3 ? <div className={`${styles['category-choose__continue-btn']} ${styles['category-choose__continue-btn--three']}`} onClick={submitCategory}>Продолжить<i className="fa-solid fa-arrow-right"></i></div> : ''}
     </>
   )
 }

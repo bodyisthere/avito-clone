@@ -1,0 +1,17 @@
+.car-additional {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  &__title {
+    font-weight: 700;
+    font-size: 16px;
+    color: black;
+    margin: 10px 0px;
+  }
+  &__item {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    margin: 20px 0px;
+  }
+}

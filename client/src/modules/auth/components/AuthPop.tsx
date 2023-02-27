@@ -1,9 +1,10 @@
 import React, { FC, useState, useRef } from 'react';
 
-import './Auth.scss'
 import { AuthLogin } from './Log/AuthLogin';
 import { AuthReg } from './Reg/AuthReg';
 import { AuthRecover } from './Recover/AuthRecover';
+
+import styles from './Auth.module.scss'
 
 import { useActions } from '../../../hooks';
 
@@ -16,9 +17,9 @@ export const AuthPop: FC<IAuthPop>= () => {
   const [condition, setCondition] = useState<'log' | 'reg' | 'recover'>('log');
 
   return (
-  <div className="auth-pop" onClick={() => setAuthPop(false)}>
-    <div className="auth-pop__container" onClick={e => e.stopPropagation()}>
-      <div className="auth-pop__close" onClick={() => setAuthPop(false)}><i className="fa-solid fa-xmark"></i></div>
+  <div className={styles["auth-pop"]} onClick={() => setAuthPop(false)}>
+    <div className={styles["auth-pop__container"]} onClick={e => e.stopPropagation()}>
+      <div className={styles["auth-pop__close"]} onClick={() => setAuthPop(false)}><i className="fa-solid fa-xmark"></i></div>
       {condition === 'log' ? <AuthLogin setCondition={setCondition} /> : ''}
       {condition === 'reg' ? <AuthReg setCondition={setCondition}/> : ''}
       {condition === 'recover' ? <AuthRecover setCondition={setCondition}/> : ''}

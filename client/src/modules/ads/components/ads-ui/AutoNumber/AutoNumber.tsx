@@ -1,9 +1,5 @@
 import React, { FC, useEffect, useRef, useState } from 'react'
 
-import './ADS-UI.scss'
-
-import flag from '../../../../assets/img/russia-flag.png'
-
 interface IAutoNumber {
   autoNumber: {main: string, region: number} | null
   setOption: (key: string, value: any) => void
@@ -43,7 +39,7 @@ export const AutoNumber: FC<IAutoNumber> = ({ autoNumber, setOption, optionKey }
         />
         <div className="auto-number__region">
           <span>RUS</span>
-          <img src={flag} alt="" />
+          {/* <img src={flag} alt="" /> */}
         </div>
       </div>
     </div>

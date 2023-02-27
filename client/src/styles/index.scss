@@ -1,0 +1,26 @@
+//подключение файлов стилей
+@import './reset.scss';
+
+//подключение внутренних файлов стилей
+@import './_global.scss';
+@import './_vars.scss';
+@import './mixins/_container.scss';
+
+//подключение шрифтов
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@200;300;400;500;600;700;800&display=swap');
+
+
+//стили по умолчанию
+body {
+  font-family: var(--font-family);
+  font-weight: 400;
+}
+
+//глобальные стили
+
+.scroll-block {
+  overflow: hidden;
+}
+
+
+

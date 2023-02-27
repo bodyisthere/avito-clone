@@ -7,6 +7,8 @@ import { checkFieldOnError } from "../../helpers/checkFieldOnError";
 import { IAuth } from "../auth-types";
 import { useActions } from "../../../../hooks";
 
+import styles from '../Auth.module.scss'
+
 export const AuthLogin: FC<IAuth> = ({ setCondition }) => {
   const { 
     email, setEmail, 
@@ -19,10 +21,10 @@ export const AuthLogin: FC<IAuth> = ({ setCondition }) => {
 
   return (
     <>
-      <div className="auth-pop__title">Вход</div>
-      <div className="auth-pop__form">
+      <div className={styles["auth-pop__title"]}>Вход</div>
+      <div className={styles["auth-pop__form"]}>
         <span
-          className={`auth-pop__span ${isError ? "auth-pop__span--error" : ""}`}>
+          className={`${styles['auth-pop__span']} ${isError ? styles["auth-pop__span--error"] : ""}`}>
             {error ? error.message : ''}
         </span>
         <InputText
@@ -30,7 +32,7 @@ export const AuthLogin: FC<IAuth> = ({ setCondition }) => {
           clearInput={() => setEmail("")}
           onChange={(e) => setEmail(e.target.value)}
           value={email}
-          className={error ? checkFieldOnError(error,'email').result ? 'input-text__input--error' : '' : ''}
+          className={error ? checkFieldOnError(error,'email').result ? styles['input-text__input--error'] : '' : ''}
           errorMessage={error ? checkFieldOnError(error,'email').message : ''}
         />
         <InputPassword
@@ -39,10 +41,10 @@ export const AuthLogin: FC<IAuth> = ({ setCondition }) => {
           value={password}
           isShow={isPasswordShow}
           setIsShow={() => setIsPasswordShow(!isPasswordShow)}
-          className={`auth-pop__input-span ${error ? checkFieldOnError(error,'password').result ? 'input-text__input--error' : '' : ''}`}
+          className={`${styles['auth-pop__input-span']} ${error ? checkFieldOnError(error,'password').result ? styles['input-text__input--error'] : '' : ''}`}
           errorMessage={error ? checkFieldOnError(error,'password').message : ''}
         />
-        <div className="auth-pop__form-password-settings">
+        <div className={styles["auth-pop__form-password-settings"]}>
           <label>
             <input
               type="checkbox"
@@ -52,17 +54,17 @@ export const AuthLogin: FC<IAuth> = ({ setCondition }) => {
             Запомнить пароль
           </label>
           <button
-            className="auth-pop__form-password-forgot"
+            className={styles["auth-pop__form-password-forgot"]}
             onClick={() => setCondition("recover")}>
             Забыли пароль?
           </button>
         </div>
         <Button onClick={() => loginSend()}>Войти</Button>
       </div>
-      <div className="auth-pop__reg">
+      <div className={styles["auth-pop__reg"]}>
         или <button onClick={() => setCondition("reg")}>регистрация</button>
       </div>
-      <div className="auth-pop__caution">
+      <div className={styles["auth-pop__caution"]}>
         При регистрации и входе вы соглашаетесь с{" "}
         <Link to="">условиями использования Авито</Link> и{" "}
         <Link to="">политикой обработки данных</Link>

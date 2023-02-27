@@ -1,0 +1,116 @@
+.gen-location {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  width: 100vw;
+  height: 100vh;
+  background: rgba($color: #000000, $alpha: 0.3);
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: black;
+  &__container {
+      max-width: 1940px;
+      margin: 0 auto;
+      padding: 10px 10px;
+      display: flex;
+      flex-direction: column;
+      background: white;
+      width: 60vw;
+      position: relative;
+      min-height: 386px;
+      ::-webkit-scrollbar {
+          width: 5px;
+          background-color: #f9f9fd;
+      }
+      ::-webkit-scrollbar-thumb {
+          background-color: #00AAFF;
+      }
+  }
+  &__close {
+      font-size: 40px;
+      position: absolute;
+      top: -18px;
+      right: -10px;
+      cursor: pointer;
+  }
+  &__title {
+      font-size: 24px;
+      font-weight: 700;
+      margin-bottom: 10px;
+  }
+  &__list {
+      border: 2px solid #00AAFF;
+      max-height: 200px;
+      font-size: 20px;
+      padding: 10px;
+      margin-bottom: 10px;
+      flex-grow: 1;
+      overflow: auto;
+  }
+  &__empty-list {
+      height: 200px;
+      margin-bottom: 10px;
+  }
+  &__item {
+      margin-bottom: 10px;
+      cursor: pointer;
+      span {
+          color: #aeaeae;
+      }
+      &:hover {
+          color: #00AAFF;
+          span {
+              color: #00AAFF;
+          }
+      }
+      &:last-child {
+          margin-bottom: 0px;
+      }
+  }
+  &__input-container {
+      position: relative;
+  }
+  &__input {
+      width: 100%;
+      border: 2px solid gray;
+      padding: 10px;
+      font-size: 18px;
+      transition: all .2s;
+      &:focus {
+          border-color: #00AAFF;
+      }
+  }
+  &__input-clear {
+      font-size: 25px;
+      background: transparent;
+      position: absolute;
+      top: 6px;
+      right: 10px;
+  }
+  &__buttons {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 10px;
+      span {
+          margin-right: 10px;
+          font-size: 16px;
+      }
+  }
+  &__submit {
+      background: #00AAFF;
+      font-size: 16px;
+      color: white;
+      padding: 10px;
+  }
+}
+
+@media (max-width: 768px) {
+    .gen-location {
+        &__container {
+            width: 90vw;
+        }
+    }
+}
