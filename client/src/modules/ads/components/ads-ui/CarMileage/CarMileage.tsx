@@ -1,5 +1,7 @@
 import React, { FC } from 'react'
 
+import styles from './CarMileage.module.scss'
+
 interface ICarMileage {
   carMileage: number | undefined
   setOption: (key: string, value: any) => void
@@ -8,15 +10,15 @@ interface ICarMileage {
 
 export const CarMileage: FC<ICarMileage> = ( { carMileage, setOption, optionKey } ) => {
   return (
-    <div className="car-mileage">
+    <div className={styles["car-mileage"]}>
       <input 
         type="text" 
         value={carMileage ? carMileage : ''} 
         maxLength={9} 
-        className="car-mileage__input" 
+        className={styles["car-mileage__input"]} 
         onChange={(e) => setOption(optionKey, +e.target.value)}
       />
-      <span className='car-mileage__span'>км</span>
+      <span className={styles['car-mileage__span']}>км</span>
     </div>
   )
 }

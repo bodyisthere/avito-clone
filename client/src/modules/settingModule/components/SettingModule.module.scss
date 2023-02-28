@@ -1,0 +1,136 @@
+.setting-module {
+  flex-grow: 1;
+  &__title {
+    font-size: 30px;
+    font-weight: 700;
+    margin-bottom: 20px;
+  }
+  &__text {
+    font-size: 16px;
+    i {
+      color: green;
+    }
+  }
+  &__section {
+    border-bottom: 2px solid #abadaea4;
+    padding: 20px 0px;
+    &:last-child {
+      border-bottom: 0px;
+    }
+  }
+  &__mail {
+    display: flex;
+    justify-content: space-between;
+  }
+  &__mail-e {
+    display: flex;
+    align-items: center;
+    font-size: 17px;
+    font-weight: 600;
+    i {
+      font-size: 14px;
+      color: #00AAFF;
+    }
+  }
+  &__mail-condition {
+    font-size: 15px;
+    i {
+      margin-right: 5px;
+    }
+  }
+  &__mail-condition--green {
+    i {
+      color: green;
+    }
+  }
+  &__mail-condition--red {
+    i {
+      color: red;
+    }
+  }
+  &__subtitle {
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 10px;
+  }
+  &__content {
+    display: flex;
+    justify-content: space-between;
+  }
+  &__selects {
+    margin-bottom: 10px;
+    select {
+      width: 200px;
+      margin-right: 20px;
+    }
+  }
+  &__button {
+    padding: 5px;
+    background: transparent;
+    border: 1px solid black;
+    border-radius: 5px;
+    &:hover {
+      background: rgba(128, 128, 128, 0.218);
+    }
+  }
+  &__more {
+    margin-left: 5px;
+    background: transparent;
+    color: var(--color-lightblue);
+    font-size: 16px;
+  }
+  &__phone {
+    margin-top: 20px;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+  }
+  &__phone-number {
+    font-size: 16px;
+  }
+  &__phone-total-ads {
+    font-size: 16px;
+    color: gray;
+  }
+  &__social-media-section {
+    display: flex;
+    margin-top: 20px;
+  }
+  &__social-media {
+    display: flex;
+    font-size: 16px;
+    margin-right: 5px;
+    i {
+      margin-right: 3px;
+    }
+    span {
+      margin-right: 5px;
+    }
+  }
+  &__sell-count {
+    color: gray;
+  }
+  &__section-count {
+    display: flex;
+    justify-content: space-between;
+    font-size: 16px;
+  }
+  &__email-ntf {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 15px;
+  }
+  &__email-ntf-title {
+    font-size: 16px;
+    font-weight: 600;
+    color: black;
+  }
+  &__email-ntf-subtitle {
+    font-size: 16px;
+    color: gray;
+  }
+  &__section-delete {
+    display: flex;
+    justify-content: space-between;
+  }
+}

@@ -1,6 +1,8 @@
 import React, { FC, useRef, useState, useEffect } from 'react'
 import { AxiosResponse } from 'axios'
 
+import styles from './Auto.module.scss'
+
 import { getAutoBrands } from '../../../../api/getAutoBrands'
 import { carOld } from '../../../../types/transportTypes'
 import { inspectionData } from '../../../../data/transportData'
@@ -137,21 +139,21 @@ export const AutoRun: FC = () => {
   const [isThirdTip, setIsThirdTip] = useState<boolean>(false);
 
   return (
-    <div className="new-category-ads">
-      <div className="new-category-ads__item">
-        <div className="new-category-ads__item-left">
-          <label className="new-category-ads__label">Вид объявления</label>
+    <div className={styles["auto"]}>
+      <div className={styles["auto__item"]}>
+        <div className={styles["auto__item-left"]}>
+          <label className={styles["auto__label"]}>Вид объявления</label>
         </div>
-        <div className="new-category-ads__item-right">
+        <div className={styles["auto__item-right"]}>
           <Select options={['Продаю личный автомобиль', 'Автомобиль приобретен на продажу']} onChange={(e: any) => setFunction('type', e)} />
         </div>
       </div>
-      <div className="new-category-ads__title">Внешний вид</div>
-      <div className="new-category-ads__item">
-        <div className="new-category-ads__item-left">
-          <label className="new-category-ads__label">Фотографии<br/>Не более 10</label>
+      <div className={styles["auto__title"]}>Внешний вид</div>
+      <div className={styles["auto__item"]}>
+        <div className={styles["auto__item-left"]}>
+          <label className={styles["auto__label"]}>Фотографии<br/>Не более 10</label>
         </div>
-        <div className="new-category-ads__item-right">
+        <div className={styles["auto__item-right"]}>
           {
             form.photo 
             ?
@@ -162,27 +164,27 @@ export const AutoRun: FC = () => {
           }
         </div>
       </div>
-      <div className="new-category-ads__item">
-        <div className="new-category-ads__item-left">
-          <label className="new-category-ads__label">Цвет</label>
+      <div className={styles["auto__item"]}>
+        <div className={styles["auto__item-left"]}>
+          <label className={styles["auto__label"]}>Цвет</label>
         </div>
-        <div className="new-category-ads__item-right">
+        <div className={styles["auto__item-right"]}>
           <ColorChoose activeColor={form.color} setOption={setFunction} optionKey='color'/>
         </div>
       </div>
-      <div className="new-category-ads__item">
-        <div className="new-category-ads__item-left">
-          <label className="new-category-ads__label">Видео(youtube)</label>
+      <div className={styles["auto__item"]}>
+        <div className={styles["auto__item-left"]}>
+          <label className={styles["auto__label"]}>Видео(youtube)</label>
         </div>
-        <div className="new-category-ads__item-right">
+        <div className={styles["auto__item-right"]}>
           <VideoLink videoLink={form.video} setOption={setFunction} optionKey='video'/>
         </div>
       </div>
-      <div className="new-category-ads__title">Регистрационные данные</div>
-      <div className="new-category-ads__item">
-        <div className="new-category-ads__item-left">
-          <label className="new-category-ads__label">VIN или номер кузова</label>
-          <div className="new-category-ads__tip" onClick={() => setIsFirstTip(!isFirstTip)}>
+      <div className={styles["auto__title"]}>Регистрационные данные</div>
+      <div className={styles["auto__item"]}>
+        <div className={styles["auto__item-left"]}>
+          <label className={styles["auto__label"]}>VIN или номер кузова</label>
+          <div className={styles["auto__tip"]} onClick={() => setIsFirstTip(!isFirstTip)}>
             ?
             {isFirstTip 
               ? 
@@ -192,9 +194,9 @@ export const AutoRun: FC = () => {
             }
           </div>
         </div>
-        <div className="new-category-ads__item-right">
+        <div className={styles["auto__item-right"]}>
           <InputText 
-            className={'new-category-ads__input'} 
+            className={'auto__input'} 
             clearInput={() => setFunction('VIN', null)}
             onChange={e => setFunction('VIN', e.target.value)} 
             value={form.VIN} 
@@ -202,20 +204,20 @@ export const AutoRun: FC = () => {
           <span style={{'color':'gray'}}>Покупатели не увидят ваш VIN и госномер</span>
         </div>
       </div>
-      <div className="new-category-ads__item">
-        <div className="new-category-ads__item-left">
-          <label className="new-category-ads__label">Государственный номер</label>
+      <div className={styles["auto__item"]}>
+        <div className={styles["auto__item-left"]}>
+          <label className={styles["auto__label"]}>Государственный номер</label>
         </div>
-        <div className="new-category-ads__item-right">
+        <div className={styles["auto__item-right"]}>
             <AutoNumber autoNumber={form.governmentNumber} setOption={setFunction} optionKey='governmentNumber'/>
         </div>
       </div>
-      <div className="new-category-ads__title">Технические характеристики</div>
-      <div className="new-category-ads__item">
-        <div className="new-category-ads__item-left">
-          <label className="new-category-ads__label">Марка</label>
+      <div className={styles["auto__title"]}>Технические характеристики</div>
+      <div className={styles["auto__item"]}>
+        <div className={styles["auto__item-left"]}>
+          <label className={styles["auto__label"]}>Марка</label>
         </div>
-        <div className="new-category-ads__item-right">
+        <div className={styles["auto__item-right"]}>
           {
             carBrandsData
             ?
@@ -225,19 +227,19 @@ export const AutoRun: FC = () => {
           }
         </div>
       </div>
-      <div className="new-category-ads__title">История эксплаутации и состояние</div>
-      <div className="new-category-ads__item">
-        <div className="new-category-ads__item-left">
-          <label className="new-category-ads__label">Пробег</label>
+      <div className={styles["auto__title"]}>История эксплаутации и состояние</div>
+      <div className={styles["auto__item"]}>
+        <div className={styles["auto__item-left"]}>
+          <label className={styles["auto__label"]}>Пробег</label>
         </div>
-        <div className="new-category-ads__item-right">
+        <div className={styles["auto__item-right"]}>
           <CarMileage carMileage={form.mileage} setOption={setFunction} optionKey={'mileage'}/>
         </div>
       </div>
-      <div className="new-category-ads__item">
-        <div className="new-category-ads__item-left">
-          <label className="new-category-ads__label">Состояние</label>
-          <div className="new-category-ads__tip" onClick={() => setIsSecondTip(!isSecondTip)}>
+      <div className={styles["auto__item"]}>
+        <div className={styles["auto__item-left"]}>
+          <label className={styles["auto__label"]}>Состояние</label>
+          <div className={styles["auto__tip"]} onClick={() => setIsSecondTip(!isSecondTip)}>
             ?
             {isSecondTip 
               ? 
@@ -247,14 +249,14 @@ export const AutoRun: FC = () => {
             }
           </div>
         </div>
-        <div className="new-category-ads__item-right">
+        <div className={styles["auto__item-right"]}>
           <RadioButtonsChoose data={['Не битый', 'Битый']} value={form.condition} setOption={setFunction} optionKey={'condition'}/>
         </div>
       </div>
-      <div className="new-category-ads__item">
-        <div className="new-category-ads__item-left">
-          <label className="new-category-ads__label">ПТС</label>
-          <div className="new-category-ads__tip" onClick={() => setIsThirdTip(!isThirdTip)}>
+      <div className={styles["auto__item"]}>
+        <div className={styles["auto__item-left"]}>
+          <label className={styles["auto__label"]}>ПТС</label>
+          <div className={styles["auto__tip"]} onClick={() => setIsThirdTip(!isThirdTip)}>
             ?
             {isThirdTip 
               ? 
@@ -264,48 +266,48 @@ export const AutoRun: FC = () => {
             }
           </div>
         </div>
-        <div className="new-category-ads__item-right">
+        <div className={styles["auto__item-right"]}>
           <Select options={['-','Оригинал','Дубликат','Электронный']} onChange={(e: any) => setFunction('vehiclePassport', e)} ></Select>
         </div>
       </div>
-      <div className="new-category-ads__item">
-        <div className="new-category-ads__item-left">
-          <label className="new-category-ads__label">Владельцев по ПТС</label>
+      <div className={styles["auto__item"]}>
+        <div className={styles["auto__item-left"]}>
+          <label className={styles["auto__label"]}>Владельцев по ПТС</label>
         </div>
-        <div className="new-category-ads__item-right">
+        <div className={styles["auto__item-right"]}>
           <RadioButtonsChoose data={['1', '2', '3', '4+']} optionKey='vehiclePassportOwners' setOption={setFunction} value={form.vehiclePassportOwners}/>
         </div>
       </div>
-      <div className="new-category-ads__item">
-        <div className="new-category-ads__item-left">
-          <label className="new-category-ads__label">Данные о ТО</label>
+      <div className={styles["auto__item"]}>
+        <div className={styles["auto__item-left"]}>
+          <label className={styles["auto__label"]}>Данные о ТО</label>
         </div>
-        <div className="new-category-ads__item-right">
+        <div className={styles["auto__item-right"]}>
           <CheckboxList 
             data={{title: null, data: inspectionData}} 
             changeFunction={inspectionDataCheckbox}
           />
         </div>
       </div>
-      <div className="new-category-ads__title">Состояние кузова</div>
-      <div className="new-category-ads__text">Укажите, что было повреждено или окрашено</div>
-      <div className="new-category-ads__item">
-        <div className="new-category-ads__item-left">
-          <label className="new-category-ads__label">Тип повреждения</label>
+      <div className={styles["auto__title"]}>Состояние кузова</div>
+      <div className={styles["auto__text"]}>Укажите, что было повреждено или окрашено</div>
+      <div className={styles["auto__item"]}>
+        <div className={styles["auto__item-left"]}>
+          <label className={styles["auto__label"]}>Тип повреждения</label>
         </div>
-        <div className="new-category-ads__item-right">
+        <div className={styles["auto__item-right"]}>
           <CarConditionWImg setOption={setFunction} optionKey={'conditionBody'} />
         </div>
       </div>
-      <div className="new-category-ads__title">Дополнительные опции</div>
-      <div className="new-category-ads__item">
+      <div className={styles["auto__title"]}>Дополнительные опции</div>
+      <div className={styles["auto__item"]}>
         <CarAdditional setForm={setForm}/>
       </div>
-      <div className="new-category-ads__title">Описание</div>
-      <div className="new-category-ads__item">
+      <div className={styles["auto__title"]}>Описание</div>
+      <div className={styles["auto__item"]}>
         <Textarea onChange={e => setFunction('description', e.target.value)}  value={form.description ? form.description : ''}/>
       </div>
-      <div className="new-category-ads__title">Место осмотра</div>
+      <div className={styles["auto__title"]}>Место осмотра</div>
         <MapInput />
       <button onClick={() => console.log(form)}>check data</button>
     </div>

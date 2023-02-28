@@ -3,7 +3,7 @@ import { AStory, PopAddStory, PopDeleteStory } from '../../modules/ADMIN/AStory'
 
 import './AdminPage.scss'
 
-import { PopUp } from '../../UI/PopUp'
+import { PopUp } from '../../UI/PopUp/PopUp'
 
 interface IAdminPage {
 

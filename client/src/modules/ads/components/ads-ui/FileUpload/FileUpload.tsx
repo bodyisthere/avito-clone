@@ -1,5 +1,7 @@
 import React, {FC} from 'react'
 
+import styles from './FileUpload.module.scss'
+
 interface IFileUpload {
   selectedFiles?: any
   setSelectedFiles?: any
@@ -11,9 +13,9 @@ interface IFileUpload {
 
 export const FileUpload: FC<IFileUpload> = ({ selectedFiles, setSelectedFiles, uploadedFiles, setUploadedFiles, onChange, isMultiple}) => {
   return (
-    <label className="file-upload" title='Загрузить фото'>
+    <label className={styles["file-upload"]} title='Загрузить фото'>
       <i className="fa-solid fa-camera"></i>
-      <input accept="image/*,.png,.jpg,.jpeg" type="file" className="file-upload--hidden" onChange={onChange} multiple={isMultiple}/>
+      <input accept="image/*,.png,.jpg,.jpeg" type="file" className={styles["file-upload--hidden"]} onChange={onChange} multiple={isMultiple}/>
     </label>
   )
 }

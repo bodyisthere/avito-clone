@@ -2,6 +2,8 @@ import React, { FC, useEffect, useState } from 'react'
 import { YMaps, Map, Placemark, Circle } from '@pbe/react-yandex-maps';
 import axios from 'axios';
 
+import styles from './MapInput.module.scss'
+
 
 interface IMapInput {
 

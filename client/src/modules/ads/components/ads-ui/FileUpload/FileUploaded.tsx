@@ -1,5 +1,7 @@
 import React, {FC} from 'react'
 
+import styles from './FileUpload.module.scss'
+
 interface IFileUploaded {
   uploadedFiles: string[]
   deleteFunction: any
@@ -7,13 +9,13 @@ interface IFileUploaded {
 
 export const FileUploaded: FC<IFileUploaded> = ({ uploadedFiles, deleteFunction}) => {
   return (
-    <div className="file-uploaded">
+    <div className={styles["file-uploaded"]}>
       {
         uploadedFiles.map((el, index) => {
           return (
-            <div className="file-uploaded__file" key={index}>
-              <img src={`http://localhost:5000/uploads/${el}`} alt="" className="file-uploaded__img" />
-              <button className="file-uploaded__delete" onClick={() => deleteFunction(el)}><i className="fa-solid fa-xmark"></i></button>
+            <div className={styles["file-uploaded__file"]} key={index}>
+              <img src={`http://localhost:5000/uploads/${el}`} alt="" className={styles["file-uploaded__img"]} />
+              <button className={styles["file-uploaded__delete"]} onClick={() => deleteFunction(el)}><i className="fa-solid fa-xmark"></i></button>
             </div>
           )
       })

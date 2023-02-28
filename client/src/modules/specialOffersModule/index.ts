@@ -1,0 +1,1 @@
+export { SpecialOffersModule } from './components/SpecialOffersModule'

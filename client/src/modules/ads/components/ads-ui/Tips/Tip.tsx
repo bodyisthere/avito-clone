@@ -1,7 +1,8 @@
 import React, { FC, useRef } from 'react'
-import { TipVIN } from './TipVIN'
 
 import { useClosePop } from '../../../../../hooks/common-hooks/useClosePop'
+
+import { TipVIN } from './TipVIN'
 import { TipCarCondition } from './TipCarCondition'
 import { TipCarPTS } from './TipCarPTS'
 

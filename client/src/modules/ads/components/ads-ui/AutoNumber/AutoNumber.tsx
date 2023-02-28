@@ -1,5 +1,7 @@
 import React, { FC, useEffect, useRef, useState } from 'react'
 
+import styles from './AutoNumber.module.scss'
+
 interface IAutoNumber {
   autoNumber: {main: string, region: number} | null
   setOption: (key: string, value: any) => void
@@ -12,11 +14,11 @@ export const AutoNumber: FC<IAutoNumber> = ({ autoNumber, setOption, optionKey }
   const [region, setRegion] = useState<string>();
 
   return (
-    <div className="auto-number">
-      <div className="auto-number__left">
+    <div className={styles["auto-number"]}>
+      <div className={styles["auto-number__left"]}>
         <input 
           type='text' 
-          className="auto-number__input-left" 
+          className={styles["auto-number__input-left"]} 
           placeholder='о 000 оо' 
           maxLength={6} 
           value={autoNumber?.main || ''}
@@ -26,10 +28,10 @@ export const AutoNumber: FC<IAutoNumber> = ({ autoNumber, setOption, optionKey }
           }}
         />
       </div>
-      <div className="auto-number__right">
+      <div className={styles["auto-number__right"]}>
         <input 
           type="text" 
-          className="auto-number__input-right"  
+          className={styles["auto-number__input-right"]}  
           maxLength={3} 
           value={autoNumber?.region || ''} 
           onChange={e => {
@@ -37,7 +39,7 @@ export const AutoNumber: FC<IAutoNumber> = ({ autoNumber, setOption, optionKey }
             setOption(optionKey, {main, region: +e.target.value});
           }}
         />
-        <div className="auto-number__region">
+        <div className={styles["auto-number__region"]}>
           <span>RUS</span>
           {/* <img src={flag} alt="" /> */}
         </div>

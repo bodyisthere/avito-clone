@@ -1,11 +1,11 @@
 .button {
   color: white;
   font-size: 16px;
-  background: var(--color-lightblue);
+  background: #00aaffd2;
   border-radius: 5px;
   padding: 12px 10px;
   transition: all .1s;
   &:hover {
-    background: var(--color-darkblue);
+    background: #00AAFF;
   }
 }

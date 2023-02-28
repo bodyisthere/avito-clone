@@ -1,13 +1,15 @@
 import React, { FC, useState } from 'react'
 import { Link } from 'react-router-dom'
 
-import './SideBar.scss'
-import { PopUp } from '../../UI/PopUp'
-import { Button, Loader } from '../../UI'
-import { ConditionInfo } from '../ConditionInfo/ConditionInfo'
+import styles from './SideBar.module.scss'
 
 import { useAppSelector } from '../../hooks'
 import { useChangeAvatar } from './useChangeAvatar'
+import { sideBarRoutes } from './sideBarRoutes'
+
+import { ConditionInfo } from '../ConditionInfo/ConditionInfo'
+import { PopUp } from '../../UI/PopUp/PopUp'
+import { Button, Loader } from '../../UI'
 
 interface ISideBar {
   
@@ -21,8 +23,32 @@ export const SideBar: FC<ISideBar> = () => {
     setIsPopOpen, setIsConditionInfoOpen,
   } = useChangeAvatar();
 
+  const generateLi = (index: number) => {
+    const url = window.location.pathname;
+    console.log(url)
+    return (
+      sideBarRoutes[index].map((el, i) => {
+        return (
+          <li className={`${styles["side-bar__link"]} ${url === el.link && styles['side-bar__link--active']}`} key={i}><Link to={`${el.link}`}>{el.title}</Link></li>
+        )
+      })
+    )
+  }
+
+  const generateStars = (rate: number) => {
+    let arr: string[] = [];
+    for(let i = 0; i < rate; i++) {
+      arr.push('i')
+    }
+    return (
+      arr.map((el, index) => {
+        return <i className="fa-solid fa-star" key={index}></i>
+      })
+    )
+  }
+
   return (
-    <div className="side-bar">
+    <div className={styles["side-bar"]}>
       {isConditionInfoOpen && <ConditionInfo isError={true} closeFunction={setIsConditionInfoOpen} message={'Ошибка загрузки файла'}/>}
       {
         isPopOpen
@@ -33,8 +59,8 @@ export const SideBar: FC<ISideBar> = () => {
           <Button onClick={() => handleAvatarUpload(uploadedImg)}>Изменить аватар</Button>
         </PopUp>
       }
-      <div className="side-bar__section">
-        <div className="side-bar__avatar">
+      <div className={styles["side-bar__section"]}>
+        <div className={styles["side-bar__avatar"]}>
           {
             isImgLoading
             ?
@@ -43,10 +69,10 @@ export const SideBar: FC<ISideBar> = () => {
             <img 
               src={`http://localhost:5000/uploads/${data.avatar}`} 
               alt={data.name} 
-              className="side-bar__avatar-img"
+              className={styles["side-bar__avatar-img"]}
             />
           }
-          <label className="side-bar__avatar-change">
+          <label className={styles["side-bar__avatar-change"]}>
             <i className="fa-solid fa-camera">
               <input 
                 type="file"
@@ -57,48 +83,33 @@ export const SideBar: FC<ISideBar> = () => {
             </i>
           </label>
         </div>
-        <div className="side-bar__name">{data.name}</div>
-        <Link className="side-bar__rating" to='/'>
-          <div className="side-bar__rating-rate">5,0</div>
-          <div className="side-bar__rating-line">
-            <i className="fa-solid fa-star"></i>
-            <i className="fa-solid fa-star"></i>
-            <i className="fa-solid fa-star"></i>
-            <i className="fa-solid fa-star"></i>
-            <i className="fa-solid fa-star"></i>
+        <div className={styles["side-bar__name"]}>{data.name}</div>
+        <Link className={styles["side-bar__rating"]} to='/'>
+          <div className={styles["side-bar__rating-rate"]}>5,0</div>
+          <div className={styles["side-bar__rating-line"]}>
+            {generateStars(5)}
           </div>
-          <div className="side-bar__rating-reviews">6 отзывов</div>
+          <div className={styles["side-bar__rating-reviews"]}>6 отзывов</div>
         </Link>
       </div>
-      <div className="side-bar__section">
-        <ul className="side-bar__list">
-          <li className="side-bar__link"><Link to='/my-ads'>Мои объявления</Link></li>
-          <li className="side-bar__link"><Link to='/my-orders'>Заказы</Link></li>
-          <li className="side-bar__link"><Link to='/my-reviews'>Мои отзывы</Link></li>
-          <li className="side-bar__link"><Link to='/favorites'>Избранное</Link></li>
-          <li className="side-bar__link"><Link to='/'>Резюме</Link></li>
+      <div className={styles["side-bar__section"]}>
+        <ul className={styles["side-bar__list"]}>
+          {generateLi(0)}
         </ul>
       </div>
-      <div className="side-bar__section">
-        <ul className="side-bar__list">
-          <li className="side-bar__link"><Link to='/dialogues'>Сообщения</Link></li>
-          <li className="side-bar__link"><Link to='/notifications'>Уведомления</Link></li>
+      <div className={styles["side-bar__section"]}>
+        <ul className={styles["side-bar__list"]}>
+          {generateLi(1)}
         </ul>
       </div>
-      <div className="side-bar__section">
-        <ul className="side-bar__list">
-          <li className="side-bar__link"><Link to='/wallet'>Кошелёк</Link></li>
-          <li className="side-bar__link"><Link to='/paid-services'>Платные услуги</Link></li>
-          <li className="side-bar__link"><Link to='/'>Для профессионалов</Link></li>
-          <li className="side-bar__link"><Link to='/special-offers'>Спецпредложения</Link></li>
+      <div className={styles["side-bar__section"]}>
+        <ul className={styles["side-bar__list"]}>
+          {generateLi(2)}
         </ul>
       </div>
-      <div className="side-bar__section">
-        <ul className="side-bar__list">
-          <li className="side-bar__link"><Link to='/profile/basic'>Управление профилем</Link></li>
-          <li className="side-bar__link"><Link to='/profile/safety'>Защита профиля</Link></li>
-          <li className="side-bar__link"><Link to='/profile/settings'>Настройки</Link></li>
-          <li className="side-bar__link"><Link to=''>Авито доставка</Link></li>
+      <div className={styles["side-bar__section"]}>
+        <ul className={styles["side-bar__list"]}>
+          {generateLi(3)}
         </ul>
       </div>
     </div>

@@ -1,4 +1,6 @@
 import React, { FC, useLayoutEffect, useState } from 'react'
+
+import styles from './RadioButtonsChoose.module.scss'
  
 interface IRadioButtonChoose {
   data: string[]
@@ -15,13 +17,13 @@ export const RadioButtonsChoose: FC<IRadioButtonChoose> = ({ data, optionKey, se
   }, [])
 
   return (
-    <div className="radio-buttons-choose">
+    <div className={styles["radio-button-choose"]}>
       {
         data.map((el, index) => {
           return (
-            <label className={`radio-button-choose__label ${value === el ? 'radio-button-choose--active' : ''}`} key={index} onClick={() => setOption(optionKey, el)}>
-              <input type="radio" className="radio-button-choose__input" name={String(id)}/>
-              <span className="radio-button-choose__span">{el}</span>
+            <label className={`${styles['radio-button-choose__label']} ${value === el ? styles['radio-button-choose--active'] : ''}`} key={index} onClick={() => setOption(optionKey, el)}>
+              <input type="radio" className={styles["radio-button-choose__input"]} name={String(id)}/>
+              <span className={styles["radio-button-choose__span"]}>{el}</span>
             </label>
           )
         })

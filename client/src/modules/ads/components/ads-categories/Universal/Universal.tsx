@@ -1,5 +1,7 @@
 import React, { FC, useState } from 'react'
 
+import styles from './Universal.module.scss'
+
 import { InputText } from '../../../../../UI';
 import { Textarea, Price } from '../../ads-ui';
 
@@ -12,9 +14,9 @@ export const Universal: FC = () => {
   const [uploadedFiles, setUploadedFiles] = useState<any>(['1','1','1','1','1','1','1','1','1','1',]);
 
   return (
-    <div className="universal">
-      <div className="universal__title">Параметры</div>
-      <form className="universal__form">
+    <div className={styles["universal"]}>
+      <div className={styles["universal__title"]}>Параметры</div>
+      <form className={styles["universal__form"]}>
         <label>
           Название объявления
           <InputText onChange={e => setTitle(e.target.value)} value={title} clearInput={() => setTitle('')}/>

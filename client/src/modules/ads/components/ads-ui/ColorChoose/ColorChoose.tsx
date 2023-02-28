@@ -1,5 +1,7 @@
 import React, { FC, useState } from 'react'
 
+import styles from './ColorChoose.module.scss'
+
 interface IColorChoose {
   activeColor: "Белый" | "Серебрянный" | "Серый" | "Чёрный" | "Коричневый" | "Золотой" | "Бежевый" | "Красный" | "Бордовый" | "Оранжевый" | "Жёлтый" | "Зелёный" | "Голубой" | "Синий" | "Фиолетовый" | "Пурпурный" | "Розовый" | undefined,
   setOption: (key: string, value: any) => void
@@ -32,13 +34,13 @@ export const ColorChoose: FC<IColorChoose> = ( { activeColor, optionKey, setOpti
     {text: "Розовый", color: "#FFC0CB"}, 
   ])
   return (
-    <div className="color-choose">
+    <div className={styles["color-choose"]}>
       {
         colors.map((el, index) => {
           return (
             <button 
               key={index} 
-              className={`color-choose__color ${el.text === activeColor ? 'color-choose__color--active' : ''}`} 
+              className={`${styles['color-choose__color']} ${el.text === activeColor ? styles['color-choose__color--active'] : ''}`} 
               title={el.text} 
               style={{'background': el.color}} 
               onClick={() => setOption(optionKey, el.text)}

@@ -1,54 +1,33 @@
 import React, { FC, useState } from 'react'
 
-import './SettingModule.scss'
+import styles from './SettingModule.module.scss'
 
-import { Select } from '../../../UI'
+import { OnOff } from '../../../UI'
+import { SettingEmailNotifications } from './setting-fields/SettingEmailNotifications';
+import { SettingMessenger } from './setting-fields/SettingMessenger';
+import { SettingSocialMedia } from './setting-fields/SettingSocialMedia';
+import { SettingDelete } from './setting-fields/SettingDelete';
+import { SettingEmail } from './setting-fields/SettingEmail';
+import { SettingContactInfo } from './setting-fields/SettingContactInfo';
+import { SettingPhoneNumber } from './setting-fields/SettingPhoneNumber';
+import { SettingSellCount } from './setting-fields/SettingSellCount';
 
 interface ISettingModule {
 
 }
 
 export const SettingModule: FC<ISettingModule> = () => {
-  const [isConfirmMail, setIsConfirmMail] = useState<boolean>(false);
-
   return (
-    <div className="setting-module">
-      <div className="setting-module__title">Настройки</div>
-      <div className="setting-module__section">
-        <div className="setting-module__mail">
-          <div className="setting-module__mail-e">
-            artemka.lunev@mail.ru
-            <span><i className="fa-solid fa-pen"></i></span>
-          </div>
-          {
-            isConfirmMail 
-            ? 
-            <div className="setting-module__mail-condition setting-module__mail-condition--green">
-              <i className="fa-solid fa-check"></i>Подтверждён
-            </div> 
-            : 
-            <div className="setting-module__mail-condition setting-module__mail-condition--red">
-              <i className="fa-solid fa-xmark"></i>Не подтверждён
-            </div> 
-          }
-        </div>
-      </div>
-      <div className="setting-module__section">
-        <div className="setting-module__subtitle">Контактная информация</div>
-        <div className="setting-module__content">
-          <div className="setting-module__left">Город</div>
-          <div className="setting-module__right">
-            <div className="setting-module__selects">
-              <Select options={['Казань']} onChange={''}/>
-              <Select options={['Козья слобода']} onChange={''}/>
-            </div>
-            <button className="setting-module__button">Сохранить</button>
-          </div>
-        </div>
-      </div>
-      <div className="setting-module__section">
-        <div className="setting-module__subtitle">Телефоны</div>
-      </div>
+    <div className={styles["setting-module"]}>
+      <div className={styles["setting-module__title"]}>Настройки</div>
+      <SettingEmail />
+      <SettingContactInfo />
+      <SettingPhoneNumber />
+      <SettingSocialMedia />
+      <SettingSellCount />
+      <SettingEmailNotifications />
+      <SettingMessenger />
+      <SettingDelete />
     </div>
   )
 }

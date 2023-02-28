@@ -1,10 +1,10 @@
 @import '../../styles/mixins/container';
 
-.settings {
+.profile {
   &__container {
     @include _container(1940px, 10px, 10px);
   }
-  &__bottom {
+  &__middle {
     display: flex;
   }
 }

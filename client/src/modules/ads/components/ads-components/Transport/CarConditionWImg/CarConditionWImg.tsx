@@ -1,5 +1,7 @@
 import React, { FC, useState, useEffect } from 'react'
 
+import styles from './CarConditionWImg.module.scss'
+
 import { damaged } from '../../../../data/transportData'
 
 import { Select } from '../../../../../../UI'
@@ -108,12 +110,12 @@ export const CarConditionWImg: FC<ICarConditionWImg> = ({optionKey, setOption}) 
   useEffect(() => setOption(optionKey, damagedPlaces), [damagedPlaces])
 
   const classConfig = (id: string): string => {
-    return `car-condition-w-img__control-item ${activeSlide === id ? 'car-condition-w-img__control-item--active' : ''}`
+    return `${styles['car-condition-w-img__control-item']} ${activeSlide === id ? styles['car-condition-w-img__control-item--active'] : ''}`
   }
 
   return (
-    <div className="car-condition-w-img">
-      <div className="car-condition-w-img__slides">
+    <div className={styles["car-condition-w-img"]}>
+      <div className={styles["car-condition-w-img__slides"]}>
         {
           damaged.map(el => {
             if(el.id === activeSlide) {
@@ -131,7 +133,7 @@ export const CarConditionWImg: FC<ICarConditionWImg> = ({optionKey, setOption}) 
           })
         }
       </div>
-      <div className="car-condition-w-img__control">
+      <div className={styles["car-condition-w-img__control"]}>
         {
           damaged.map(el => {
             return (
@@ -147,7 +149,7 @@ export const CarConditionWImg: FC<ICarConditionWImg> = ({optionKey, setOption}) 
           })
         }
       </div>
-      <div className="car-condition-w-img__select">
+      <div className={styles["car-condition-w-img__select"]}>
         {
           activeSlideCategory !== null
           ?

@@ -1,0 +1,1 @@
+export { ProfileEditModule } from './components/ProfileEditModule'

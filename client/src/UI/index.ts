@@ -1,5 +1,6 @@
-export { InputPassword } from "./InputPassword";
-export { InputText } from "./InputText";
-export { Select } from "./Select"
-export { Loader } from "./Loader";
-export { Button } from './Button/Button'
+export { InputPassword } from "./Input/InputPassword";
+export { InputText } from "./Input/InputText";
+export { Select } from "./Select/Select"
+export { Loader } from "./Loader/Loader";
+export { Button } from './Button/Button';
+export { OnOff } from './OnOff/OnOff'

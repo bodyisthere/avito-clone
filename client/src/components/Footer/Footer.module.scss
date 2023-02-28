@@ -1,0 +1,36 @@
+@import '../../styles/mixins/container';
+
+.footer {
+  display: flex;
+  flex-direction: column;
+  background-color: #fafafa;
+  &__container {
+    @include _container(1940px, 10px, 10px)
+  }
+  &__top {
+    display: flex;
+    justify-content: center;
+    padding: 10px 0px;
+    border-bottom: 1px solid #e1e1e1;
+  }
+  &__top-list {
+    display: flex;
+  }
+  &__top-item {
+    color: var(--color-lightblue);
+    font-size: 13px;
+    margin-right: 5px;
+    &:last-child {
+      margin-right: 0px;
+    }
+  }
+  &__bottom {
+    font-size: 13px;
+    color: black;
+    padding: 10px 0px;
+    a {
+      color: gray;
+      text-decoration: underline;
+    }
+  }
+}

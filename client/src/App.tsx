@@ -10,6 +10,7 @@ import { Navigation } from "./routes/Routes";
 import { ConditionInfo } from "./components/ConditionInfo/ConditionInfo";
 import { useCheckAuth } from "./hooks/app-hooks/useCheckAuth";
 import { SideBar } from "./components/SideBar/SideBar";
+import { Footer } from "./components/Footer/Footer";
 
 import { Button } from "./UI/Button/Button";
 
@@ -34,6 +35,7 @@ const App: FC = () => {
           {isConditionInfoOpen && <ConditionInfo closeFunction={() => setIsConditionInfoOpen(false)} message={conditionInfoMessage} isError={true}/>}
           {isAuthPopOpen && <AuthPop /> }
           <Navigation />
+          <Footer />
         </>
       }
     </>

@@ -1,5 +1,7 @@
 import React, { FC, useState } from 'react'
 
+import styles from './Price.module.scss'
+
 interface IPrice {
   onChange: (e: any) => void;
   value: number;
@@ -9,9 +11,9 @@ interface IPrice {
 
 export const Price: FC<IPrice> = ({ value, onChange, className, placeholder }) => {
   return (
-    <div className="price">
-      <input type="number" className={`price__input ${className ? className : ''}`} value={value} onChange={onChange} placeholder={placeholder}/>
-      <span className='price__currency'>₽</span>
+    <div className={styles["price"]}>
+      <input type="number" className={`${styles['price__input']} ${className ? className : ''}`} value={value} onChange={onChange} placeholder={placeholder}/>
+      <span className={styles['price__currency']}>₽</span>
     </div>
   )
 }
