@@ -73,6 +73,16 @@ class UserController {
       next(err)
     }
   }
+
+  async locationChange(req, res, next) {
+    try {
+      const userId = req.user.id;
+      const { city, region, subway } = req.body;
+      const reponse = await UserService.locationChange(userId, city, region, subway);
+    } catch (err) {
+      next(err)
+    }
+  }
 }
 
 export default new UserController()

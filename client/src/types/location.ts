@@ -1,9 +1,8 @@
 export interface ICities {
+  isPopular: boolean,
   _id: string,
   region: string,
   city: string,
-  district?: string[] | [],
-  districts?: string[] | [],
-  metro?: string[] | [],
-  metroes?: string[] | [],
+  districts: string[] | [],
+  metro: string[] | [],
 }

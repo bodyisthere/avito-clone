@@ -17,5 +17,26 @@ export const citiesApi = createApi({
         }
       })
     }),
+    getPopularCities: build.query<ICities[], void>({
+      query: () => ({
+        url: 'get-popular-cities',
+        method: 'GET',
+      })
+    }),
+    getRepublics: build.query<string[], void>({
+      query: () => ({
+        url: 'get-republics',
+        method: 'GET',
+      })
+    }),
+    getCitiesByRepublic: build.query<ICities[], string>({
+      query: (republic) => ({
+        url: 'get-cities-by-republic',
+        method: 'GET',
+        params: {
+          republic
+        }
+      })
+    }),
   })
 })

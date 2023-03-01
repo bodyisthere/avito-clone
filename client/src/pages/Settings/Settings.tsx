@@ -10,7 +10,7 @@ interface ISettings {
 export const Settings: FC<ISettings> = () => {
   return (
     <LayoutProfile>
-      <SettingModule />
+      <SettingModule /> 
     </LayoutProfile>
   )
 }

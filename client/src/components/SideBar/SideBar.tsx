@@ -25,7 +25,6 @@ export const SideBar: FC<ISideBar> = () => {
 
   const generateLi = (index: number) => {
     const url = window.location.pathname;
-    console.log(url)
     return (
       sideBarRoutes[index].map((el, i) => {
         return (
@@ -62,7 +61,7 @@ export const SideBar: FC<ISideBar> = () => {
       <div className={styles["side-bar__section"]}>
         <div className={styles["side-bar__avatar"]}>
           {
-            isImgLoading
+            isImgLoading || !data.avatar
             ?
             <Loader widthAdditional={64} widthMain={80}/>
             :

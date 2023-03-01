@@ -1,6 +1,7 @@
 import mongoose, { Schema } from "mongoose";
 
 const LocationSchema = new mongoose.Schema({
+    isPopular: Boolean,
     region: String,
     city: String,
     district: String,

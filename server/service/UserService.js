@@ -94,10 +94,25 @@ class UserService {
     const user = await UserModel.findById(userId);
     user.avatar = avatar;
     await user.save();
-    console.log(user.avatar)
     return {
       data: user.avatar
     }
+  }
+
+  async locationChange(userId, city, region, subway) {
+    const user = UserModel.findById(userId);
+    if(!user) throw ApiError.BadRequest('Пользователь не найден');
+
+    user.contactInfo.location = {
+      city: {
+        _id: city._id ? city._id : '',
+        title: city.title ? city.title : ''
+      },
+      region: region ? region : '',
+      subway: subway ? subway : ''
+    };
+
+    await user.save()
   }
 }
 

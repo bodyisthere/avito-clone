@@ -1,4 +1,5 @@
 import React, { FC, useState } from 'react'
+import { useAppSelector } from '../../../../hooks';
 
 import styles from '../SettingModule.module.scss'
 
@@ -7,7 +8,8 @@ interface ISettingEmail {
 }
 
 export const SettingEmail: FC<ISettingEmail> = () => {
-  const [isConfirmMail, setIsConfirmMail] = useState<boolean>(false);
+  const { isActivated } = useAppSelector(state => state.userReducer.data);
+
   return (
     <div className={styles["setting-module__section"]}>
         <div className={styles["setting-module__mail"]}>
@@ -16,7 +18,7 @@ export const SettingEmail: FC<ISettingEmail> = () => {
             <span><i className="fa-solid fa-pen"></i></span>
           </div>
           {
-            isConfirmMail 
+            isActivated 
             ? 
             <div className={`${styles["setting-module__mail-condition"]} ${styles["setting-module__mail-condition--green"]}`}>
               <i className="fa-solid fa-check"></i>Подтверждён

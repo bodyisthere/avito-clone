@@ -14,5 +14,13 @@ export const userApi = createApi({
         body,
       }),
     }),
+    locationChange: build.mutation<any, {city: {_id: string, title: string}, region: string, subway: string}>({
+      query: (body) => ({
+        url: 'location-change',
+        method: 'POST',
+        headers: {authorization : `Bearer ${localStorage.getItem('token')}`},
+        body,
+      }),
+    }),
   })
 })

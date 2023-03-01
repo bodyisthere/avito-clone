@@ -14,6 +14,34 @@ class LocationController {
       next(err);
     }
   }
+
+  async getPopularCities(req, res, next) {
+    try {
+      const response = await LocationService.getPopularCities();
+      res.json(response)
+    } catch (err) {
+      next(err);
+    }
+  }
+
+  async getRepublics(req, res, next) {
+    try {
+      const response = await LocationService.getRepublics();
+      res.json(response)
+    } catch (err) {
+      next(err);
+    }
+  }
+
+  async getCitiesByRepublic(req, res, next) {
+    try {
+      const republic = req.query.republic || req.body.republic;
+      const response = await LocationService.getCitiesByRepublic(republic);
+      res.json(response);
+    } catch (err) {
+      next(err);
+    }
+  }
 }
 
 export default new LocationController();

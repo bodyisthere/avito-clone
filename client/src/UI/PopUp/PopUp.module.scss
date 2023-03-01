@@ -10,7 +10,7 @@
   align-items: center;
   justify-content: center;
   &__content {
-    width: 30vw;
+    min-width: 250px;
     min-height: 200px;
     background: white;
     padding: 10px 10px;
