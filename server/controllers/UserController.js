@@ -1,6 +1,7 @@
 import { validationResult } from "express-validator";
 import UserService from '../service/UserService.js'
 import { ApiError } from "../exceptions/ApiError.js";
+import { response } from "express";
 
 class UserController {
   async registration(req, res, next) {
@@ -78,7 +79,8 @@ class UserController {
     try {
       const userId = req.user.id;
       const { city, region, subway } = req.body;
-      const reponse = await UserService.locationChange(userId, city, region, subway);
+      const response = await UserService.locationChange(userId, city, region, subway);
+      res.json(response)
     } catch (err) {
       next(err)
     }

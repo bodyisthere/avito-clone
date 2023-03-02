@@ -42,6 +42,16 @@ class LocationController {
       next(err);
     }
   }
+
+  async getCity(req, res, next) {
+    try {
+      const cityId = req.query.city ||req.body.city;
+      const response = await LocationService.getCity(cityId);
+      res.json(response);
+    } catch (err) {
+      next(err);
+    }
+  }
 }
 
 export default new LocationController();

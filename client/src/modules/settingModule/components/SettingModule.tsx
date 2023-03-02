@@ -8,7 +8,7 @@ import { SettingMessenger } from './setting-fields/SettingMessenger';
 import { SettingSocialMedia } from './setting-fields/SettingSocialMedia';
 import { SettingDelete } from './setting-fields/SettingDelete';
 import { SettingEmail } from './setting-fields/SettingEmail';
-import { SettingContactInfo } from './setting-fields/SettingContactInfo';
+import { SettingContactInfo } from './setting-fields/SettingContactInfo/SettingContactInfo';
 import { SettingPhoneNumber } from './setting-fields/SettingPhoneNumber';
 import { SettingSellCount } from './setting-fields/SettingSellCount';
 

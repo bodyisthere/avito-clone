@@ -100,7 +100,7 @@ class UserService {
   }
 
   async locationChange(userId, city, region, subway) {
-    const user = UserModel.findById(userId);
+    const user = await UserModel.findById(userId);
     if(!user) throw ApiError.BadRequest('Пользователь не найден');
 
     user.contactInfo.location = {
@@ -112,7 +112,8 @@ class UserService {
       subway: subway ? subway : ''
     };
 
-    await user.save()
+    const result = await user.save()
+    return result.contactInfo.location;
   }
 }
 

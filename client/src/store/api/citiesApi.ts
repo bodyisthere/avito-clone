@@ -38,5 +38,14 @@ export const citiesApi = createApi({
         }
       })
     }),
+    getCity: build.query<ICities, string>({
+      query: (cityId) => ({
+        url: 'get-city',
+        method: 'GET',
+        params: {
+          city: cityId
+        }
+      })
+    }),
   })
 })

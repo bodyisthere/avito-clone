@@ -4,36 +4,55 @@ import { ICities } from '../../../types/location';
 
 import { citiesApi } from '../../../store/api/citiesApi';
 import { userApi } from '../../../store/api/userApi'
+import { useAppSelector } from '../../../hooks';
 
 export const useSettingLocation = () => {
+  const { location } = useAppSelector(state => state.userReducer.data.contactInfo);
+
+  //популярные города в поп апе
   const [fetchPopular, { isLoading: isPopularLoading }] = citiesApi.useLazyGetPopularCitiesQuery();
-  const [fetchRepublics, {  } ] = citiesApi.useLazyGetRepublicsQuery();
-  const [fetchCitiesByRepublic, {  }] = citiesApi.useLazyGetCitiesByRepublicQuery();
-  const [locationSubmit , {  }] = userApi.useLocationChangeMutation();
+  //республики в селекте поп апа
+  const [fetchRepublics, { isLoading: isRepublicsLoading } ] = citiesApi.useLazyGetRepublicsQuery();
+  //получение город исходы из выбранной республики
+  const [fetchCitiesByRepublic, { isLoading: isCityRepublicLoading }] = citiesApi.useLazyGetCitiesByRepublicQuery();
+  //получение всей инфы о выбранным городе, если выбранный город существует у юзера
+  const [fetchCity, { isLoading: isCityLoading }] = citiesApi.useLazyGetCityQuery();
+  //подтвреждение смены локации юзера
+  const [locationSubmit , { isLoading: isLocationSubmitLoading }] = userApi.useLocationChangeMutation();
 
   const [isCityOpen, setIsCityOpen] = useState<boolean>(false);
 
+  //то откуда итерации
   const [popular, setPopular] = useState<ICities[]>([]);
   const [republics, setRepublics] = useState<string[]>([]);
   const [cities, setCities] = useState<ICities[]>([]);
   const [subways, setSubways] = useState<string[]>([]);
 
+  //то что выбрано
   const [city, setCity] = useState<{_id: string, title: string} | string>('');
   const [republic, setRepublic] = useState<string>('');
   const [subway, setSubway] = useState<string>('');
+  
+  const fetchFunction = (fetchFn: any, setFn: React.SetStateAction<any>, arg?: any) => {
+    fetchFn(arg).then((payload: any) => payload.data ? setFn(payload.data) : '')
+  }
+
+  useEffect(() => {
+    if(location.subway !== '') {
+      fetchCity(location.city._id)
+      .then(payload => {
+        if(payload.data) {
+          setSubways(payload.data.metro)
+        }
+      })
+    }
+  }, [location.subway])
+
 
   useEffect(() => {
     if(city === 'Выбрать другой') {
-      fetchPopular().then(payload => {
-        if(payload.data) {
-          setPopular(payload.data);
-        }
-      })
-      fetchRepublics().then(payload => {
-        if(payload.data) {
-          setRepublics(payload.data);
-        }
-      })
+      fetchFunction(fetchPopular, setPopular);
+      fetchFunction(fetchRepublics, setRepublics);
       return setIsCityOpen(true)
     };
     if(cities.length > 0) {
@@ -54,26 +73,22 @@ export const useSettingLocation = () => {
   }, [city])
 
   useEffect(() => {
-    if(republic) {
-      fetchCitiesByRepublic(republic)
-      .then(payload => {
-        if(!payload.data) return
-        setCities(payload.data);
-      })
-    }
+    if(republic) fetchFunction(fetchCitiesByRepublic, setCities, republic);
   }, [republic])
 
   //отправки локации юзера на сервер
   const locationSend = () => {
-    console.log({
+    if(republic === '' || location.city === city) return;
+    const body = {
       city: {
         _id: typeof city === 'string' ? '' : city._id,
         title: typeof city === 'string' ? '' : city.title,
       },
       region: republic,
       subway,
-    })
-  }
+    }
+    locationSubmit(body)
+  };
 
   const setPopularCity = (el: ICities) => {
     setCity({_id: el._id, title: el.city});
@@ -94,6 +109,7 @@ export const useSettingLocation = () => {
     subway, setSubway,
     fetchPopular, fetchRepublics, fetchCitiesByRepublic, 
     setPopularCity, locationSend,
-    isPopularLoading
+    isPopularLoading,
+    location
   }
 }

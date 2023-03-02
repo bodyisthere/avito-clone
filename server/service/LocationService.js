@@ -16,6 +16,10 @@ class CategoryService {
   async getCitiesByRepublic(republic) {
     return await LocationModel.find({region: republic} )
   }
+
+  async getCity(cityId) {
+    return await LocationModel.findById(cityId)
+  }
 }
 
 export default new CategoryService();
