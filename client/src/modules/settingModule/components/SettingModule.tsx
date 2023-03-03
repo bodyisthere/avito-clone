@@ -2,7 +2,6 @@ import React, { FC, useState } from 'react'
 
 import styles from './SettingModule.module.scss'
 
-import { OnOff } from '../../../UI'
 import { SettingEmailNotifications } from './setting-fields/SettingEmailNotifications';
 import { SettingMessenger } from './setting-fields/SettingMessenger';
 import { SettingSocialMedia } from './setting-fields/SettingSocialMedia';

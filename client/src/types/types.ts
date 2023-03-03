@@ -4,7 +4,7 @@ export interface ad {
   video: string | null
   description: string | undefined
   meetingPoint: string | undefined
-  price: string | undefined
+  price: number | undefined
 }
 
 export interface user {

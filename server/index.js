@@ -7,6 +7,7 @@ import mongoose from "mongoose";
 import { errorMiddleware } from "./middlewares/errorMiddleware.js";
 
 import { userRoutes, categoriesRoutes, locationRoutes, autoBrandRoutes, storyRoutes, uploadRoutes} from './router/index.js'
+import { adsRouter } from "./router/adsRouter.js";
 
 dotenv.config();
 const PORT = process.env.PORT || 5000;
@@ -24,7 +25,8 @@ app.use(categoriesRoutes); //взаимодействие с категория�
 app.use(locationRoutes); //взаимодействие с локацией
 app.use(autoBrandRoutes); //взаимодействие с брендами машин
 app.use(storyRoutes); //взаимодействие с историями - авито
-app.use(uploadRoutes) //взаимодействие с загрузкой файлов
+app.use(uploadRoutes); //взаимодействие с загрузкой файлов
+app.use(adsRouter); //взаимодействие с объявлениями
 
 //обработка ошибок
 app.use(errorMiddleware);

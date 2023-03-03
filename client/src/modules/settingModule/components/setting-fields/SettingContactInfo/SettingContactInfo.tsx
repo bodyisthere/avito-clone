@@ -1,68 +1,35 @@
-import React, { FC, useState, useEffect } from 'react'
+import { FC } from 'react'
 
 import styles from '../../SettingModule.module.scss'
 
-import { userApi } from '../../../../../store/api/userApi'
 
 import { Loader, Select } from '../../../../../UI'
-import { useSettingLocation } from '../../../hooks/useSettingLocation'
-import { useAppSelector } from '../../../../../hooks'
 import { SettingContactPop } from './SettingContactPop'
-import { citiesApi } from '../../../../../store/api/citiesApi'
+import { useSettingContactInfo } from '../../../hooks/useSettingContactInfo'
 
 interface ISettingContactInfo {
 
 }
 
 export const SettingContactInfo: FC<ISettingContactInfo> = () => {
-  const [locationSubmit , { isLoading: isLocationSubmitLoading }] = userApi.useLocationChangeMutation();
-  const [fetchCity, { isLoading: isFetchCityLoading }] = citiesApi.useLazyGetCityQuery();
-
-  const { location } = useAppSelector(state => state.userReducer.data.contactInfo)
-  const [isCityOpen, setIsCityOpen] = useState<boolean>(false);
-
-  const [region, setRegion] = useState<string>('');
-  const [city, setCity] = useState<{_id: string, title: string}>({_id: '', title: ''});
-  const [subway, setSubway] = useState<string>('');
-
-  const [cityChoose, setCityChoose] = useState<{_id: string, title: string} | string>({_id: '', title: ''});
-  const [subwayChoose, setSubwayChoose] = useState<string[]>([]);
-  
-  useEffect(() => {
-    if(location.region !== '') {
-      setRegion(location.region);
-      setCity(location.city);
-      if(location.subway !== '' && location.subway) setSubway(location.subway);
-    }
-    return
-  }, [location])
-  
-  useEffect(() => {
-    if(city._id) fetchCity(city._id).then(payload => {
-      if(payload.data) setSubwayChoose(payload.data.metro)
-    })
-  }, [city])
-
-  useEffect(() => {
-    if(cityChoose === 'Выбрать другой') setIsCityOpen(true);
-  }, [cityChoose])
-
-  const closePopUp = () => {
-    setIsCityOpen(false);
-    setCityChoose('-Не выбрано');
-  }
-
-  const submit = () => {
-    const body = {
-      city: {
-        _id: typeof city === 'string' ? '' : city._id,
-        title: typeof city === 'string' ? '' : city.title,
-      },
-      region,
-      subway,
-    }
-    locationSubmit(body)
-  }
+  const {
+    //открыт ли поп ап
+    isCityOpen, setIsCityOpen,
+    //город, который отправляется на сервер
+    city, setCity,
+    //выбранные город
+    cityChoose, setCityChoose,
+    //метро, которое отправляется на сервер
+    subway, setSubway,
+    //выбранное метро
+    subwayChoose, setSubwayChoose,
+    //регион, который отправляется на сервер
+    setRegion,
+    //индикаторы загрузки
+    isFetchCityLoading, isLocationSubmitLoading,
+    //некоторые функции взаимодействия
+    closePopUp, submit,
+  } = useSettingContactInfo()
 
   return (
     <div className={styles["setting-module__section"]}>
@@ -75,6 +42,8 @@ export const SettingContactInfo: FC<ISettingContactInfo> = () => {
             setRegion={setRegion} 
             setSubwayChoose={setSubwayChoose}
             setCityChoose={setCityChoose}
+            cityChoose={cityChoose}
+            setIsCityOpen={setIsCityOpen}
           /> 
         }
         <div className={styles["setting-module__subtitle"]}>Контактная информация</div>

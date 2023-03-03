@@ -22,7 +22,7 @@ const App: FC = () => {
   const { isLoadingAuth } = useCheckAuth(setIsConditionInfoOpen, setConditionInfoMessage);
 
   return (
-    <>
+    <div style={{'display':'flex', 'flexDirection':'column', 'minHeight':'100vh'}}>
       {
         isLoadingAuth
         ?
@@ -38,7 +38,7 @@ const App: FC = () => {
           <Footer />
         </>
       }
-    </>
+    </div>
   );
 };
 

@@ -14,17 +14,24 @@ interface ISettingContactPop {
   setCity: React.Dispatch<React.SetStateAction<{_id: string;title: string;}>>
   setSubwayChoose: React.Dispatch<React.SetStateAction<string[]>>
   setSubway: React.Dispatch<React.SetStateAction<string>>
-  setCityChoose: React.Dispatch<React.SetStateAction<{_id: string;title: string;}>>
+  setCityChoose: React.Dispatch<React.SetStateAction<string | {
+    _id: string;
+    title: string;
+  }>> 
+  cityChoose: string | {
+    _id: string;
+    title: string;
+  }
+  setIsCityOpen: React.Dispatch<React.SetStateAction<boolean>>
 }
 
-export const SettingContactPop: FC<ISettingContactPop> = ( { closePopUp, setCity, setRegion, setSubwayChoose, setSubway, setCityChoose } ) => {
+export const SettingContactPop: FC<ISettingContactPop> = ( { closePopUp, setCity, setRegion, setSubwayChoose, setSubway, setCityChoose, cityChoose, setIsCityOpen } ) => {
   const { data: popularCities, isLoading: isPopularLoading } = citiesApi.useGetPopularCitiesQuery();
   const { data: republics, isLoading: isRepublicsLoading } = citiesApi.useGetRepublicsQuery();
 
   const [fetchCitiesByRepublic , { isLoading: isCitiesByRepLoading, data: citiesByRepublic  }] = citiesApi.useLazyGetCitiesByRepublicQuery();
   
   const [regionChoose, setRegionChoose] = useState<string>('');
-
 
   const chooseFromPopular = (el: ICities) => {
     setSubway('');
@@ -37,6 +44,18 @@ export const SettingContactPop: FC<ISettingContactPop> = ( { closePopUp, setCity
     }
     closePopUp();
   }
+
+  useEffect(() => {
+    fetchCitiesByRepublic(regionChoose);
+  }, [regionChoose])
+
+  const chooseLocation = () => {
+    const city = citiesByRepublic?.filter(el => el.city === cityChoose)[0];
+    setRegion(regionChoose);
+    setCity({_id : city?._id ? city?._id : '', title: city?.city ? city?.city : ''})
+    setIsCityOpen(false);
+  }
+
 
   return (
     <PopUp changeStateFunction={closePopUp}>
@@ -63,25 +82,17 @@ export const SettingContactPop: FC<ISettingContactPop> = ( { closePopUp, setCity
               <Select options={['-Не выбрано-', ...republics]} onChange={setRegionChoose} />
             }
             {
-              isCitiesByRepLoading || !citiesByRepublic
+              isCitiesByRepLoading
               ?
               'Загрузка'
               :
-              <Select options={['-Не выбрано-', citiesByRepublic.map(el => return el.city)]} onChange={setCityChoose}/>
+              citiesByRepublic ? <Select options={['-Не выбрано-', ...citiesByRepublic.map(el => el.city)]} onChange={setCityChoose}/> : ''
             }
             
           </div>
+        <button className={styles["setting-module__button"]} onClick={() => chooseLocation()}>Выбрать</button>
         </div>
       </div>
     </PopUp>
-      // {/* <div className={styles["pop"]}>
-      //   <div className={styles["pop__bottom"]}>
-      //     <div className={styles["pop__select"]}>
-      //       <Select options={['-Не выбрано-', ...republics]} onChange={setRepublic}/>
-      //       {cities.length !== 0 ? <Select options={['-Не выбрано-', ...cities.map(el => el.city)]} onChange={setCity}/> : ''}
-      //     </div>
-      //     <button className={styles["setting-module__button"]} onClick={() => setIsCityOpen(false)}>Выбрать</button>
-      //   </div>
-      // </div> */}
   )
 }

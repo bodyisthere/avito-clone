@@ -3,6 +3,7 @@
   grid-template-columns: 1fr 1fr 1fr;
   grid-column-gap: 30px;
   flex-grow: 1;
+  height: 100%;
   align-items: center;
   &__title {
     color: gray;

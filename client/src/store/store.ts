@@ -4,6 +4,7 @@ import { authApi } from "./api/authApi";
 import { categoriesApi } from "./api/categoriesApi";
 import { citiesApi } from "./api/citiesApi";
 import { userApi } from "./api/userApi";
+import { adsApi } from "./api/adsApi";
 
 import { userReducer } from './slices/userSlice'
 import { categoryReducer } from "./slices/categorySlice";
@@ -28,6 +29,7 @@ const rootReducer = combineReducers({
   [uploadApi.reducerPath]: uploadApi.reducer,
   [storiesApi.reducerPath]: storiesApi.reducer,
   [userApi.reducerPath]: userApi.reducer,
+  [adsApi.reducerPath]: adsApi.reducer,
 })
 
 export const setupStore = () => {
@@ -39,7 +41,8 @@ export const setupStore = () => {
       citiesApi.middleware,
       uploadApi.middleware,
       storiesApi.middleware,
-      userApi.middleware
+      userApi.middleware,
+      adsApi.middleware,
     ),
   })
 }  

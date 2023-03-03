@@ -7,14 +7,20 @@ import { getAutoBrands } from '../../../../api/getAutoBrands'
 import { carOld } from '../../../../types/transportTypes'
 import { inspectionData } from '../../../../data/transportData'
 
-import { FileUpload, FileUploaded, ColorChoose, VideoLink, AutoNumber, RadioButtonsChoose, CheckboxList, Tip, CarMileage, Textarea } from '../../../ads-ui'
+import { FileUpload, FileUploaded, ColorChoose, VideoLink, AutoNumber, RadioButtonsChoose, CheckboxList, Tip, CarMileage, Textarea, Price } from '../../../ads-ui'
 import { CarConditionWImg, CarAdditional, MapInput } from '../../../ads-components'
-import { Select, InputText } from '../../../../../../UI'
+import { Select, InputText, Button } from '../../../../../../UI'
+
+import { adsApi } from '../../../../../../store/api/adsApi'
 
 export const AutoRun: FC = () => {
   const [selectedFiles, setSelectedFiles] = useState();
   const [uploadedFiles, setUploadedFiles] = useState<string[] | null>(['1', '2', '3', '1', '2', '3', '1', '2', '3', '1']);
   const [carBrandsData, setCarBrandsData] = useState<string[]>();
+
+  const [validationError, setValidationError] = useState<any>([]);
+
+  const [postSend, {} ] = adsApi.useNewPostMutation();
 
   const [form, setForm] = useState<carOld>(
     {
@@ -133,7 +139,21 @@ export const AutoRun: FC = () => {
       }
     })
   }
+
+  const submitForm = () => {
+    let key: keyof carOld;
+    for(key in form) {
+      const k = key;
+      if(form[key] === undefined) setValidationError((prev: any) => {
+        return [...prev, k];
+      })
+    }
+
+    // postSend(form);
+  }
   
+  console.log(validationError);
+
   const [isFirstTip, setIsFirstTip] = useState<boolean>(false);
   const [isSecondTip, setIsSecondTip] = useState<boolean>(false);
   const [isThirdTip, setIsThirdTip] = useState<boolean>(false);
@@ -307,9 +327,15 @@ export const AutoRun: FC = () => {
       <div className={styles["auto__item"]}>
         <Textarea onChange={e => setFunction('description', e.target.value)}  value={form.description ? form.description : ''}/>
       </div>
-      <div className={styles["auto__title"]}>Место осмотра</div>
-        <MapInput />
-      <button onClick={() => console.log(form)}>check data</button>
+      <div className={styles["auto__title"]}>Цена</div>
+      <div className={styles["auto__item"]}>
+        <Price value={form.price ? form.price : 0} onChange={e => setFunction('price', e.target.value)}/>
+      </div>
+      <Button onClick={() => submitForm()}>Разместить</Button>
+      <Button onClick={() => console.log(form)}>Тест формы</Button>
+
     </div>
   )
 }
+// {/* <div className={styles["auto__title"]}>Место осмотра</div> */}
+//   {/* <MapInput /> */}
