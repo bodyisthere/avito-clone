@@ -1,0 +1,64 @@
+.list {
+  display: flex;
+  align-items: center;
+}
+
+.item {
+  font-size: 20px;
+  margin-right: 10px;
+  color: #abadae;
+  &:hover {
+    color: #d3d6d7;
+  }
+  &:last-child {
+    margin-right: 20px;
+  }
+}
+
+.profile {
+  position: relative;
+}
+
+.inprofile {
+  display: flex;
+  align-items: center;
+  margin-right: 20px;
+  &:hover {
+    color: #abadae;
+    cursor: pointer;
+  }
+}
+
+.img {
+  width: 40px;
+  height: 40px;
+  object-fit: cover;
+  object-position: center;
+  border-radius: 50px;
+  margin-right: 5px;
+}
+
+.name {
+  font-size: 16px;
+  margin-right: 5px;
+  user-select: none;
+}
+
+.enter {
+  display: flex;
+  background: transparent;
+  color: white;
+  font-size: 16px;
+  &:hover {
+    color: #abadae;
+  }
+}
+
+@media (max-width: 768px) {
+  .inprofile {
+    display: none;
+  }
+  .enter {
+    display: none;
+  }
+}

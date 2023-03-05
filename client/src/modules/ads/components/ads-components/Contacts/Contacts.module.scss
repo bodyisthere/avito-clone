@@ -1,0 +1,42 @@
+.text {
+  margin-top: 15px;
+  color: #5C5C5C;
+}
+
+.contacts {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.text {
+  width: 20%;
+  color: #5C5C5C;
+  font-size: 16px;
+}
+
+.top {
+  display: flex;
+  margin-bottom: 20px;
+}
+
+.phone {
+  padding: 20px;
+  background: #b1fca7;
+  font-size: 16px;
+  border-radius: 15px;
+  i {
+    color: green;
+  }
+}
+
+.input {
+  border-radius: 5px;
+  padding: 5px;
+  font-size: 16px;
+  margin-bottom: 10px;
+}
+
+.bottom {
+  display: flex;
+}

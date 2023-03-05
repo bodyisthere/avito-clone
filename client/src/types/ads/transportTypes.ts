@@ -1,4 +1,4 @@
-import { ad } from "../../../types/types"
+import { ad } from '../ads/ads'
 
 interface groundTransport extends ad {
   VIN: string | undefined

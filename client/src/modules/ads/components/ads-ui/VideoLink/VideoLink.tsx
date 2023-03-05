@@ -1,6 +1,14 @@
+//импорт внешних пакетов
 import React, { FC, useState } from 'react'
 
+//импорт стилей
 import styles from './VideoLink.module.scss'
+
+//импорт типов
+
+//импорт функционала
+
+//импорт компонентов
 
 interface IVideoLink {
   videoLink: string | null
@@ -9,20 +17,27 @@ interface IVideoLink {
 }
 
 export const VideoLink: FC<IVideoLink> = ( { videoLink, optionKey, setOption} ) => {
+  
 
   return (
-    <div className={styles["video-link"]}>
-      <input type="text" className={styles["video-link__input"]} value={videoLink ? videoLink : ''} placeholder="Ссылка на видео" onChange={(e) => setOption(optionKey, e.target.value)}/>
+    <div>
+      <input 
+        type="text" 
+        className={styles.input} 
+        value={videoLink ? videoLink : ''} 
+        placeholder="Ссылка на видео" 
+        onChange={(e) => setOption(optionKey, e.target.value)}
+      />
       {
         videoLink 
         ?
-        <div className={styles["video-link__info"]}>
-          <div className={styles["video-link__left"]}>
-            <img src={`https://img.youtube.com/vi/JMJXvsCLu6s/3.jpg`} alt="" className={styles["video-link__img"]} />
+        <div className={styles.info}>
+          <div className={styles.left}>
+            <img src={`https://img.youtube.com/vi/JMJXvsCLu6s/3.jpg`} alt="" />
           </div>
-          <div className={styles["video-link__right"]}>
-            <div className={styles["video-link__link"]}>тут будет ссылка</div>
-            <button className={styles["video-link__delete"]} onClick={() => setOption(optionKey, null)}>Удалить</button>
+          <div className={styles.right}>
+            <div className={styles.link}>тут будет ссылка</div>
+            <button className={styles.delete} onClick={() => setOption(optionKey, null)}>Удалить</button>
           </div>
         </div>
         :

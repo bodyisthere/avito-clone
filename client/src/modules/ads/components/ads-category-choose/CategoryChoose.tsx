@@ -1,14 +1,21 @@
+//импорт внешних пакетов
 import React, {FC, useEffect, useState} from 'react';
 
+//импорт стилей
 import styles from './CategoryChoose.module.scss';
 
-import { ICategoryChoose } from '../../types/types';
+//импорт типов
 
+//импорт функционала
 import { useAppSelector, useActions } from '../../../../hooks';
 import { categoriesApi } from '../../../../store/api/categoriesApi';
 
+//импорт компонентов
 import { Loader } from '../../../../UI';
 
+interface ICategoryChoose {
+  setStep: React.Dispatch<React.SetStateAction<"category-choose" | "category-choosen">>
+}
 
 export const CategoryChoose: FC<ICategoryChoose> = ({setStep}) => {
   const [loadCategories, {data: categories, isLoading, error, isError}] = categoriesApi.useLazyGetCategoriesQuery();

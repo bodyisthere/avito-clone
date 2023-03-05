@@ -1,17 +1,30 @@
+//импорт внешних пакетов
 import React, { FC, useState } from 'react'
 
+//импорт стилей
 import styles from './CarConditionWImg.module.scss'
 
-import { ICarConditionFBLR } from '../../../../types/types'
+//импорт типов
+import { IDamagedPositions, IPoint } from '../../../../types/damagedPosition'
 
-interface IPoint {
-  title: string;
-  points: {
-      id: string;
-      title: string;
-  }[];
-  id: string;
-  class: string;
+//импорт функционала
+
+//импорт компонентов
+
+interface ICarConditionFBLR {
+  activeSpans: string[]
+  damagedPlaces: {
+    position: string;
+    id: string;
+    places: {
+        title: string;
+        id: string;
+        points: string[] | null;
+    }[];
+  }[]
+  data: IDamagedPositions
+  setActiveSlideCategory: React.Dispatch<React.SetStateAction<any>>
+  activeSlideCategory: any
 }
 
 export const CarConditionFBLR: FC<ICarConditionFBLR> = ({ data, activeSlideCategory, setActiveSlideCategory, activeSpans, damagedPlaces }) => {

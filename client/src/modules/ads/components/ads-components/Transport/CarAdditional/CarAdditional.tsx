@@ -1,10 +1,17 @@
+//импорт внешних пакетов
 import React, { FC } from 'react'
 
+//импорт стилей
 import styles from './CarAdditional.module.scss'
 
-import { carOld } from '../../../../types/transportTypes'
+
+//импорт типов
+
+//импорт функционала
+import { carOld } from '../../../../../../types/ads/transportTypes'
 import { checkboxActiveSafety, checkboxAirBags, checkboxAntiThiefSystem, checkboxAudioSystem, checkboxClimatControl, checkboxDrivingAssistance, checkboxElectricDrive, checkboxHeadlights, checkboxHeating, checkboxMultimedia, checkboxSalon, checkboxSettingsMemory, checkboxTiresWheels, selectAudioSystem, selectClimatControl, selectHeadlights, selectPowerSteering, selectPowerWindows, selectSalon, selectTiresWheels } from '../../../../data/transportData'
 
+//импорт компонентов
 import { Select } from '../../../../../../UI'
 import { CheckboxList } from '../../../ads-ui'
 

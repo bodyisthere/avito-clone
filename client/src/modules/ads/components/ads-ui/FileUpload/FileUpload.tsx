@@ -1,6 +1,14 @@
-import React, {FC} from 'react'
+//импорт внешних пакетов
+import { FC } from 'react'
 
+//импорт стилей
 import styles from './FileUpload.module.scss'
+
+//импорт типов
+
+//импорт функционала
+
+//импорт компонентов
 
 interface IFileUpload {
   selectedFiles?: any

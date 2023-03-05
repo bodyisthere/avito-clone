@@ -1,12 +1,21 @@
+//импорт внешних пакетов
 import React, {FC, useEffect, useState} from 'react'
 
+//импорт стилей
+import styles from './CategoryChoose.module.scss'
+
+//импорт типов
+
+//импорт функционала
 import { useAppSelector } from '../../../../hooks'
 import { categoryFormat } from '../../helpers/categoryFormat'
-import { ICategoryChoosen } from '../../types/types'
 
+//импорт компонентов
 import { AutoNew, AutoRun } from '../ads-categories'
 
-import styles from './CategoryChoose.module.scss'
+interface ICategoryChoosen {
+  
+}
 
 export const CategoryChoosen: FC<ICategoryChoosen> = () => {
   const { category } = useAppSelector(state => state.adsReducer);

@@ -1,7 +1,15 @@
+//импорт внешних пакетов
 import React, { FC, useLayoutEffect, useState } from 'react'
 
+//импорт стилей
 import styles from './RadioButtonsChoose.module.scss'
- 
+
+//импорт типов
+
+//импорт функционала
+
+//импорт компонентов
+
 interface IRadioButtonChoose {
   data: string[]
   value: any
@@ -17,13 +25,13 @@ export const RadioButtonsChoose: FC<IRadioButtonChoose> = ({ data, optionKey, se
   }, [])
 
   return (
-    <div className={styles["radio-button-choose"]}>
+    <div className={styles.radio}>
       {
         data.map((el, index) => {
           return (
-            <label className={`${styles['radio-button-choose__label']} ${value === el ? styles['radio-button-choose--active'] : ''}`} key={index} onClick={() => setOption(optionKey, el)}>
-              <input type="radio" className={styles["radio-button-choose__input"]} name={String(id)}/>
-              <span className={styles["radio-button-choose__span"]}>{el}</span>
+            <label className={`${styles.label} ${value === el ? styles.active : ''}`} key={index} onClick={() => setOption(optionKey, el)}>
+              <input type="radio" className={styles.input} name={String(id)}/>
+              <span className={styles.span}>{el}</span>
             </label>
           )
         })

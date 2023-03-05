@@ -1,4 +1,4 @@
-import { IDamagedPositions } from "../types/types"
+import { IDamagedPositions } from "../types/damagedPosition";
 
 export const inspectionData = [
   {

@@ -5,7 +5,7 @@ import { useAppSelector } from "./hooks";
 
 import { Loader } from "./UI";
 import { AuthPop } from "./modules/auth";
-import { Header } from "./modules/header";
+import { Header } from "./components/Header/Header";
 import { Navigation } from "./routes/Routes";
 import { ConditionInfo } from "./components/ConditionInfo/ConditionInfo";
 import { useCheckAuth } from "./hooks/app-hooks/useCheckAuth";

@@ -1,0 +1,25 @@
+.title {
+  font-size: 25px;
+  font-weight: 700;
+}
+
+.subtitle {
+  color: #5C5C5C;
+}
+
+.item {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  margin: 20px 0px;
+}
+
+.item-left {
+  display: flex;
+  align-items: center;
+  width: 20%;
+}
+
+.item-right {
+  width: 80%;
+}
