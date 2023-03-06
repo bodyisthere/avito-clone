@@ -18,9 +18,11 @@ interface ICondition {
   form: any
   setFunction: any
   setForm: any
+  fields: string[]
+  validationErrors: string[]
 }
 
-export const Condition: FC<ICondition> = ( { form, setFunction, setForm } ) => {
+export const Condition: FC<ICondition> = ( { form, setFunction, setForm, fields, validationErrors } ) => {
   const [isFirtTip, setIsFirstTip] = useState<boolean>(false);
   const [isSecondTip, setIsSecondTip] = useState<boolean>(false);
 
@@ -43,17 +45,22 @@ export const Condition: FC<ICondition> = ( { form, setFunction, setForm } ) => {
   return (
     <>
       <div className={standart.title}>История эксплаутации и состояние</div>
-      <div className={standart.item}>
+      {
+        fields.includes('Mileage') &&
+        <div className={standart.item}>
         <div className={standart["item-left"]}>
-          <label className={standart.subtitle}>Пробег</label>
+          <label className={standart.subtitle}>Пробег*</label>
         </div>
         <div className={standart["item-right"]}>
           <CarMileage carMileage={form.mileage} setOption={setFunction} optionKey={'mileage'}/>
+          {validationErrors.includes('mileage') && <span className={standart['error-text']}><br/>Выберите количество километров пробега</span>}
         </div>
-      </div>
-      <div className={standart.item}>
+      </div>}
+      {
+        fields.includes('Condition') &&
+        <div className={standart.item}>
         <div className={standart["item-left"]}>
-          <label className={standart.subtitle}>Состояние</label>
+          <label className={standart.subtitle}>Состояние*</label>
           <div className={styles["auto__tip"]} onClick={() => setIsFirstTip(!isFirtTip)}>
             ?
             {
@@ -67,11 +74,14 @@ export const Condition: FC<ICondition> = ( { form, setFunction, setForm } ) => {
         </div>
         <div className={standart["item-right"]}>
           <RadioButtonsChoose data={['Не битый', 'Битый']} value={form.condition} setOption={setFunction} optionKey={'condition'}/>
+          {validationErrors.includes('condition') && <span className={standart['error-text']}><br/>Выберите состояние машины</span>}
         </div>
-      </div>
-      <div className={standart.item}>
+      </div>}
+      {
+        fields.includes('VehiclePassport') &&
+        <div className={standart.item}>
         <div className={standart["item-left"]}>
-          <label className={standart.subtitle}>ПТС</label>
+          <label className={standart.subtitle}>ПТС*</label>
           <div className={styles["auto__tip"]} onClick={() => setIsSecondTip(!isSecondTip)}>
             ?
             {isSecondTip 
@@ -83,28 +93,35 @@ export const Condition: FC<ICondition> = ( { form, setFunction, setForm } ) => {
           </div>
         </div>
         <div className={standart["item-right"]}>
-          <Select options={['-','Оригинал','Дубликат','Электронный']} onChange={(e: any) => setFunction('vehIConditionlePassport', e)} ></Select>
+          <Select options={['-','Оригинал','Дубликат','Электронный']} onChange={(e: any) => setFunction('vehiclePassport', e)} ></Select>
+          {validationErrors.includes('vehiclePassport') && <span className={standart['error-text']}><br/><br/>Выберите ПТС</span>}
         </div>
-      </div>
-      <div className={standart.item}>
+      </div>}
+      {
+        fields.includes('VehiclePassportOwners') &&
+        <div className={standart.item}>
         <div className={standart["item-left"]}>
-          <label className={standart.subtitle}>Владельцев по ПТС</label>
+          <label className={standart.subtitle}>Владельцев по ПТС*</label>
         </div>
         <div className={standart["item-right"]}>
-          <RadioButtonsChoose data={['1', '2', '3', '4+']} optionKey='vehIConditionlePassportOwners' setOption={setFunction} value={form.vehIConditionlePassportOwners}/>
+          <RadioButtonsChoose data={['1', '2', '3', '4+']} optionKey='vehiclePassportOwners' setOption={setFunction} value={form.vehiclePassportOwners}/>
+          {validationErrors.includes('vehiclePassportOwners') && <span className={standart['error-text']}><br/>Выберите владельцев ПТС</span>}
         </div>
-      </div>
-      <div className={standart.item}>
+      </div>}
+      {
+        fields.includes('InspectionData') &&
+        <div className={standart.item}>
         <div className={standart["item-left"]}>
-          <label className={standart.subtitle}>Данные о ТО</label>
+          <label className={standart.subtitle}>Данные о ТО*</label>
         </div>
         <div className={standart["item-right"]}>
           <CheckboxList 
             data={{title: null, data: inspectionData}} 
             changeFunction={inspectionDataCheckbox}
             />
+          {validationErrors.includes('inspectionData') && <span className={standart['error-text']}><br/>Укажите информацию о ТО</span>}
         </div>
-      </div>
+      </div>}
     </>
   )
 }

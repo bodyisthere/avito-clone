@@ -9,41 +9,35 @@ import standart from '../../../../../../styles/ads.module.scss'
 
 //импорт функционала
 import { getAutoBrands } from '../../../../../../api/getAutoBrands'
+import { transportApi } from '../../../../../../../../store/api/transportApi'
 
 //импорт компонентов
 import { Select } from '../../../../../../../../UI'
 
 interface ISpecifications {
   setFunction: any
+  validationErrors: string[]
 }
 
-export const Specifications: FC<ISpecifications> = ( { setFunction } ) => {
-  const [carBrandsData, setCarBrandsData] = useState<string[]>();
-
-  useEffect(() => {
-    async function fetchData() {
-      const res: AxiosResponse<{_id: string, brand: string}[]> = await getAutoBrands();
-      const dataPretty = res.data.map(el => el.brand)
-      setCarBrandsData(dataPretty);
-    }
-    fetchData()
-  }, [])
+export const Specifications: FC<ISpecifications> = ( { setFunction, validationErrors } ) => {
+  const { data: carBrandsData, isLoading } = transportApi.useGetAllCarBrandsQuery()
 
   return (
     <>
       <div className={standart.title}>Технические характеристики</div>
       <div className={standart.item}>
         <div className={standart["item-left"]}>
-          <label className={standart.subtitle}>Марка</label>
+          <label className={standart.subtitle}>Марка*</label>
         </div>
         <div className={standart["item-right"]}>
           {
-            carBrandsData
+            isLoading 
             ?
-            <Select options={carBrandsData} onChange={(e: any) => setFunction('brand', e)}/>
-            :
-            ''
+            'Загрузка'
+            : 
+            carBrandsData && <Select options={['-Не выбрано-',...carBrandsData.map(el => el.brand)]} onChange={(e: any) => setFunction('brand', e)}/>
           }
+        {validationErrors.includes('brand') && <span className={standart['error-text']}><br/>Укажите марку авто</span>}
         </div>
       </div>
     </>

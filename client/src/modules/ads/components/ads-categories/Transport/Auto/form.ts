@@ -1,4 +1,4 @@
-import { carOld } from "../../../../../../types/ads/transportTypes"
+import { carOld, car } from "../../../../../../types/ads/transportTypes"
 
 export const carOldForm: carOld = {
   brand: undefined,
@@ -62,6 +62,37 @@ export const carOldForm: carOld = {
   price: undefined,
   type: undefined, 
   vehiclePassportOwners: undefined,
+  video: null,
+  VIN: undefined,
+  additionalOptions: {
+    powerSteering: null,
+    climatControl: {select: null, checkbox: null},
+    salon: {select: null, checkbox: null},
+    heating: null,
+    powerWindows: null,
+    electricDrive: null,
+    settingsMemory: null,
+    drivingAssistance: null,
+    antiThiefSystem: null,
+    airbags: null,
+    activeSafety:  null,
+    multimedia: null,
+    audioSystem: {select: null, checkbox: null},
+    headlights: {select: null, checkbox: null},
+    tiresWheels: {select: null, checkbox: null},
+  },
+}
+
+export const carNewForm: car = {
+  brand: undefined,
+  vehiclePassport: undefined,
+  inspectionData: null,
+  color: undefined,
+  description: undefined, 
+  meetingPoint: undefined, 
+  name: undefined,
+  photo: null, 
+  price: undefined,
   video: null,
   VIN: undefined,
   additionalOptions: {

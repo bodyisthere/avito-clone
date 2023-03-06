@@ -6,7 +6,7 @@ import standart from '../../../../../../styles/ads.module.scss'
 import styles from '../Auto.module.scss'
 
 //импорт типов
-import { carOld } from '../../../../../../../../types/ads/transportTypes'
+import { carOld, car } from '../../../../../../../../types/ads/transportTypes'
 
 //импорт функционала
 import { checkboxActiveSafety, checkboxAirBags, checkboxAntiThiefSystem, checkboxAudioSystem, checkboxClimatControl, checkboxDrivingAssistance, checkboxElectricDrive, checkboxHeadlights, checkboxHeating, checkboxMultimedia, checkboxSalon, checkboxSettingsMemory, checkboxTiresWheels, selectAudioSystem, selectClimatControl, selectHeadlights, selectPowerSteering, selectPowerWindows, selectSalon, selectTiresWheels } from '../../../../../../data/transportData'
@@ -16,25 +16,25 @@ import { Select } from '../../../../../../../../UI'
 import { CheckboxList } from '../../../../../ads-ui'
 
 interface IAdditional {
-  setForm: React.Dispatch<React.SetStateAction<carOld>>
+  setForm: any
 }
 
 export const Additional: FC<IAdditional> = ( { setForm } ) => {
   const setAdditionalSelect = (e: any, key: 'powerSteering' | 'powerWindows') => {
-    setForm(prev => {
+    setForm((prev: carOld) => {
       prev.additionalOptions[key] = e; 
       return prev;
     }) 
   }
 
   const setAdditionalCheckbox = (e: string, key: 'heating' | 'settingsMemory' | 'airbags' | 'drivingAssistance' | 'activeSafety' | 'electricDrive' | 'antiThiefSystem' | 'multimedia') => {
-    setForm(prev => {
+    setForm((prev: carOld) => {
       const prevData = prev.additionalOptions[key];
       if(prevData === null) {
         prev.additionalOptions[key] = [e];
       }
       if(prevData?.includes(e)) {
-        prev.additionalOptions[key] = prevData.filter(el => el !== e)
+        prev.additionalOptions[key] = prevData.filter((el: any) => el !== e)
       } else {
         prev.additionalOptions[key] = prevData ? [...prevData, e] : [e]
       }
@@ -44,14 +44,14 @@ export const Additional: FC<IAdditional> = ( { setForm } ) => {
 
   const setAdditionalSelectCheckbox = (e: string, key: "climatControl" | "salon" | "audioSystem" | "headlights" | "tiresWheels", type: "checkbox" | "select") => {
     if(type === "select") {
-      setForm(prev => {
+      setForm((prev: carOld) => {
         prev.additionalOptions[key].select = e;
         return prev;
       })
       return;
     }
     if(type === "checkbox") {
-      setForm(prev => {
+      setForm((prev: carOld) => {
         const prevData = prev.additionalOptions[key].checkbox
         if(prevData === null) {
           prev.additionalOptions[key].checkbox = [e];

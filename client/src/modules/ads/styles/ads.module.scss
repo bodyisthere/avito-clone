@@ -22,4 +22,11 @@
 
 .item-right {
   width: 80%;
+  // display: flex;
+  // flex-direction: column;
+}
+
+.error-text {
+  color: red;
+  font-size: 14px;
 }

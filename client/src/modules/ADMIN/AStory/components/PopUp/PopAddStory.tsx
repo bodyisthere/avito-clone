@@ -56,12 +56,12 @@ export const PopAddStory: FC<IPopAddStory> = () => {
       <div className="pop-add-story__files">
         <div className="pop-add-story__files-case">
           <span>Загрузите обложку слайда:</span>
-          <FileUpload isMultiple={false} setUploadedFiles={setFileCover} uploadedFiles={fileCover} onChange={(e: any) => handleChangeFile(e, setUploadedFileCover)}/>
+          {/* <FileUpload isMultiple={false} setUploadedFiles={setFileCover} uploadedFiles={fileCover} onChange={(e: any) => handleChangeFile(e, setUploadedFileCover)}/> */}
           {uploadedFileCover.length !== 0 ? <FileUploaded uploadedFiles={uploadedFileCover} deleteFunction={(el: string) => deleteFunction(el, setUploadedFileCover)}/> : ''}
         </div>
         <div className="pop-add-story__files-case">
           <span>Загрузите слайды:(максимально - 6)</span>
-          <FileUpload isMultiple={true} setUploadedFiles={setFilesSlides} uploadedFiles={filesSlides} onChange={(e: any) => handleChangeFile(e, setUploadedFilesSlides)}/>
+          {/* <FileUpload isMultiple={true} setUploadedFiles={setFilesSlides} uploadedFiles={filesSlides} onChange={(e: any) => handleChangeFile(e, setUploadedFilesSlides)}/> */}
           {uploadedFilesSlides.length > 0 ? <FileUploaded uploadedFiles={uploadedFilesSlides} deleteFunction={(el: string) => deleteFunction(el, setUploadedFilesSlides)}/> : ''}
         </div>
       </div>
