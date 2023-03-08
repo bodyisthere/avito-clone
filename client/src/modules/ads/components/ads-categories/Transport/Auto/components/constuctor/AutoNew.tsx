@@ -3,7 +3,6 @@ import { FC, useState } from 'react'
 
 //импорт стилей
 import styles from '../Auto.module.scss'
-import standart from '../../../../../../styles/ads.module.scss'
 
 //импорт типов
 import { car } from '../../../../../../../../types/ads/transportTypes'

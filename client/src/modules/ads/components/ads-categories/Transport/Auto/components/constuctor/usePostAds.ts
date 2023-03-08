@@ -1,40 +1,19 @@
-//импорт внешних пакетов
 import { FC, useState, useEffect } from 'react'
 
-//импорт стилей
-import styles from '../Auto.module.scss'
-import standart from '../../../../../../styles/ads.module.scss'
-
-//импорт типов
 import { carOld } from '../../../../../../../../types/ads/transportTypes'
 import { additionalOptions } from '../../../../../../../../types/ads/transportTypes'
 
-//импорт функционала
 import { adsApi } from '../../../../../../../../store/api/adsApi'
 import { carOldForm } from '../../form'
 import { useAppSelector } from '../../../../../../../../hooks'
 
-//импорт компонентов
-import { Select, Button } from '../../../../../../../../UI'
-
-import { Appereance } from '../fields/Appereance'
-import { RegistrationInfo } from '../fields/RegistrationInfo'
-import { Specifications } from '../fields/Specifications'
-import { Condition } from '../fields/Condition'
-import { Body } from '../fields/Body'
-import { Additional } from '../fields/Additional'
-import { DPC } from '../fields/DPC'
-import { Type } from '../fields/Type'
-import { Name } from '../fields/Name'
-
-export const AutoRun: FC = () => {
+export const usePostAds = () => {
   const [validationErrors, setValidationErrors] = useState<any>([]);
   const { category } = useAppSelector(state => state.adsReducer);
   
   const [postSend, {} ] = adsApi.useNewPostMutation();
   
   const [form, setForm] = useState<carOld>(carOldForm);
-
 
   const setFunction = (key: string, value: any) => {
     setForm((prev) => {
@@ -111,22 +90,4 @@ export const AutoRun: FC = () => {
       console.log(payload)
     })
   }
-
-
-  return (
-    <div className={styles["auto"]}>
-      <Name setFunction={setFunction} form={form} validationErrors={validationErrors}/>
-      <Type setFunction={setFunction} form={form} validationErrors={validationErrors} />
-      <Appereance form={form} setFunction={setFunction} validationErrors={validationErrors}/>
-      <RegistrationInfo form={form} setFunction={setFunction} fields={['VIN', 'AutoNumber']} validationErrors={validationErrors}/>
-      <Specifications setFunction={setFunction} validationErrors={validationErrors}/>
-      <Condition form={form} setFunction={setFunction} setForm={setForm} fields={['Mileage', 'Condition', 'VehiclePassport', 'VehiclePassportOwners', 'InspectionData']} validationErrors={validationErrors}/>
-      <Body form={form} setFunction={setFunction}/>
-      <Additional setForm={setForm}/>
-      <DPC form={form} setFunction={setFunction} setForm={setForm} validationErrors={validationErrors}/>
-      <Button onClick={() => {submitForm()}}>Отправить</Button>
-    </div>
-  )
 }
-// {/* <div className={standart.title}>Место осмотра</div> */}
-//   {/* <MapInput /> */}

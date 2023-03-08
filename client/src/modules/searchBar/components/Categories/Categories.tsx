@@ -16,7 +16,7 @@ export const Categories: FC<ICategories> = ({ setIsCategoriesOpen }) => {
   const [activeCategory, setActiveCategory] = useState<number | null>(null);
 
   const { setCategories } = useActions();
-  const { data, isLoading, error, isError } = categoriesApi.useGetCategoriesQuery(null);
+  const { data, isLoading, error, isError } = categoriesApi.useGetCategoriesQuery();
 
   useEffect(() => {
     if(data) {

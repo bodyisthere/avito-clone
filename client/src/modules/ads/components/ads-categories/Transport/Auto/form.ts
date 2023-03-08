@@ -6,6 +6,7 @@ export const carOldForm: carOld = {
   inspectionData: null,
   color: undefined,
   condition: undefined,
+  tags: [],
   conditionBody: [
     {
       position: 'спереди', 
@@ -89,7 +90,8 @@ export const carNewForm: car = {
   inspectionData: null,
   color: undefined,
   description: undefined, 
-  meetingPoint: undefined, 
+  meetingPoint: undefined,
+  tags: [], 
   name: undefined,
   photo: null, 
   price: undefined,

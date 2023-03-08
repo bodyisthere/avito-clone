@@ -8,7 +8,7 @@ export const categoriesApi = createApi({
     baseUrl: "http://localhost:5000/",
   }),
   endpoints: (build) => ({
-    getCategories: build.query<ICategory[], null>({
+    getCategories: build.query<ICategory[], void>({
       query: () => ({
         url: 'get-all-categories',
         method: 'GET',

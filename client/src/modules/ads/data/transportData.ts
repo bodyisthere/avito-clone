@@ -172,15 +172,15 @@ export const damaged: IDamagedPositions[] = [
   },
 ]
 
-export const selectPowerSteering = ['Гидравлический', 'Электрический', 'Электрогидравлический',];
+export const selectPowerSteering = ['-Не выбрано-', 'Гидравлический', 'Электрический', 'Электрогидравлический',];
 
-export const selectClimatControl = ['Кондиционер', 'Климат-контроль однозонный', 'Климат-контроль многозонный',];
+export const selectClimatControl = ['-Не выбрано-', 'Кондиционер', 'Климат-контроль однозонный', 'Климат-контроль многозонный',];
 export const checkboxClimatControl = {title: null, data: [{title: "Управление на руле"}, {title: "Атермальное состояние"}]};
 
-export const selectSalon = ['Кожа', 'Ткань', 'Велюр', 'Комбинированный',];
+export const selectSalon = ['-Не выбрано-', 'Кожа', 'Ткань', 'Велюр', 'Комбинированный',];
 export const checkboxSalon = {title: null, data: [{title: "Кожаный руль"}, {title: "Люк"}]};
 
-export const selectPowerWindows = ['Только передние', 'Передние и задние',];
+export const selectPowerWindows = ['-Не выбрано-', 'Только передние', 'Передние и задние',];
 
 export const checkboxElectricDrive = {title: null, data: [{title: "Передних сидений"}, {title: "Задних сидений"}, {title: "Зеркал"}, {title: "Рулевой колонки"}, {title: "Складывания зеркал"}]}
 
@@ -198,11 +198,11 @@ export const checkboxMultimedia = {title: null, data: [{title: "CD/DVD/Blu-ray"}
 
 export const checkboxHeating = {title: null, data: [{title: 'Передних сидений'}, {title: 'Задних сидений'}, {title: 'Зеркал'}, {title: 'Заднего стекла'}, {title: 'Руля'},]}
 
-export const selectAudioSystem = ['2 колонки', '4 колонки', '6 колонок', '8+ колонок'];
+export const selectAudioSystem = ['-Не выбрано-', '2 колонки', '4 колонки', '6 колонок', '8+ колонок'];
 export const checkboxAudioSystem = {title: null, data: [{title: "Сабвуфер"}]};
 
-export const selectHeadlights = ['Галогенные', 'Ксеноновые', 'Светодиодные',];
+export const selectHeadlights = ['-Не выбрано-', 'Галогенные', 'Ксеноновые', 'Светодиодные',];
 export const checkboxHeadlights = {title: null, data: [{title: "Противотуманные"}, {title: "Омыватели фар"}, {title: "Адаптивное освещение"}]};
 
-export const selectTiresWheels = ["7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30",];
+export const selectTiresWheels = ['-Не выбрано-', "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30",];
 export const checkboxTiresWheels = {title: null, data: [{title: "Зимние шины в комплекте"}]};

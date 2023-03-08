@@ -9,30 +9,21 @@ interface IRegAccept extends ILoginAccept {
   name: string
 }
 
-
-const reAuthFunction = async () => {
-  //делаем какой - то кастомный запрос, который требует авторизации
-  let result = authApi.useCheckAuthQuery();
-
-  if (result.data) {
-    //получаем новую дату и обновленные токены
-    const refreshResult = authApi.useCheckAuthQuery();
-    if (refreshResult.data) {
-      //обновляем дату 
-
-    } else {
-
+const baseQuery = fetchBaseQuery({
+  baseUrl: "http://localhost:5000/",
+  credentials: "include",
+  prepareHeaders: (headers, { getState }) => {
+    const token = localStorage.getItem('token')
+    if(token) {
+      headers.set("authorization", `Bearer ${token}`)
     }
+    return headers
   }
-  return result
-}
+})
 
 export const authApi = createApi({
   reducerPath: "auth/api",
-  baseQuery: fetchBaseQuery({
-    baseUrl: "http://localhost:5000/",
-    credentials: "include"
-  }),
+  baseQuery,
   endpoints: (build) => ({
     login: build.mutation<any, ILoginAccept>({
       query: (body) => ({

@@ -2,7 +2,7 @@
 import React, {FC, useEffect, useState} from 'react'
 
 //импорт стилей
-import styles from './CategoryChoose.module.scss'
+import styles from './CategoryChoosen.module.scss'
 
 //импорт типов
 
@@ -22,6 +22,8 @@ export const CategoryChoosen: FC<ICategoryChoosen> = () => {
 
   const [prettyCategory, setPrettyCategory] = useState(categoryFormat(category));
 
+  console.log(category)
+
   return (
     <div className={styles["category-choosen"]}>
       <div className={styles["category-choosen__category-title"]}>
@@ -30,18 +32,18 @@ export const CategoryChoosen: FC<ICategoryChoosen> = () => {
       </div>
       {
       category[0] === 'Транспорт' 
+      ? 
+      category[1] === 'Автомобили' 
         ? 
-        category[1] === 'Автомобили' 
-          ? 
-            category[2] === 'Новый'
-            ?
-            <AutoNew />
-            :
-            <AutoRun />
-          : 
-          ''
+        category[2] === 'Новый'
+        ?
+        <AutoNew />
+        :
+        <AutoRun />
         : 
         ''
+      :
+      '' 
       }
 
     </div>

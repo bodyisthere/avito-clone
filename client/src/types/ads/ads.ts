@@ -5,4 +5,5 @@ export interface ad {
   description: string | undefined
   meetingPoint: string | undefined
   price: number | undefined
+  tags: string[]
 }

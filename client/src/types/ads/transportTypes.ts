@@ -4,29 +4,31 @@ interface groundTransport extends ad {
   VIN: string | undefined
 }
 
+export interface additionalOptions {
+  powerSteering: powerSteering
+  climatControl: climatControl
+  salon: salon
+  heating: heating
+  powerWindows: powerWindows
+  electricDrive: electricDrive
+  settingsMemory: settingsMemory
+  drivingAssistance: drivingAssistance
+  antiThiefSystem: antiThiefSystem
+  airbags: airbags
+  activeSafety:  activeSafety
+  multimedia: multimedia
+  audioSystem: audioSystem
+  headlights: headlights
+  tiresWheels: tiresWheels
+}
+
 //машины
 export interface car extends groundTransport {
   brand: string | undefined
-  vehiclePassport: "Оригинал" | "Дубликат" | "Электронный" | undefined
+  vehiclePassport: "Оригинал" | "Дубликат" | "Электронный" | "-" | undefined
   inspectionData: ("Есть сервисная книжка" | "Обслуживался у дилера" | "На гарантии")[] | null 
   color: "Белый" | "Серебрянный" | "Серый" | "Чёрный" | "Коричневый" | "Золотой" | "Бежевый" | "Красный" | "Бордовый" | "Оранжевый" | "Жёлтый" | "Зелёный" | "Голубой" | "Синий" | "Фиолетовый" | "Пурпурный" | "Розовый" | undefined
-  additionalOptions: {
-    powerSteering: powerSteering
-    climatControl: climatControl
-    salon: salon
-    heating: heating
-    powerWindows: powerWindows
-    electricDrive: electricDrive
-    settingsMemory: settingsMemory
-    drivingAssistance: drivingAssistance
-    antiThiefSystem: antiThiefSystem
-    airbags: airbags
-    activeSafety:  activeSafety
-    multimedia: multimedia
-    audioSystem: audioSystem
-    headlights: headlights
-    tiresWheels: tiresWheels
-  },
+  additionalOptions: additionalOptions
 }
 
 type climatControl = {
@@ -82,7 +84,7 @@ type multimedia = string[] | null
 
 
 export interface carOld extends car {
-  type: "Продаю личный автомобиль" | "Автомобиль приобретён на продажу" | undefined
+  type: "Продаю личный автомобиль" | "Автомобиль приобретён на продажу" | "-Не выбрано-" | undefined
   governmentNumber: {main: string, region: number} | null
   mileage: number | undefined
   condition: "Не битый" | "Битый" | undefined
