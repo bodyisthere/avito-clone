@@ -11,7 +11,7 @@ import { userReducer } from './slices/userSlice'
 import { categoryReducer } from "./slices/categorySlice";
 import { locationReducer } from "./slices/locationSlice";
 
-import { adsReducer } from "../modules/ads";
+import { categoryChooseReducer } from "../modules/ads/modules/category-choose";
 import { storiesSlice } from "./slices/storiesSlice";
 import { uploadApi } from "./api/uploadApi";
 import { storiesApi } from "./api/storiesApi";
@@ -22,7 +22,7 @@ const rootReducer = combineReducers({
   storiesReducer,
   userReducer,
   categoryReducer,
-  adsReducer,
+  categoryChooseReducer,
   locationReducer,
   [categoriesApi.reducerPath]: categoriesApi.reducer,
   [authApi.reducerPath]: authApi.reducer,

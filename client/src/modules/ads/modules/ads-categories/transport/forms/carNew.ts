@@ -1,0 +1,33 @@
+import { car } from "../types/transportTypes"
+
+export const carNewForm: car = {
+  brand: undefined,
+  vehiclePassport: undefined,
+  inspectionData: null,
+  color: undefined,
+  description: undefined, 
+  meetingPoint: undefined,
+  tags: [], 
+  name: undefined,
+  photo: null, 
+  price: undefined,
+  video: null,
+  VIN: undefined,
+  additionalOptions: {
+    powerSteering: null,
+    climatControl: {select: null, checkbox: null},
+    salon: {select: null, checkbox: null},
+    heating: null,
+    powerWindows: null,
+    electricDrive: null,
+    settingsMemory: null,
+    drivingAssistance: null,
+    antiThiefSystem: null,
+    airbags: null,
+    activeSafety:  null,
+    multimedia: null,
+    audioSystem: {select: null, checkbox: null},
+    headlights: {select: null, checkbox: null},
+    tiresWheels: {select: null, checkbox: null},
+  },
+}

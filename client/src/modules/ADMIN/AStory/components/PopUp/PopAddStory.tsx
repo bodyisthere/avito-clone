@@ -1,8 +1,7 @@
 import axios, { AxiosResponse } from 'axios';
 import React, { FC, useState } from 'react'
 
-import { InputText, Button } from '../../../../../UI';
-import { FileUpload, FileUploaded } from '../../../../ads';
+import { InputText, Button, FileUpload, FileUploaded } from '../../../../../UI';
 // import { uploadImages,uploadStory } from '../../api/uploadImages';
 import { uploadApi } from '../../../../../store/api/uploadApi';
 import { storiesApi } from '../../../../../store/api/storiesApi'

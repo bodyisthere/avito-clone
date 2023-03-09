@@ -21,21 +21,19 @@ interface ICategoryChoose {
 }
 
 export const CategoryChoose: FC<ICategoryChoose> = ({setStep}) => {
+  const { categories, isError, isLoading } = useLoadCategories();
   const { changeCategory } = useActions();
 
   const [activeCategory, setActiveCategory] = useState<number | null>(null);
   const [activeChapter, setActiveChapter] = useState<number | null>(null);
   const [activeSubChapter, setActiveSubChapter] = useState<number | null>(null);
-
   const [category, setCategory] = useState<string[] | []>([]);
-
-  const { categories, isError, isLoading } = useLoadCategories();
 
   const submitCategory = () => {
     changeCategory(category);
     setStep('category-choosen');
   }
-  
+
   return (
     <>
       {isError ? 'some error...' : ''}

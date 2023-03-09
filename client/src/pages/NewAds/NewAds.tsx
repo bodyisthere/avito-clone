@@ -19,7 +19,7 @@ export const NewAds: FC = () => {
             Новое объявление
         </div>
         {step === 'category-choose' ? <CategoryChoose setStep={setStep}/> : ''}
-        {step === 'category-choosen' ? <CategoryChoosen /> : ''}
+        {step === 'category-choosen' ? <CategoryChoosen setStep={setStep}/> : ''}
       </div>
     </div>
   )
