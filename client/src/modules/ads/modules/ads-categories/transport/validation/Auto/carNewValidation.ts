@@ -1,4 +1,4 @@
-import { car } from "../types/transportTypes"
+import { car } from "../../types/transport/Auto/ICarNew";
 
 export const carNewValidation = (form: car) => {
   let errors = [];
@@ -11,5 +11,9 @@ export const carNewValidation = (form: car) => {
   if(!form.inspectionData) errors.push('inspectionData')
   if(!form.description) errors.push('description')
   if(!form.price) errors.push('price')
+  if(errors.length > 0) {
+    window.scrollTo(0, 0)
+    return errors;
+  }
   return errors;
 }

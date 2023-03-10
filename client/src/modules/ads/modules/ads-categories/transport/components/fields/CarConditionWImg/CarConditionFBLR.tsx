@@ -5,7 +5,7 @@ import React, { FC, useState } from 'react'
 import styles from './CarConditionWImg.module.scss'
 
 //импорт типов
-import { IDamagedPositions, IPoint } from '../../../types/damagedPosition'
+import { IDamagedPositions, IPoint } from '../../../types/transport/IDamagedPosition'
 
 //импорт функционала
 

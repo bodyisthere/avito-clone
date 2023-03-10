@@ -1,4 +1,4 @@
-import { carOld } from "../types/transportTypes";
+import { carOld } from "../../types/transport/Auto/ICarOld";
 
 export const carOldValidation = (form: carOld) => {
   let errors = [];
@@ -17,9 +17,7 @@ export const carOldValidation = (form: carOld) => {
   if(!form.price) errors.push('price')
   if(errors.length > 0) {
     window.scrollTo(0, 0)
-    // setValidationErrors(errors);
-    return true;
+    return errors;
   }
-  // setValidationErrors([]);
-  return false;
+  return errors;
 }

@@ -1,11 +1,11 @@
-import { carOld } from "../types/transportTypes"
+import { carOld } from "../../types/transport/Auto/ICarOld"
 
 export const carOldForm: carOld = {
-  brand: undefined,
-  vehiclePassport: undefined,
+  brand: null,
+  vehiclePassport: null,
   inspectionData: null,
-  color: undefined,
-  condition: undefined,
+  color: null,
+  condition: null,
   tags: [],
   conditionBody: [
     {
@@ -54,17 +54,17 @@ export const carOldForm: carOld = {
       ]
     },
   ],
-  description: undefined, 
+  description: null, 
   governmentNumber: null,
-  meetingPoint: undefined, 
-  mileage: undefined, 
-  name: undefined,
+  meetingPoint: null, 
+  mileage: null, 
+  name: null,
   photo: null, 
-  price: undefined,
-  type: undefined, 
-  vehiclePassportOwners: undefined,
+  price: null,
+  type: null, 
+  vehiclePassportOwners: null,
   video: null,
-  VIN: undefined,
+  VIN: null,
   additionalOptions: {
     powerSteering: null,
     climatControl: {select: null, checkbox: null},

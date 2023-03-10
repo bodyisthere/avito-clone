@@ -1,18 +1,18 @@
-import { car } from "../types/transportTypes"
+import { car } from "../../types/transport/Auto/ICarNew"
 
 export const carNewForm: car = {
-  brand: undefined,
-  vehiclePassport: undefined,
+  brand: null,
+  vehiclePassport: null,
   inspectionData: null,
-  color: undefined,
-  description: undefined, 
-  meetingPoint: undefined,
+  color: null,
+  description: null, 
+  meetingPoint: null,
   tags: [], 
-  name: undefined,
+  name: null,
   photo: null, 
-  price: undefined,
+  price: null,
   video: null,
-  VIN: undefined,
+  VIN: null,
   additionalOptions: {
     powerSteering: null,
     climatControl: {select: null, checkbox: null},

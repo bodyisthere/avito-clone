@@ -7,7 +7,7 @@ import styles from './CarAdditional.module.scss'
 //импорт типов
 
 //импорт функционала
-import { carOld } from '../../../types/transportTypes'
+import { carOld } from '../../../types/transport/Auto/ICarOld'
 import { checkboxActiveSafety, checkboxAirBags, checkboxAntiThiefSystem, checkboxAudioSystem, checkboxClimatControl, checkboxDrivingAssistance, checkboxElectricDrive, checkboxHeadlights, checkboxHeating, checkboxMultimedia, checkboxSalon, checkboxSettingsMemory, checkboxTiresWheels, selectAudioSystem, selectClimatControl, selectHeadlights, selectPowerSteering, selectPowerWindows, selectSalon, selectTiresWheels } from '../../../data/carData'
 
 //импорт компонентов

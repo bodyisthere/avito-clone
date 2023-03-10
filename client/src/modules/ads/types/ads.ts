@@ -1,9 +1,9 @@
 export interface ad {
-  name: string | undefined
+  name: string | null
   photo: string[] | null
   video: string | null
-  description: string | undefined
-  meetingPoint: string | undefined
-  price: number | undefined
+  description: string | null
+  meetingPoint: string | null
+  price: number | null
   tags: string[]
 }

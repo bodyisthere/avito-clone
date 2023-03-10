@@ -5,7 +5,8 @@ import React, { FC, useEffect, useState } from 'react'
 import standart from '../../../../../styles/ads.module.scss'
 
 //импорт типов
-import { car, carOld } from '../../types/transportTypes'
+import { car } from '../../types/transport/Auto/ICarNew'
+import { carOld } from '../../types/transport/Auto/ICarOld'
 
 //импорт функционала
 import { uploadApi } from '../../../../../../../store/api/uploadApi'
@@ -15,12 +16,13 @@ import { ColorChoose, VideoLink } from '../../../../../UI'
 import { FileUpload, FileUploaded } from '../../../../../../../UI'
 
 interface IAppereance {
-  form: car | carOld
+  form: any
   setFunction: any
   validationErrors: string[]
+  fields: string[]
 }
 
-export const Appereance: FC<IAppereance> = ( { form, setFunction, validationErrors } ) => {
+export const Appereance: FC<IAppereance> = ( { form, setFunction, validationErrors, fields } ) => {
   const [uploadImg, { data } ] = uploadApi.useUploadImagesMutation();
 
   const [selectedFiles, setSelectedFiles] = useState();
@@ -37,7 +39,7 @@ export const Appereance: FC<IAppereance> = ( { form, setFunction, validationErro
 
   const deleteImg = (e: string) => {
     if(!form.photo) return;
-    const edited = form.photo.filter(el => el !== e)
+    const edited = form.photo.filter((el: any) => el !== e)
     setFunction('photo', edited);
   }
 
@@ -48,44 +50,56 @@ export const Appereance: FC<IAppereance> = ( { form, setFunction, validationErro
   return (
     <>
       <div className={standart.title}>Внешний вид</div>
-        <div className={standart.item}>
-          <div className={standart["item-left"]}>
-            <label className={standart.subtitle}>Фотографии<br/>Не более 10*</label>
+        {
+          fields.includes('Photo')
+          &&
+          <div className={standart.item}>
+            <div className={standart["item-left"]}>
+              <label className={standart.subtitle}>Фотографии<br/>Не более 10*</label>
+            </div>
+            <div className={standart["item-right"]}>
+              {
+                Array.isArray(form.photo) && form.photo.length > 0 
+                ?
+                <FileUploaded 
+                uploadedFiles={form.photo ? form.photo : []} 
+                deleteFunction={deleteImg}
+                />
+                :
+                <FileUpload 
+                isMultiple={true} 
+                onChange={handleImgUpload}
+                />
+              }
+              {validationErrors.includes('photo') && <span className={standart['error-text']}><br/>Загрузите хотя бы одну фотографию</span>}
+            </div>
           </div>
-          <div className={standart["item-right"]}>
-            {
-              Array.isArray(form.photo) && form.photo.length > 0 
-              ?
-              <FileUploaded 
-              uploadedFiles={form.photo ? form.photo : []} 
-              deleteFunction={deleteImg}
-              />
-              :
-              <FileUpload 
-              isMultiple={true} 
-              onChange={handleImgUpload}
-              />
-            }
-            {validationErrors.includes('photo') && <span className={standart['error-text']}><br/>Загрузите хотя бы одну фотографию</span>}
+        }
+        {
+          fields.includes('Color')
+          &&
+          <div className={standart.item}>
+            <div className={standart["item-left"]}>
+              <label className={standart.subtitle}>Цвет*</label>
+            </div>
+            <div className={standart["item-right"]}>
+              <ColorChoose activeColor={form.color} setOption={setFunction} optionKey='color'/>
+              {validationErrors.includes('color') && <span className={standart['error-text']}><br/>Выберите цвет</span>}
+            </div>
           </div>
-        </div>
-        <div className={standart.item}>
-          <div className={standart["item-left"]}>
-            <label className={standart.subtitle}>Цвет*</label>
+        }
+        {
+          fields.includes('Video')
+          &&
+          <div className={standart.item}>
+            <div className={standart["item-left"]}>
+              <label className={standart.subtitle}>Видео(youtube)</label>
+            </div>
+            <div className={standart["item-right"]}>
+              <VideoLink videoLink={form.video} setOption={setFunction} optionKey='video'/>
+            </div>
           </div>
-          <div className={standart["item-right"]}>
-            <ColorChoose activeColor={form.color} setOption={setFunction} optionKey='color'/>
-            {validationErrors.includes('color') && <span className={standart['error-text']}><br/>Выберите цвет</span>}
-          </div>
-        </div>
-        <div className={standart.item}>
-          <div className={standart["item-left"]}>
-            <label className={standart.subtitle}>Видео(youtube)</label>
-          </div>
-          <div className={standart["item-right"]}>
-            <VideoLink videoLink={form.video} setOption={setFunction} optionKey='video'/>
-          </div>
-        </div>
+        }
     </>
   )
 }

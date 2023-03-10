@@ -5,14 +5,14 @@ import { FC, useState, useEffect } from 'react'
 import styles from './Auto.module.scss'
 
 //импорт типов
-import { carOld } from '../../../types/transportTypes'
-import { additionalOptions } from '../../../types/transportTypes'
+import { carOld } from '../../../types/transport/Auto/ICarOld'
+import { additionalOptions } from '../../../types/transport/Auto/ICarNew'
 
 //импорт функционала
 import { adsApi } from '../../../../../../../../store/api/adsApi'
-import { carOldForm } from '../../../forms/carOld'
+import { carOldForm } from '../../../forms/Auto/carOld'
 import { useAppSelector } from '../../../../../../../../hooks'
-import { carOldValidation } from '../../../validation/carOldValidation'
+import { carOldValidation } from '../../../validation/Auto/carOldValidation'
 
 //импорт компонентов
 import { Select, Button } from '../../../../../../../../UI'
@@ -20,7 +20,7 @@ import { Select, Button } from '../../../../../../../../UI'
 import { Appereance } from '../../fields/Appereance'
 import { RegistrationInfo } from '../../fields/RegistrationInfo'
 import { Specifications } from '../../fields/Specifications'
-import { Condition } from '../../fields/Condition'
+import { Condition } from '../../fields/ConditionAuto'
 import { Body } from '../../fields/Body'
 import { Additional } from '../../fields/Additional'
 import { DPC } from '../../fields/DPC'
@@ -92,7 +92,7 @@ export const AutoRun: FC = () => {
     <div className={styles["auto"]}>
       <Name setFunction={setFunction} form={form} validationErrors={validationErrors}/>
       <Type setFunction={setFunction} form={form} validationErrors={validationErrors} />
-      <Appereance form={form} setFunction={setFunction} validationErrors={validationErrors}/>
+      <Appereance form={form} setFunction={setFunction} validationErrors={validationErrors} fields={['Color', 'Photo', 'Video']}/>
       <RegistrationInfo form={form} setFunction={setFunction} fields={['VIN', 'AutoNumber']} validationErrors={validationErrors}/>
       <Specifications setFunction={setFunction} validationErrors={validationErrors}/>
       <Condition form={form} setFunction={setFunction} setForm={setForm} fields={['Mileage', 'Condition', 'VehiclePassport', 'VehiclePassportOwners', 'InspectionData']} validationErrors={validationErrors}/>

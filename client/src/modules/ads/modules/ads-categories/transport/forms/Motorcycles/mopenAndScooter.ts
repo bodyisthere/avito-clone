@@ -1,0 +1,27 @@
+import { IMopenAndScooter } from "../../types/transport/Motorcycles/IMopenAndScooter"
+
+export const mopenAndScooterForm: IMopenAndScooter = {
+  name: null,
+  VIN: null,
+  condition: null,
+  description: null,
+  meetingPoint: null,
+  photo: null,
+  price: null,
+  tags: [],
+  video: null,
+  mileage: null,
+  brand: null,
+  type: null,
+  yearOfIssue: null,
+  engineType: null,
+  power: null,
+  engineCapacity: null,
+  fuelSupply: null,
+  numberOfCycles: null,
+  availability: null,
+  additionalOptions: null,
+  cooling: null,
+  transmission: null,
+  VINOwners: null,
+}

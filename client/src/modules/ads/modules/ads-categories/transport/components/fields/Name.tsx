@@ -23,7 +23,7 @@ export const Name: FC<IName> = ( { form, setFunction, validationErrors } ) => {
     <div className={standart.title}>Информация об объявлении</div>
       <div className={standart.item}>
         <div className={standart["item-left"]}>
-          <label className={standart.subtitle}>Название объявления</label>
+          <label className={standart.subtitle}>Название объявления*</label>
         </div>
         <div className={standart["item-right"]}>
           <InputText 

@@ -6,7 +6,7 @@ import standart from '../../../../../styles/ads.module.scss'
 import styles from '../constructor/Auto/Auto.module.scss'
 
 //импорт типов
-import { carOld, car } from '../../types/transportTypes'
+import { carOld } from '../../types/transport/Auto/ICarOld'
 
 //импорт функционала
 import { checkboxActiveSafety, checkboxAirBags, checkboxAntiThiefSystem, checkboxAudioSystem, checkboxClimatControl, checkboxDrivingAssistance, checkboxElectricDrive, checkboxHeadlights, checkboxHeating, checkboxMultimedia, checkboxSalon, checkboxSettingsMemory, checkboxTiresWheels, selectAudioSystem, selectClimatControl, selectHeadlights, selectPowerSteering, selectPowerWindows, selectSalon, selectTiresWheels } from '../../data/carData'
