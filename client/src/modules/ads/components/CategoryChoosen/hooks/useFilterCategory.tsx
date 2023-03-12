@@ -4,7 +4,7 @@ import { categoryFormat } from '../../../helpers/categoryFormat'
 import { useAppSelector } from '../../../../../hooks'
 
 import { AutoRun, AutoNew } from '../../../modules/ads-categories'
-import { AllTerainVehicle } from '../../../modules/ads-categories/transport/components/constructor/Motorcycles/AllTerrainVehicle'
+import { AllTerrainVehicle } from '../../../modules/ads-categories/transport/components/constructor/Motorcycles/AllTerrainVehicle'
 import { ATVsAndBuggies, Karting, MopenAndScooter, Motorcycles, Snowmobiles } from '../../../modules/ads-categories/transport'
 
 
@@ -25,7 +25,7 @@ export const useFilterCategory = () => {
     },
     {
       key: ['Транспорт', 'Мотоциклы и мототехника', 'Вездеходы'],
-      element: <AllTerainVehicle />
+      element: <AllTerrainVehicle />
     },
     {
       key: ['Транспорт', 'Мотоциклы и мототехника', 'Картинг'],

@@ -49,7 +49,6 @@ export const RegistrationInfo: FC<IRegistrationInfo> = ( { setFunction, form, fi
             value={form.VIN} 
             />
           <span style={{'color':'gray'}}>Покупатели не увидят ваш VIN и госномер</span>
-          {validationErrors.includes('vin') && <span className={standart['error-text']}><br/>Укажите VIN</span>}
         </div>
       </div>}
       {

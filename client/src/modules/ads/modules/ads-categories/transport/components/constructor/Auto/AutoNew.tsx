@@ -11,6 +11,7 @@ import { car } from '../../../types/transport/Auto/ICarNew'
 import { adsApi } from '../../../../../../../../store/api/adsApi'
 import { carNewForm } from '../../../forms/Auto/carNew'
 import { carNewValidation } from '../../../validation/Auto/carNewValidation'
+import { autoAdditional } from '../../../data/Auto/autoAdditional'
 
 //импорт компонентов
 import { Select, Button } from '../../../../../../../../UI'
@@ -19,7 +20,7 @@ import { Name } from '../../fields/Name'
 import { Appereance } from '../../fields/Appereance'
 import { RegistrationInfo } from '../../fields/RegistrationInfo'
 import { Specifications } from '../../fields/Specifications'
-import { Condition } from '../../fields/ConditionAuto'
+import { Condition } from '../../fields/Auto/ConditionAuto'
 import { Additional } from '../../fields/Additional'
 import { DPC } from '../../fields/DPC'
 
@@ -60,7 +61,7 @@ export const AutoNew: FC = () => {
         fields={['VehiclePassport', 'InspectionData']}
         validationErrors={validationErrors}
       />
-      <Additional setForm={setForm}/>
+      <Additional setForm={setForm} data={autoAdditional}/>
       <DPC form={form} setFunction={setFunction} setForm={setForm} validationErrors={validationErrors}/>
       <Button onClick={() => submitForm()}>check</Button>
     </div>

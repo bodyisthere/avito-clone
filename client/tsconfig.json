@@ -22,5 +22,5 @@
   },
   "include": [
     "src"
-, "../trash/transportTypes.ts"  ]
+, "../trash/transportTypes.ts", "../trash/CarAdditional.tsx"  ]
 }

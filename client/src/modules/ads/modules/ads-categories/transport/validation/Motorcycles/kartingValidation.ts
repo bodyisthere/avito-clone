@@ -4,7 +4,6 @@ export const kartingValidation = (form: IKarting) => {
   let errors = [];
   if(!form.name) errors.push('name')
   if(!form.photo) errors.push('photo')
-  if(!form.VIN) errors.push('vin')
   if(!form.condition) errors.push('condition')
   if(!form.description) errors.push('description')
   if(!form.price) errors.push('price')

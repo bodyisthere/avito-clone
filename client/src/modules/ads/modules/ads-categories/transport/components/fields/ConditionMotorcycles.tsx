@@ -61,6 +61,32 @@ export const ConditionMotorcycles: FC<IConditionMotorcycles> = ({ form, setFunct
           </div>
         </div>
       }
+      {
+        fields.includes('pts')
+        &&
+        <div className={standart.item}>
+          <div className={standart["item-left"]}>
+            <label className={standart.subtitle}>ПТС</label>
+          </div>
+          <div className={standart["item-right"]}>
+            <CarMileage carMileage={form.mileage} setOption={setFunction} optionKey={'mileage'}/>
+            {validationErrors.includes('mileage') && <span className={standart['error-text']}><br/>Выберите доступность</span>}
+          </div>
+        </div>
+      }
+      {
+        fields.includes('mileage')
+        &&
+        <div className={standart.item}>
+          <div className={standart["item-left"]}>
+            <label className={standart.subtitle}>Пробег*</label>
+          </div>
+          <div className={standart["item-right"]}>
+            <CarMileage carMileage={form.mileage} setOption={setFunction} optionKey={'mileage'}/>
+            {validationErrors.includes('mileage') && <span className={standart['error-text']}><br/>Выберите доступность</span>}
+          </div>
+        </div>
+      }
     </>
   )
 }

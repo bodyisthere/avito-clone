@@ -58,6 +58,7 @@ export const Snowmobiles: FC = () => {
         setFunction={setFunction} 
         validationErrors={validationErrors}
         form={form}
+        fields={['brand','type','yearOfIssue', 'engineType', 'power', 'engineCapacity', 'numberOfCycles', 'maxPassengers', 'trackWidth']}
       />
       <ConditionMotorcycles 
         form={form} 

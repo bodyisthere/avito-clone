@@ -13,6 +13,7 @@ import { adsApi } from '../../../../../../../../store/api/adsApi'
 import { carOldForm } from '../../../forms/Auto/carOld'
 import { useAppSelector } from '../../../../../../../../hooks'
 import { carOldValidation } from '../../../validation/Auto/carOldValidation'
+import { autoAdditional } from '../../../data/Auto/autoAdditional'
 
 //импорт компонентов
 import { Select, Button } from '../../../../../../../../UI'
@@ -20,8 +21,8 @@ import { Select, Button } from '../../../../../../../../UI'
 import { Appereance } from '../../fields/Appereance'
 import { RegistrationInfo } from '../../fields/RegistrationInfo'
 import { Specifications } from '../../fields/Specifications'
-import { Condition } from '../../fields/ConditionAuto'
-import { Body } from '../../fields/Body'
+import { Condition } from '../../fields/Auto/ConditionAuto'
+import { CarBody } from '../../fields/Auto/CarBody/CarBody'
 import { Additional } from '../../fields/Additional'
 import { DPC } from '../../fields/DPC'
 import { Type } from '../../fields/Type'
@@ -96,8 +97,8 @@ export const AutoRun: FC = () => {
       <RegistrationInfo form={form} setFunction={setFunction} fields={['VIN', 'AutoNumber']} validationErrors={validationErrors}/>
       <Specifications setFunction={setFunction} validationErrors={validationErrors}/>
       <Condition form={form} setFunction={setFunction} setForm={setForm} fields={['Mileage', 'Condition', 'VehiclePassport', 'VehiclePassportOwners', 'InspectionData']} validationErrors={validationErrors}/>
-      <Body form={form} setFunction={setFunction}/>
-      <Additional setForm={setForm}/>
+      <CarBody form={form} setFunction={setFunction}/>
+      <Additional setForm={setForm} data={autoAdditional}/>
       <DPC form={form} setFunction={setFunction} setForm={setForm} validationErrors={validationErrors}/>
       <Button onClick={() => {submitForm()}}>Отправить</Button>
     </div>

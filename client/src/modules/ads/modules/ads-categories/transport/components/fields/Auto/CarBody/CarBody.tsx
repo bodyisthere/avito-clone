@@ -2,22 +2,22 @@
 import React, { FC } from 'react'
 
 //импорт стилей
-import standart from '../../../../../styles/ads.module.scss'
-import styles from '../constructor/Auto/Auto.module.scss'
+import standart from '../../../../../../../styles/ads.module.scss'
+import styles from '../../../constructor/Auto/Auto.module.scss'
 
 //импорт типов
 
 //импорт функционала
 
 //импорт компонентов
-import { CarConditionWImg } from './CarConditionWImg/CarConditionWImg'
+import { CarConditionWImg } from './CarConditionWImg'
 
-interface IBody {
+interface ICarBody {
   form: any
   setFunction: any
 }
 
-export const Body: FC<IBody> = ( { form, setFunction } ) => {
+export const CarBody: FC<ICarBody> = ( { form, setFunction } ) => {
   return (
     <>
     <div className={standart.title}>Состояние кузова</div>
@@ -27,7 +27,7 @@ export const Body: FC<IBody> = ( { form, setFunction } ) => {
           <label className={standart.subtitle}>Тип повреждения</label>
         </div>
         <div className={standart["item-right"]}>
-          <CarConditionWImg setOption={setFunction} optionKey={'conditionBody'} />
+          <CarConditionWImg setOption={setFunction} optionKey={'conditionCarBody'} />
         </div>
       </div>
     </>

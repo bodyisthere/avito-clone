@@ -7,18 +7,18 @@ import styles from './CarAdditional.module.scss'
 //импорт типов
 
 //импорт функционала
-import { carOld } from '../../../types/transport/Auto/ICarOld'
-import { checkboxActiveSafety, checkboxAirBags, checkboxAntiThiefSystem, checkboxAudioSystem, checkboxClimatControl, checkboxDrivingAssistance, checkboxElectricDrive, checkboxHeadlights, checkboxHeating, checkboxMultimedia, checkboxSalon, checkboxSettingsMemory, checkboxTiresWheels, selectAudioSystem, selectClimatControl, selectHeadlights, selectPowerSteering, selectPowerWindows, selectSalon, selectTiresWheels } from '../../../data/carData'
+import { carOld } from '../client/src/modules/ads/modules/ads-categories/transport/types/transport/Auto/ICarOld'
+import { checkboxActiveSafety, checkboxAirBags, checkboxAntiThiefSystem, checkboxAudioSystem, checkboxClimatControl, checkboxDrivingAssistance, checkboxElectricDrive, checkboxHeadlights, checkboxHeating, checkboxMultimedia, checkboxSalon, checkboxSettingsMemory, checkboxTiresWheels, selectAudioSystem, selectClimatControl, selectHeadlights, selectPowerSteering, selectPowerWindows, selectSalon, selectTiresWheels } from '../client/src/modules/ads/modules/ads-categories/transport/data/Auto/autoData'
 
 //импорт компонентов
-import { Select } from '../../../../../../../../UI'
-import { CheckboxList } from '../../../../../../UI'
+import { Select } from '../client/src/UI'
+import { CheckboxList } from '../client/src/modules/ads/UI'
 
 interface ICarAdditional {
   setForm: React.Dispatch<React.SetStateAction<carOld>>
 }
 
-export const CarAdditional: FC<ICarAdditional> = ( { setForm }) => {
+export const CarAdditionals: FC<ICarAdditional> = ( { setForm }) => {
 
   const setAdditionalSelect = (e: any, key: 'powerSteering' | 'powerWindows') => {
     setForm(prev => {

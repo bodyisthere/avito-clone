@@ -2,10 +2,10 @@ import React, { FC, useState, useEffect } from 'react'
 
 import styles from './CarConditionWImg.module.scss'
 
-import { damaged } from '../../../data/carData'
+import { damaged } from '../../../../data/Auto/autoData'
 
-import { Select } from '../../../../../../../../UI'
-import { CheckboxList } from '../../../../../../UI'
+import { Select } from '../../../../../../../../../UI'
+import { CheckboxList } from '../../../../../../../UI'
 import { CarConditionFBLR } from './CarConditionFBLR'
 
 interface ICarConditionWImg {

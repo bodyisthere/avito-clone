@@ -2,17 +2,17 @@
 import React, { FC, useState } from 'react'
 
 //импорт стилей
-import standart from '../../../../../styles/ads.module.scss'
-import styles from '../constructor/Auto/Auto.module.scss'
+import standart from '../../../../../../styles/ads.module.scss'
+import styles from '../../constructor/Auto/Auto.module.scss'
 
 //импорт типов
 
 //импорт функционала
-import { inspectionData } from '../../data/carData'
+import { inspectionData } from '../../../data/Auto/autoData'
 
 //импорт компонентов
-import { CarMileage, RadioButtonsChoose, CheckboxList, Tip } from '../../../../../UI'
-import { Select } from '../../../../../../../UI'
+import { CarMileage, RadioButtonsChoose, CheckboxList, Tip } from '../../../../../../UI'
+import { Select } from '../../../../../../../../UI'
 
 interface ICondition {
   form: any
