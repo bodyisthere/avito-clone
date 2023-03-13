@@ -11,11 +11,7 @@ import { kartingForm } from '../../../forms/Motorcycles/karting'
 import { kartingValidation } from '../../../validation/Motorcycles/kartingValidation'
 
 //импорт компонентов
-import { Name } from '../../fields/Name'
-import { RegistrationInfo } from '../../fields/RegistrationInfo'
-import { Appereance } from '../../fields/Appereance'
-import { ConditionMotorcycles } from '../../fields/ConditionMotorcycles'
-import { DPC } from '../../fields/DPC'
+import { Name, RegistrationInfo, Appereance, Condition, DPC } from '../../fields'
 import { Button } from '../../../../../../../../UI'
 
 export const Karting: FC = () => {
@@ -45,15 +41,15 @@ export const Karting: FC = () => {
         form={form} 
         setFunction={setFunction} 
         validationErrors={validationErrors}
-        fields={['Photo', 'Video']}
+        fields={['photo', 'video']}
       />
       <RegistrationInfo 
         form={form} 
         setFunction={setFunction} 
         validationErrors={validationErrors} 
-        fields={['VIN']}
+        fields={['vin']}
       />
-      <ConditionMotorcycles 
+      <Condition 
         form={form} 
         setFunction={setFunction} 
         validationErrors={validationErrors} 

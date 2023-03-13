@@ -12,53 +12,33 @@ import { adsApi } from '../../../../../../../../store/api/adsApi'
 import { carNewForm } from '../../../forms/Auto/carNew'
 import { carNewValidation } from '../../../validation/Auto/carNewValidation'
 import { autoAdditional } from '../../../data/Auto/autoAdditional'
+import { autoBrands } from '../../../data/Auto/autoBrands'
+import { useTransportAds } from '../../../hooks/useTransportAds'
 
 //импорт компонентов
 import { Select, Button } from '../../../../../../../../UI'
-
-import { Name } from '../../fields/Name'
-import { Appereance } from '../../fields/Appereance'
-import { RegistrationInfo } from '../../fields/RegistrationInfo'
-import { Specifications } from '../../fields/Specifications'
-import { Condition } from '../../fields/Auto/ConditionAuto'
-import { Additional } from '../../fields/Additional'
-import { DPC } from '../../fields/DPC'
+import { 
+  Name, Appereance, RegistrationInfo, 
+  Specifications, Condition, Additional, 
+  DPC 
+} from '../../fields'
 
 export const AutoNew: FC = () => {
   const [ postSend, {} ] = adsApi.useNewPostMutation();
 
-  const [form, setForm] = useState<car>(carNewForm);
-  const [validationErrors, setValidationErrors] = useState<string[]>([])
-
-  const setFunction = (key: string, value: any) => {
-    setForm((prev: any) => {
-      return {
-        ...prev, [key] : value
-      } as car;
-    })
-  }
-
-  const submitForm = () => {
-    setValidationErrors(carNewValidation(form));
-    // const body = {
-    //   ...form,
-    //   additionalOptions: '',
-    // };
-    // postSend(body)
-    // .then((payload: any) => console.log(payload))
-  }
+  const { setFunction, submitForm, validationErrors, form, setForm } = useTransportAds(carNewForm, carNewValidation);
 
   return (
     <div className={styles.auto}>
       <Name form={form} setFunction={setFunction} validationErrors={validationErrors}/>
-      <Appereance form={form} setFunction={setFunction} validationErrors={validationErrors} fields={['Color', 'Photo', 'Video']}/>
-      <RegistrationInfo form={form} setFunction={setFunction} fields={['VIN']} validationErrors={validationErrors}/>
-      <Specifications setFunction={setFunction} validationErrors={validationErrors}/>
+      <Appereance form={form} setFunction={setFunction} validationErrors={validationErrors} fields={['color', 'photo', 'video']}/>
+      <RegistrationInfo form={form} setFunction={setFunction} fields={['vin']} validationErrors={validationErrors}/>
+      <Specifications setFunction={setFunction} validationErrors={validationErrors} fields={['brand']} form={form} data={{brands: autoBrands}}/>
       <Condition 
         form={form} 
         setFunction={setFunction} 
         setForm={setForm}
-        fields={['VehiclePassport', 'InspectionData']}
+        fields={['vehiclePassport', 'inspectionData']}
         validationErrors={validationErrors}
       />
       <Additional setForm={setForm} data={autoAdditional}/>

@@ -14,35 +14,24 @@ import { carOldForm } from '../../../forms/Auto/carOld'
 import { useAppSelector } from '../../../../../../../../hooks'
 import { carOldValidation } from '../../../validation/Auto/carOldValidation'
 import { autoAdditional } from '../../../data/Auto/autoAdditional'
+import { autoBrands } from '../../../data/Auto/autoBrands'
+import { useTransportAds } from '../../../hooks/useTransportAds'
 
 //импорт компонентов
 import { Select, Button } from '../../../../../../../../UI'
-
-import { Appereance } from '../../fields/Appereance'
-import { RegistrationInfo } from '../../fields/RegistrationInfo'
-import { Specifications } from '../../fields/Specifications'
-import { Condition } from '../../fields/Auto/ConditionAuto'
 import { CarBody } from '../../fields/Auto/CarBody/CarBody'
-import { Additional } from '../../fields/Additional'
-import { DPC } from '../../fields/DPC'
-import { Type } from '../../fields/Type'
-import { Name } from '../../fields/Name'
+import { 
+  Name, Appereance, RegistrationInfo, 
+  Specifications, Condition, Additional, 
+  DPC, Type
+} from '../../fields'
 
 export const AutoRun: FC = () => {
-  const [validationErrors, setValidationErrors] = useState<any>([]);
   const { category } = useAppSelector(state => state.categoryChooseReducer);
   
   const [postSend, {} ] = adsApi.useNewPostMutation();
   
-  const [form, setForm] = useState<carOld>(carOldForm);
-
-  const setFunction = (key: string, value: any) => {
-    setForm((prev) => {
-      return {
-        ...prev, [key] : value
-      } as carOld
-    })
-  } 
+  const { setFunction, submitForm, validationErrors, form, setForm } = useTransportAds(carOldForm, carOldValidation);
 
   useEffect(() => {
     setFunction('tags', category)
@@ -74,29 +63,14 @@ export const AutoRun: FC = () => {
     return additionalOptions;
   }
 
-  const submitForm = () => {
-    setValidationErrors(carOldValidation(form));
-    // if(isErrors) return;
-    // const body = {
-    //   ...form, 
-    //   conditionBody: conditionBodyPretty(), 
-    //   additionalOptions: additionalOptionsPretty()
-    // }
-    // postSend(body)
-    // .then(payload => {
-    //   console.log(payload)
-    // })
-  }
-
-
   return (
     <div className={styles["auto"]}>
       <Name setFunction={setFunction} form={form} validationErrors={validationErrors}/>
       <Type setFunction={setFunction} form={form} validationErrors={validationErrors} />
-      <Appereance form={form} setFunction={setFunction} validationErrors={validationErrors} fields={['Color', 'Photo', 'Video']}/>
-      <RegistrationInfo form={form} setFunction={setFunction} fields={['VIN', 'AutoNumber']} validationErrors={validationErrors}/>
-      <Specifications setFunction={setFunction} validationErrors={validationErrors}/>
-      <Condition form={form} setFunction={setFunction} setForm={setForm} fields={['Mileage', 'Condition', 'VehiclePassport', 'VehiclePassportOwners', 'InspectionData']} validationErrors={validationErrors}/>
+      <Appereance form={form} setFunction={setFunction} validationErrors={validationErrors} fields={['color', 'photo', 'video']}/>
+      <RegistrationInfo form={form} setFunction={setFunction} fields={['vin', 'autoNumber']} validationErrors={validationErrors}/>
+      <Specifications setFunction={setFunction} validationErrors={validationErrors} fields={['brand']} form={form} data={{brands: autoBrands}}/>
+      <Condition form={form} setFunction={setFunction} setForm={setForm} fields={['mileage', 'condition-car', 'vehiclePassport', 'vehiclePassportOwners', 'inspectionData']} validationErrors={validationErrors}/>
       <CarBody form={form} setFunction={setFunction}/>
       <Additional setForm={setForm} data={autoAdditional}/>
       <DPC form={form} setFunction={setFunction} setForm={setForm} validationErrors={validationErrors}/>

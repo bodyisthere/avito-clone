@@ -5,8 +5,6 @@ import React, { FC, useEffect, useState } from 'react'
 import standart from '../../../../../styles/ads.module.scss'
 
 //импорт типов
-import { car } from '../../types/transport/Auto/ICarNew'
-import { carOld } from '../../types/transport/Auto/ICarOld'
 
 //импорт функционала
 import { uploadApi } from '../../../../../../../store/api/uploadApi'
@@ -19,13 +17,11 @@ interface IAppereance {
   form: any
   setFunction: any
   validationErrors: string[]
-  fields: string[]
+  fields: Array<'photo' | 'color' | 'video'>
 }
 
 export const Appereance: FC<IAppereance> = ( { form, setFunction, validationErrors, fields } ) => {
   const [uploadImg, { data } ] = uploadApi.useUploadImagesMutation();
-
-  const [selectedFiles, setSelectedFiles] = useState();
 
   const handleImgUpload = async (e: any) => {
     const formData = new FormData();
@@ -51,7 +47,7 @@ export const Appereance: FC<IAppereance> = ( { form, setFunction, validationErro
     <>
       <div className={standart.title}>Внешний вид</div>
         {
-          fields.includes('Photo')
+          fields.includes('photo')
           &&
           <div className={standart.item}>
             <div className={standart["item-left"]}>
@@ -76,7 +72,7 @@ export const Appereance: FC<IAppereance> = ( { form, setFunction, validationErro
           </div>
         }
         {
-          fields.includes('Color')
+          fields.includes('color')
           &&
           <div className={standart.item}>
             <div className={standart["item-left"]}>
@@ -89,7 +85,7 @@ export const Appereance: FC<IAppereance> = ( { form, setFunction, validationErro
           </div>
         }
         {
-          fields.includes('Video')
+          fields.includes('video')
           &&
           <div className={standart.item}>
             <div className={standart["item-left"]}>

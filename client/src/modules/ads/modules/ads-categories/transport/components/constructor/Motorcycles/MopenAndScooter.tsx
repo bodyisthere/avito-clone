@@ -9,15 +9,11 @@ import { IMopenAndScooter } from '../../../types/transport/Motorcycles/IMopenAnd
 //импорт функционала
 import { mopenAndScooterForm } from '../../../forms/Motorcycles/mopenAndScooter'
 import { mopenAndScooterValidation } from '../../../validation/Motorcycles/mopenAndScooterValidation'
+import { mopenAndScooterBrands } from '../../../data/Motorcycles/mopenAndScooterBrands'
 
 //импорт компонентов
-import { Name } from '../../fields/Name'
-import { RegistrationInfo } from '../../fields/RegistrationInfo'
+import { Name, RegistrationInfo, Appereance, Condition, DPC, Specifications } from '../../fields'
 import { Button } from '../../../../../../../../UI'
-import { Appereance } from '../../fields/Appereance'
-import { ConditionMotorcycles } from '../../fields/ConditionMotorcycles'
-import { DPC } from '../../fields/DPC'
-import { SpecificationsMotorcycles } from '../../fields/SpecificationsMotorcycles'
 
 export const MopenAndScooter: FC = () => {
   const [form, setForm] = useState<IMopenAndScooter>(mopenAndScooterForm);
@@ -46,21 +42,22 @@ export const MopenAndScooter: FC = () => {
         form={form} 
         setFunction={setFunction} 
         validationErrors={validationErrors}
-        fields={['Photo', 'Video']}
+        fields={['photo', 'video']}
       />
       <RegistrationInfo 
         form={form} 
         setFunction={setFunction} 
         validationErrors={validationErrors} 
-        fields={['VIN']}
+        fields={['vin']}
       />
-      <SpecificationsMotorcycles 
+      <Specifications 
         setFunction={setFunction} 
         validationErrors={validationErrors}
         form={form}
         fields={['brand','type','yearOfIssue', 'engineType', 'power', 'engineCapacity', 'numberOfCycles', 'fuelSupply', 'transmission', 'cooling']}
+        data={{brands: mopenAndScooterBrands, type: ['Скутер', 'Макси-скутер', 'Мопед', 'Минибайк']}}
       />
-      <ConditionMotorcycles 
+      <Condition 
         form={form} 
         setFunction={setFunction} 
         validationErrors={validationErrors} 

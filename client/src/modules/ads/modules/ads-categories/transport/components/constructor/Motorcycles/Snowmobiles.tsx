@@ -9,15 +9,11 @@ import { ISnowmobiles } from '../../../types/transport/Motorcycles/ISnowmobiles'
 //импорт функционала
 import { snowmobilesForm } from '../../../forms/Motorcycles/snowmobiles'
 import { snowmobilesValidation } from '../../../validation/Motorcycles/snowmobilesValidation'
+import { snowmobilesBrands, snowmobilesTypes } from '../../../data/Motorcycles/snowmobilesBrands'
 
 //импорт компонентов
-import { Name } from '../../fields/Name'
-import { RegistrationInfo } from '../../fields/RegistrationInfo'
+import { Name, RegistrationInfo, Appereance, Condition, DPC, Specifications } from '../../fields'
 import { Button } from '../../../../../../../../UI'
-import { Appereance } from '../../fields/Appereance'
-import { ConditionMotorcycles } from '../../fields/ConditionMotorcycles'
-import { DPC } from '../../fields/DPC'
-import { SpecificationsMotorcycles } from '../../fields/SpecificationsMotorcycles'
 
 export const Snowmobiles: FC = () => {
   const [form, setForm] = useState<ISnowmobiles>(snowmobilesForm);
@@ -46,21 +42,22 @@ export const Snowmobiles: FC = () => {
         form={form} 
         setFunction={setFunction} 
         validationErrors={validationErrors}
-        fields={['Photo', 'Video']}
+        fields={['photo', 'video']}
       />
       <RegistrationInfo 
         form={form} 
         setFunction={setFunction} 
         validationErrors={validationErrors} 
-        fields={['VIN']}
+        fields={['vin']}
       />
-      <SpecificationsMotorcycles 
+      <Specifications 
         setFunction={setFunction} 
         validationErrors={validationErrors}
         form={form}
         fields={['brand','type','yearOfIssue', 'engineType', 'power', 'engineCapacity', 'numberOfCycles', 'maxPassengers', 'trackWidth']}
+        data={{brands: snowmobilesBrands, type: snowmobilesTypes}}
       />
-      <ConditionMotorcycles 
+      <Condition 
         form={form} 
         setFunction={setFunction} 
         validationErrors={validationErrors} 

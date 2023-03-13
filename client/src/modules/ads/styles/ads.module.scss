@@ -36,3 +36,18 @@
   color: red;
   font-size: 14px;
 }
+
+.tip {
+  position: relative;
+  cursor: pointer;
+  margin-left: 5px;
+  display: flex;
+  align-items: center;
+  color: white;
+  font-weight: 700;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  background: rgba(128, 128, 128, 0.396);
+  border-radius: 50%;
+}

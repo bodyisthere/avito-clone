@@ -9,15 +9,11 @@ import { IATVsAndBuggies } from '../../../types/transport/Motorcycles/IATVsAndBu
 //импорт функционала
 import { aTVsAndBuggiesForm } from '../../../forms/Motorcycles/aTVsAndBuggies'
 import { aTVsAndBuggiesValidation } from '../../../validation/Motorcycles/aTVsAndBuggiesValidation'
+import { aTVsAndBuggiesBrands, aTVsAndBuggiesTypes } from '../../../data/Motorcycles/aTVsAndBuggiesBrands'
 
 //импорт компонентов
-import { Name } from '../../fields/Name'
-import { RegistrationInfo } from '../../fields/RegistrationInfo'
+import { Name, RegistrationInfo, Appereance, Condition, DPC, Specifications } from '../../fields'
 import { Button } from '../../../../../../../../UI'
-import { Appereance } from '../../fields/Appereance'
-import { ConditionMotorcycles } from '../../fields/ConditionMotorcycles'
-import { DPC } from '../../fields/DPC'
-import { SpecificationsMotorcycles } from '../../fields/SpecificationsMotorcycles'
 
 export const ATVsAndBuggies: FC = () => {
   const [form, setForm] = useState<IATVsAndBuggies>(aTVsAndBuggiesForm);
@@ -46,21 +42,22 @@ export const ATVsAndBuggies: FC = () => {
         form={form} 
         setFunction={setFunction} 
         validationErrors={validationErrors}
-        fields={['Photo', 'Video']}
+        fields={['photo', 'video']}
       />
       <RegistrationInfo 
         form={form} 
         setFunction={setFunction} 
         validationErrors={validationErrors} 
-        fields={['VIN']}
+        fields={['vin']}
       />
-      <SpecificationsMotorcycles 
+      <Specifications 
         setFunction={setFunction} 
         validationErrors={validationErrors}
         form={form}
         fields={['brand','type','yearOfIssue', 'engineType', 'power', 'engineCapacity', 'numberOfCycles', 'maxPassengers', 'fuelSupply', 'typeOfDrive']}
+        data={{brands: aTVsAndBuggiesBrands, type: aTVsAndBuggiesTypes}}
       />
-      <ConditionMotorcycles 
+      <Condition 
         form={form} 
         setFunction={setFunction} 
         validationErrors={validationErrors} 

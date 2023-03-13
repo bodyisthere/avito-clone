@@ -3,15 +3,12 @@ import { IDamagedPositions } from "../../types/transport/IDamagedPosition";
 export const inspectionData = [
   {
     title: 'Есть сервисная книжка',
-    id: '6b38a793-a718-40e5-a09e-8d068c27522b',
   },
   {
     title: 'Обслуживался у диллера',
-    id: '15a52432-213b-42ac-bc2a-82f28d03f063',
   },
   {
     title: 'На гарантии',
-    id: 'a9b67ef2-9d62-4a9a-b405-fbccac7c05c3',
   },
 ]
 

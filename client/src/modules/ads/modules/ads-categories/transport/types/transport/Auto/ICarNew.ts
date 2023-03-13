@@ -76,7 +76,7 @@ export interface additionalOptions {
 
 export interface car extends groundTransport {
   brand: string | null
-  vehiclePassport: "Оригинал" | "Дубликат" | "Электронный" | "-" | null
+  vehiclePassport: "Оригинал" | "Дубликат" | "Электронный" | "-Не выбрано-" | null
   inspectionData: ("Есть сервисная книжка" | "Обслуживался у дилера" | "На гарантии")[] | null 
   color: "Белый" | "Серебрянный" | "Серый" | "Чёрный" | "Коричневый" | "Золотой" | "Бежевый" | "Красный" | "Бордовый" | "Оранжевый" | "Жёлтый" | "Зелёный" | "Голубой" | "Синий" | "Фиолетовый" | "Пурпурный" | "Розовый" | null
   additionalOptions: additionalOptions
